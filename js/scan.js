@@ -1,205 +1,136 @@
+
 let audioCtx;
 let mode = "RETUR";
 let data = [];
 
 // aktifin audio
 function enableSound() {
-  audioCtx = new (
-    window.AudioContext ||
-    window.webkitAudioContext
-  )();
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 }
 
 // bunyi sukses
 function beep() {
-
   if (!audioCtx) return;
 
-  const osc =
-    audioCtx.createOscillator();
-
+  const osc = audioCtx.createOscillator();
   osc.type = "sine";
-
-  osc.frequency.setValueAtTime(
-    1000,
-    audioCtx.currentTime
-  );
+  osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
 
   osc.connect(audioCtx.destination);
-
   osc.start();
-
   osc.stop(audioCtx.currentTime + 0.08);
 }
 
 // bunyi error
 function errorBeep() {
-
   if (!audioCtx) return;
 
-  const osc =
-    audioCtx.createOscillator();
-
+  const osc = audioCtx.createOscillator();
   osc.type = "square";
-
-  osc.frequency.setValueAtTime(
-    300,
-    audioCtx.currentTime
-  );
+  osc.frequency.setValueAtTime(300, audioCtx.currentTime);
 
   osc.connect(audioCtx.destination);
-
   osc.start();
-
   osc.stop(audioCtx.currentTime + 0.2);
 }
 
 // ganti mode
 function setMode(m) {
-
   enableSound();
-
   mode = m;
-
-  document.getElementById("mode")
-    .innerText = m;
+  document.getElementById("mode").innerText = m;
 }
 
 // render list
 function render() {
 
-  const list =
-    document.getElementById("list");
-
+  const list = document.getElementById("list");
   list.innerHTML = "";
 
   data.forEach((item, i) => {
-
     list.innerHTML += `
       <div class="item">
-
-        ${item.resi}
-        (${item.status})
-
-        <button
-        onclick="removeItem(${i})">
-
-          Hapus
-
-        </button>
-
+        ${item.resi} (${item.status})
+        <button onclick="removeItem(${i})">Hapus</button>
       </div>
     `;
-
   });
 
-  document.getElementById("total")
-    .innerText = data.length;
+  document.getElementById("total").innerText = data.length;
 }
 
 // hapus item
 function removeItem(i) {
-
   data.splice(i, 1);
-
   render();
 }
 
 // clear semua
 function clearAll() {
-
-  if(confirm("Hapus semua data?")) {
-
+  if (confirm("Hapus semua data?")) {
     data = [];
-
     render();
-
   }
 }
 
-// kirim data ke Supabase
+// kirim data ke Supabase + sync manifest
 async function sendData() {
 
-  if(data.length === 0) {
-
+  if (data.length === 0) {
     alert("Tidak ada data!");
-
     return;
   }
 
   try {
 
-    const payload =
-      data.map(item => ({
-
+    const payload = data.map(item => ({
       resi: item.resi,
-
       status: item.status,
-
-      waktu:
-        new Date().toISOString()
-
+      waktu: new Date().toISOString()
     }));
 
-    const response =
-      await fetch(
-
-      `${SUPABASE_URL}/rest/v1/${TABLE_NAME}`,
-
+    // 1. INSERT ke inbound / scan table
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/inbound`,
       {
-
         method: "POST",
-
         headers: {
-
-          "apikey":
-            SUPABASE_KEY,
-
-          "Authorization":
-            `Bearer ${SUPABASE_KEY}`,
-
-          "Content-Type":
-            "application/json",
-
-          "Prefer":
-            "return=minimal"
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": "application/json"
         },
-
-        body:
-          JSON.stringify(payload)
-
+        body: JSON.stringify(payload)
       }
-
     );
 
-    if (!response.ok) {
+    if (!response.ok) throw new Error("Gagal kirim inbound");
 
-      const errText =
-        await response.text();
-
-      console.log(errText);
-
-      throw new Error(
-        "Gagal kirim"
+    // 2. UPDATE manifest kalau ada
+    for (const item of data) {
+      await fetch(
+        `${SUPABASE_URL}/rest/v1/retur_manifest?resi=eq.${item.resi}`,
+        {
+          method: "PATCH",
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            status: "SUDAH DIKEMBALIKAN"
+          })
+        }
       );
     }
 
-    alert(
-      "Data berhasil dikirim!"
-    );
+    alert("Data berhasil dikirim & manifest terupdate!");
 
     data = [];
-
     render();
 
-  } catch(err) {
-
+  } catch (err) {
     console.log(err);
-
-    alert(
-      "Gagal kirim data!"
-    );
-
+    alert("Gagal kirim data!");
   }
 }
 
@@ -208,73 +139,37 @@ window.onload = async () => {
 
   try {
 
-    const scanner =
-      new Html5Qrcode("reader");
+    const scanner = new Html5Qrcode("reader");
 
     await scanner.start(
-
-      {
-        facingMode: "environment"
-      
-      },
-
-      {
-        fps: 10,
-        qrbox: 250
-      },
+      { facingMode: "environment" },
+      { fps: 10, qrbox: 250 },
 
       (decodedText) => {
 
-        // anti duplicate
-        if(
-          data.find(
-            d =>
-            d.resi === decodedText
-          )
-        ) {
-
+        if (data.find(d => d.resi === decodedText)) {
           errorBeep();
-
-          document.getElementById(
-            "warning"
-          ).innerText =
-            "⚠ Resi sudah di scan!";
-
+          document.getElementById("warning").innerText = "⚠ Resi sudah di scan!";
           setTimeout(() => {
-
-            document.getElementById(
-              "warning"
-            ).innerText = "";
-
+            document.getElementById("warning").innerText = "";
           }, 2000);
-
           return;
         }
 
         data.push({
-
           resi: decodedText,
-
           status: mode
-
         });
 
         beep();
-
         render();
-
       }
 
     );
 
-  } catch(err) {
-
+  } catch (err) {
     console.log(err);
-
-    alert(
-      "Camera gagal dibuka!"
-    );
-
+    alert("Camera gagal dibuka!");
   }
 
 };
