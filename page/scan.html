@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Scan AWB</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="sidebar">
+
+    <h2>MENU</h2>
+
+    <a href="page/scan.html">Scan</a>
+
+    <a href="page/index.html">
+      Dashboard
+    </a>
+
+    <a href="page/manifest.html">
+      Manifest
+    </a>
+
+    <a href="page/inbound.html">
+      Inbound
+    </a>
+
+  </div>
+
+  <div class="content">
+
+    <h3>Scan AWB Paket</h3>
+
+    <div>
+
+      <button onclick="setMode('RETUR')">
+        RETUR
+      </button>
+
+      <button onclick="setMode('CANCEL')">
+        CANCEL
+      </button>
+
+    </div>
+
+    <h4>
+      Mode Aktif:
+      <span id="mode">RETUR</span>
+    </h4>
+
+    <h4>
+      Total:
+      <span id="total">0</span>
+    </h4>
+
+    <div id="warning"></div>
+
+    <div id="reader"></div>
+
+    <hr>
+
+    <div id="list"></div>
+
+    <button onclick="sendData()">
+      Kirim Semua
+    </button>
+
+    <button onclick="clearAll()">
+      Hapus Semua
+    </button>
+
+  </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/scan.js"></script>
+
+</body>
+</html>

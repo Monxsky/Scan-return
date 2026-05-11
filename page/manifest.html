@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>PAKET MANIFEST</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="sidebar">
+
+    <h2>MENU</h2>
+
+    <a href="page/scan.html">
+      Scan
+    </a>
+
+    <a href="page/index.html">
+      Dashboard
+    </a>
+
+    <a href="page/manifest.html">
+      Manifest
+    </a>
+
+    <a href="page/inbound.html">
+      Inbound
+    </a>
+
+  </div>
+
+  <div class="content">
+
+    <h2>PAKET MANIFEST</h2>
+
+    <input
+      type="file"
+      id="csvFile"
+      accept=".csv">
+
+    <button onclick="uploadCSV()">
+      Upload CSV
+    </button>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Resi</th>
+          <th>Status</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="manifestBody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/manifest.js"></script>
+
+</body>
+</html>
