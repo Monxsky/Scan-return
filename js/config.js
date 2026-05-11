@@ -6,3 +6,4 @@ const SUPABASE_KEY =
 
 const TABLE_NAME =
 "scan_awb";
+"retur_manifest";
