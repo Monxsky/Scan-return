@@ -10,9 +10,10 @@ async function globalSearch() {
 
   try {
 
+    console.log(keyword);
     // cari manifest
     const manifestRes = await fetch(
-      `${SUPABASE_URL}/rest/v1/retur_manifest?select=*&resi=ilike.*${keyword}*`,
+      `${SUPABASE_URL}/rest/v1/retur_manifest?select=*&resi=ilike.*${encodeURIComponent(keyword)}*`,
       {
         headers: {
           apikey: SUPABASE_KEY,
@@ -24,9 +25,10 @@ async function globalSearch() {
     const manifestData =
       await manifestRes.json();
 
+    console.log(keyword);
     // cari inbound
     const inboundRes = await fetch(
-      `${SUPABASE_URL}/rest/v1/scan_awb?select=*&resi=ilike.*${keyword}*`,
+      `${SUPABASE_URL}/rest/v1/scan_awb?select=*&resi=ilike.*${encodeURIComponent(keyword)}*`,
       {
         headers: {
           apikey: SUPABASE_KEY,
@@ -46,6 +48,8 @@ async function globalSearch() {
   } catch(err) {
 
     console.log(err);
+    console.log(manifestData);
+    console.log(inboundData);
 
     alert("Search gagal!");
 
