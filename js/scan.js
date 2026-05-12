@@ -92,7 +92,7 @@ async function sendData() {
     console.log(payload);
     // 1. INSERT ke inbound / scan table
     const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/inbound`,
+      `${SUPABASE_URL}/rest/v1/scan_awb`,
       {
         method: "POST",
         headers: {
