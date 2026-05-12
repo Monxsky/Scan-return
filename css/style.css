@@ -161,3 +161,42 @@ tr:hover {
     font-size: 12px;
   }
 }
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+  }
+
+  .sidebar a {
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  #reader {
+    width: 100% !important;
+  }
+  
+#reader {
+  max-width: 500px;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+  
+}
