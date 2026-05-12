@@ -13,6 +13,8 @@ async function loadInbound() {
 
   const data = await res.json();
 
+  renderTable(data);
+
   const tbody =
     document.getElementById(
       "tableBody"
