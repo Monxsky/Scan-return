@@ -1,26 +1,18 @@
 
-async function searchResi(
-  tableName,
-  renderFunction
-) {
+async function globalSearch() {
 
   const keyword =
     document.getElementById("searchInput")
     .value
     .trim();
 
-  // kalau kosong load semua lagi
-  if (!keyword) {
-
-    loadData();
-
-    return;
-  }
+  if (!keyword) return;
 
   try {
 
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/${tableName}?resi=ilike.*${keyword}*`,
+    // cari manifest
+    const manifestRes = await fetch(
+      `${SUPABASE_URL}/rest/v1/retur_manifest?select=*&resi=ilike.*${keyword}*`,
       {
         headers: {
           apikey: SUPABASE_KEY,
@@ -29,15 +21,33 @@ async function searchResi(
       }
     );
 
-    const data = await res.json();
+    const manifestData =
+      await manifestRes.json();
 
-    renderFunction(data);
+    // cari inbound
+    const inboundRes = await fetch(
+      `${SUPABASE_URL}/rest/v1/scan_awb?select=*&resi=ilike.*${keyword}*`,
+      {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    const inboundData =
+      await inboundRes.json();
+
+    renderGlobalResult(
+      manifestData,
+      inboundData
+    );
 
   } catch(err) {
 
     console.log(err);
 
-    alert("Gagal mencari data!");
+    alert("Search gagal!");
 
   }
 
