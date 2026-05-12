@@ -12,7 +12,17 @@ async function loadInbound() {
   );
 
   const data = await res.json();
+  const start =
+    document.getElementById("startDate").value;
 
+  const end =
+    document.getElementById("endDate").value;
+
+  const data = await filterByDate(
+    "scan_awb",
+    start,
+    end
+  );
   renderTable(data);
 
   const tbody =
