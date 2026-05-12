@@ -89,6 +89,7 @@ async function sendData() {
       waktu: new Date().toISOString()
     }));
 
+    console.log(payload);
     // 1. INSERT ke inbound / scan table
     const response = await fetch(
       `${SUPABASE_URL}/rest/v1/inbound`,
