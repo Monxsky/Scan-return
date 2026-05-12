@@ -28,7 +28,7 @@ async function loadInbound() {
 
         <td>${item.status}</td>
 
-        <td>${item.created_at}</td>
+        <td>${item.waktu}</td>
 
         <td>
           ${new Date(item.waktu)
