@@ -100,6 +100,8 @@ function renderGlobalResult(
 
   const tbody =
     document.getElementById("tableBody");
+  
+   if (!tbody) return;
 
   tbody.innerHTML = "";
 
