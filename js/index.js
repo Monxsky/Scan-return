@@ -88,6 +88,51 @@ function setupRealtime() {
 
 }
 
+// ==========================
+// SEARCH GLOBAL
+// ==========================
+
+
+function renderGlobalResult(
+  manifest,
+  inbound
+) {
+
+  const tbody =
+    document.getElementById("tableBody");
+
+  tbody.innerHTML = "";
+
+  // manifest
+  manifest.forEach(item => {
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.resi}</td>
+        <td>MANIFEST</td>
+        <td>${item.status}</td>
+      </tr>
+    `;
+
+  });
+
+  // inbound
+  inbound.forEach(item => {
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.resi}</td>
+        <td>INBOUND</td>
+        <td>
+          ${new Date(item.waktu)
+            .toLocaleString('id-ID')}
+        </td>
+      </tr>
+    `;
+
+  });
+
+}
 
 // ==========================
 // START DASHBOARD
