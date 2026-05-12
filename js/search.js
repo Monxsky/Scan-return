@@ -6,12 +6,13 @@ async function globalSearch() {
     .value
     .trim();
 
+  console.log(keyword);
+
   if (!keyword) return;
 
   try {
 
-    console.log(keyword);
-    // cari manifest
+    // manifest
     const manifestRes = await fetch(
       `${SUPABASE_URL}/rest/v1/retur_manifest?select=*&resi=ilike.*${encodeURIComponent(keyword)}*`,
       {
@@ -25,8 +26,9 @@ async function globalSearch() {
     const manifestData =
       await manifestRes.json();
 
-    console.log(keyword);
-    // cari inbound
+    console.log(manifestData);
+
+    // inbound
     const inboundRes = await fetch(
       `${SUPABASE_URL}/rest/v1/scan_awb?select=*&resi=ilike.*${encodeURIComponent(keyword)}*`,
       {
@@ -40,6 +42,8 @@ async function globalSearch() {
     const inboundData =
       await inboundRes.json();
 
+    console.log(inboundData);
+
     renderGlobalResult(
       manifestData,
       inboundData
@@ -48,8 +52,6 @@ async function globalSearch() {
   } catch(err) {
 
     console.log(err);
-    console.log(manifestData);
-    console.log(inboundData);
 
     alert("Search gagal!");
 
