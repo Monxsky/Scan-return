@@ -7,3 +7,9 @@ const SUPABASE_KEY =
 const TABLE_NAME =
 "scan_awb";
 "retur_manifest";
+
+const supabase =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
