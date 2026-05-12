@@ -12,6 +12,15 @@ async function loadInbound() {
   );
 
   const data = await res.json();
+  
+  const tbody =
+    document.getElementById(
+      "tableBody"
+    );
+
+
+async function filterInbound() {
+
   const start =
     document.getElementById("startDate").value;
 
@@ -23,12 +32,10 @@ async function loadInbound() {
     start,
     end
   );
-  renderTable(data);
 
-  const tbody =
-    document.getElementById(
-      "tableBody"
-    );
+  renderTable(data);
+}
+  
 
   tbody.innerHTML = "";
 
