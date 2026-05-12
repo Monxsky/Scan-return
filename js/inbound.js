@@ -37,6 +37,15 @@ async function filterInbound() {
 }
   
 
+function doSearch() {
+
+  searchResi(
+    "scan_awb",
+    renderTable
+  );
+
+}
+  
   tbody.innerHTML = "";
 
   data.reverse().forEach(item => {
