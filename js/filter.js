@@ -36,5 +36,6 @@ async function filterTanggal() {
   );
 
   renderTable(data);
+  console.log("FILTER JS MASUK");
 
 }
