@@ -47,8 +47,6 @@ async function filterInbound() {
 
         <td>${item.status}</td>
 
-        <td>${item.waktu}</td>
-
         <td>
           ${new Date(item.waktu)
             .toLocaleString('id-ID')}
