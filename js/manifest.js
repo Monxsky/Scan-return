@@ -114,6 +114,7 @@ async function loadManifest() {
       <tr>
         <td>${item.resi}</td>
         <td>${item.status}</td>
+        <td>${item.waktu}</td>
       </tr>
     `;
   });
