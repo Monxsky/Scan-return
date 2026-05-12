@@ -82,6 +82,23 @@ async function uploadCSV() {
 }
 
 
+async function filterManifest() {
+
+  const start =
+    document.getElementById("startDate").value;
+
+  const end =
+    document.getElementById("endDate").value;
+
+  const data = await filterByDate(
+    "retur_manifest",
+    start,
+    end
+  );
+
+  renderManifest(data);
+}
+
 async function loadManifest() {
 
   const res = await fetch(
