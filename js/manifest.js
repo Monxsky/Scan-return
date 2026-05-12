@@ -22,6 +22,16 @@ async function uploadCSV() {
     };
   });
 
+
+function doSearch() {
+
+  searchResi(
+    "retur_manifest",
+    renderManifest
+  );
+
+}
+  
   // 1. ambil data existing dari Supabase
   const existingRes = await fetch(
     `${SUPABASE_URL}/rest/v1/retur_manifest?select=resi`,
