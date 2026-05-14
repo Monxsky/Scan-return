@@ -153,7 +153,7 @@ async function loadPage(page) {
   const from = (page - 1) * limit;
   const to = from + (limit - 1);
 
-  const { data } = await supabase
+  const { data } = await client
     .from("manifest")
     .select("*")
     .range(from, to);
