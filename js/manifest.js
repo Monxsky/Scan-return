@@ -150,7 +150,7 @@ async function loadManifest() {
 
 async function loadPage(page) {
 
-  const from = (page - 1) * limit;
+  const from = (curentPage - 1) * limit;
   const to = from + (limit - 1);
 
   const { data } = await client
