@@ -69,4 +69,40 @@ function doSearch() {
 
 loadInbound();
 
+setupPagination({
+
+  table:"scan_awb",
+
+  tbodyId:"tableBody",
+
+  renderRow:(item)=>`
+
+    <tr>
+      <td>${item.resi}</td>
+      <td>${item.status}</td>
+      <td>${item.created_at}</td>
+    </tr>
+
+  `
+});
+
+loadPage({
+
+  page:1,
+
+  table:"scan_awb",
+
+  tbodyId:"tableBody",
+
+  renderRow:(item)=>`
+
+    <tr>
+      <td>${item.resi}</td>
+      <td>${item.status}</td>
+      <td>${item.created_at}</td>
+    </tr>
+
+  `
+});
+
 setInterval(loadInbound, 3000);
