@@ -80,6 +80,3 @@ loadPage({
     </tr>
   `
 });
-
-loadInbound();
-setInterval(loadInbound, 3000);
