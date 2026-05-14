@@ -22,7 +22,7 @@ async function setupPagination() {
     `;
   }
 
-  document.getElementById("pagination").innerHTML = buttons;
+  document.getElementById("pagination").innerHTML = html;
 }
 function changePage(page){
 
