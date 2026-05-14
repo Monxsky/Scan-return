@@ -1,108 +1,90 @@
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
 async function loadInbound() {
 
-  const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/scan_awb?select=*`,
-    {
-      headers:{
-        apikey: SUPABASE_KEY,
-        Authorization:
-          `Bearer ${SUPABASE_KEY}`
-      }
-    }
-  );
+  const { data, error } = await supabase
+    .from("scan_awb")
+    .select("*");
 
-  const data = await res.json();
-  
-  const tbody =
-    document.getElementById(
-      "tableBody"
-    );
+  if (error) {
+    console.error("Supabase Error:", error);
+    return;
+  }
 
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = "";
+
+  data
+    .slice()
+    .reverse()
+    .forEach(item => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${item.resi}</td>
+          <td>${item.status}</td>
+          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+        </tr>
+      `;
+    });
+}
 
 async function filterInbound() {
 
-  const start =
-    document.getElementById("startDate").value;
+  const start = document.getElementById("startDate").value;
+  const end = document.getElementById("endDate").value;
 
-  const end =
-    document.getElementById("endDate").value;
-
-  const data = await filterByDate(
-    "scan_awb",
-    start,
-    end
-  );
+  const data = await filterByDate("scan_awb", start, end);
 
   renderTable(data);
 }
-  
 
 function doSearch() {
-
-  searchResi(
-    "scan_awb",
-    renderTable
-  );
-
+  searchResi("scan_awb", renderTable);
 }
-  
+
+function renderTable(data) {
+
+  const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
 
-  data.reverse().forEach(item => {
-
+  data.forEach(item => {
     tbody.innerHTML += `
       <tr>
         <td>${item.resi}</td>
-
         <td>${item.status}</td>
-
-        <td>
-          ${new Date(item.waktu)
-            .toLocaleString('id-ID')}
-        </td>
+        <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
       </tr>
     `;
-
   });
-
 }
 
-loadInbound();
-
 setupPagination({
-
-  table:"scan_awb",
-
-  tbodyId:"tableBody",
-
-  renderRow:(item)=>`
-
+  table: "scan_awb",
+  tbodyId: "tableBody",
+  renderRow: (item) => `
     <tr>
       <td>${item.resi}</td>
       <td>${item.status}</td>
-      <td>${item.created_at}</td>
+      <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
     </tr>
-
   `
 });
 
 loadPage({
-
-  page:1,
-
-  table:"scan_awb",
-
-  tbodyId:"tableBody",
-
-  renderRow:(item)=>`
-
+  page: 1,
+  table: "scan_awb",
+  tbodyId: "tableBody",
+  renderRow: (item) => `
     <tr>
       <td>${item.resi}</td>
       <td>${item.status}</td>
-      <td>${item.created_at}</td>
+      <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
     </tr>
-
   `
 });
 
+loadInbound();
 setInterval(loadInbound, 3000);
