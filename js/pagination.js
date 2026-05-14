@@ -2,7 +2,7 @@ const limit = 100;
 
 async function setupPagination() {
 
-  const { count } = await client
+  const { count } = await supabase
     .from("manifest")
     .select("*", { count: "exact", head: true });
 
