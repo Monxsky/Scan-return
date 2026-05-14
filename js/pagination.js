@@ -1,12 +1,22 @@
 const limit = 50;
 
-async function setupPagination() {
+async function setupPagination({
+
+  table,
+  tbodyId,
+  renderRow
+
+}) {
 
   const { count } = await client
-    .from("retur_manifest")
-    .select("*", { count: "exact", head: true });
+    .from(table)
+    .select("*", {
+      count:"exact",
+      head:true
+    });
 
-  const totalPages = Math.ceil(count / limit);
+  const totalPages = 
+    Math.ceil(count / limit);
 
   let html = "";
 
@@ -14,20 +24,34 @@ async function setupPagination() {
 
     html += `
       <button
-        class="${i === currentPage ? 'active-page' : ''}"
-        onclick="changePage(${i})"
-      >
-        ${i}
+        onclick="
+         changePage(
+         ${i},
+         '${table}'
+         '${tbodyId}'
+        )
+      "
+    >
+       ${i}
       </button>
     `;
   }
 
-  document.getElementById("pagination").innerHTML = html;
-}
-function changePage(page){
+  document
+    .getElementById("pagination")
+    .innerHTML = html;
 
-  currentPage = page;
-  loadPage(page);
+  window.currentRenderRow =
+    renderRow;
+}
+
+function changePage(page){
+  loadPage({
+    page,
+    table,
+    tbodyId,
+    renderRow: window.currentRenderRow
+  });
 
   setupPagination();
 }
