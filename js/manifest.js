@@ -113,10 +113,10 @@ async function loadPage(page) {
 
   currentPage = page;
 
-  const from = (currentPage - 1) * LIMIT;
-  const to = from + (LIMIT - 1);
+  const from = (currentPage - 1) * limit;
+  const to = from + (limit - 1);
 
-  const { data, error } = await supabase
+  const { data, error } = await client
     .from("retur_manifest")
     .select("*")
     .range(from, to);
