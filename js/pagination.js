@@ -12,8 +12,11 @@ async function setupPagination() {
 
   for(let i = 1; i <= totalPages; i++) {
 
-    buttons += `
-      <button onclick="loadPage(${i})">
+    html += `
+      <button
+        class="${i === currentPage ? 'active-page' : ''}"
+        onclick="changePage(${i})"
+      >
         ${i}
       </button>
     `;
