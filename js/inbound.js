@@ -1,6 +1,6 @@
 async function loadInbound() {
 
-  const { data, error } = await supabase
+  const { data, error } = await client
     .from("scan_awb")
     .select("*");
 
