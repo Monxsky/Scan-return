@@ -200,3 +200,32 @@ tr:hover {
 }
   
 }
+#pagination{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  margin-top:20px;
+}
+
+#pagination button{
+
+  width:30px;
+  height:30px;
+
+  border:none;
+  border-radius:6px;
+
+  background:#e5e7eb;
+
+  cursor:pointer;
+}
+
+#pagination button:hover{
+  transform:scale(1.05);
+}
+
+.active-page{
+
+  background:#1e293b !important;
+  color:white;
+}
