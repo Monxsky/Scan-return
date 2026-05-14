@@ -24,3 +24,11 @@ async function setupPagination() {
 
   document.getElementById("pagination").innerHTML = buttons;
 }
+function changePage(page){
+
+  currentPage = page;
+
+  loadManifest();
+
+  setupPagination();
+}
