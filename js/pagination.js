@@ -27,6 +27,7 @@ async function setupPagination() {
 function changePage(page){
 
   currentPage = page;
+  loadPage = page;
 
   setupPagination();
 }
