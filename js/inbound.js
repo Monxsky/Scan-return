@@ -1,8 +1,3 @@
-const supabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
 async function loadInbound() {
 
   const { data, error } = await supabase
