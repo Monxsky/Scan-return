@@ -3,7 +3,7 @@ const limit = 100;
 async function setupPagination() {
 
   const { count } = await supabase
-    .from("manifest")
+    .from("retur_manifest")
     .select("*", { count: "exact", head: true });
 
   const totalPages = Math.ceil(count / limit);
