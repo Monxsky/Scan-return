@@ -160,10 +160,6 @@ async function loadPage(page) {
 
   let html = "";
 
-  data.forEach(item => {
-    html += `<p>${item.nama}</p>`;
-  });
-
   document.getElementById("data").innerHTML = html;
 }
 
