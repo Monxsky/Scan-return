@@ -1,4 +1,4 @@
-const limit = 100;
+const limit = 50;
 
 async function setupPagination() {
 
