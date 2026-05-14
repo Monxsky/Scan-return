@@ -47,6 +47,20 @@ async function loadPage({
   });
 }
 
+function changePage(
+  page,
+  table,
+  tbodyId
+){
+
+  loadPage({
+    page,
+    table,
+    tbodyId,
+    renderRow: window.currentRenderRow
+  });
+}
+
 async function setupPagination({
 
   table,
