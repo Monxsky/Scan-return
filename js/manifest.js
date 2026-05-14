@@ -148,4 +148,26 @@ async function loadManifest() {
 
 }
 
+async function loadPage(page) {
+
+  const from = (page - 1) * limit;
+  const to = from + (limit - 1);
+
+  const { data } = await supabase
+    .from("manifest")
+    .select("*")
+    .range(from, to);
+
+  let html = "";
+
+  data.forEach(item => {
+    html += `<p>${item.nama}</p>`;
+  });
+
+  document.getElementById("data").innerHTML = html;
+}
+
+setupPagination();
+loadPage(1);
+
 loadManifest();
