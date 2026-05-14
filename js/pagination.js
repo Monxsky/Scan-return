@@ -8,7 +8,7 @@ async function setupPagination() {
 
   const totalPages = Math.ceil(count / limit);
 
-  let buttons = "";
+  let html = "";
 
   for(let i = 1; i <= totalPages; i++) {
 
