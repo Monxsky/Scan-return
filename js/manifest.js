@@ -109,51 +109,38 @@ async function filterManifest() {
   renderManifest(data);
 }
 
-async function loadPage(page) {
+setupPagination({
 
-  currentPage = page;
+  table:"retur_manifest",
 
-  const from = (currentPage - 1) * limit;
-  const to = from + (limit - 1);
+  tbodyId:"manifestBody",
 
-  const { data, error } = await client
-    .from("retur_manifest")
-    .select("*")
-    .range(from, to);
+  renderRow:(item)=>`
 
-  console.log(data);
+    <tr>
+      <td>${item.resi}</td>
+      <td>${item.status}</td>
+      <td>${item.created_at}</td>
+    </tr>
 
-  const tbody =
-    document.getElementById("manifestBody");
+  `
+});
 
-  tbody.innerHTML = "";
+loadPage({
 
-  if (!data || data.length === 0) {
+  page:1,
 
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="3">
-          Belum ada data
-        </td>
-      </tr>
-    `;
+  table:"retur_manifest",
 
-    return;
-  }
+  tbodyId:"manifestBody",
 
-  data.forEach(item => {
+  renderRow:(item)=>`
 
-    tbody.innerHTML += `
-      <tr>
-        <td>${item.resi}</td>
-        <td>${item.status}</td>
-        <td>${item.created_at}</td>
-      </tr>
-    `;
-  });
+    <tr>
+      <td>${item.resi}</td>
+      <td>${item.status}</td>
+      <td>${item.created_at}</td>
+    </tr>
 
-  setupPagination();
-}
-
-setupPagination();
-loadPage(1);
+  `
+});
