@@ -141,7 +141,7 @@ async function loadPage(page) {
     return;
   }
 
-  data.reverse().forEach(item => {
+  data.forEach(item => {
 
     tbody.innerHTML += `
       <tr>
