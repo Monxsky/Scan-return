@@ -28,7 +28,5 @@ function changePage(page){
 
   currentPage = page;
 
-  loadManifest();
-
   setupPagination();
 }
