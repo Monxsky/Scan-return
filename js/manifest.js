@@ -109,34 +109,40 @@ async function filterManifest() {
   renderManifest(data);
 }
 
-async function loadManifest() {
+async function loadPage(page) {
 
-  const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/retur_manifest?select=*`,
-    {
-      headers: {
-        apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`
-      }
-    }
-  );
+  currentPage = page;
 
-  const data = await res.json();
+  const from = (currentPage - 1) * LIMIT;
+  const to = from + (LIMIT - 1);
 
-  const tbody = document.getElementById("manifestBody");
+  const { data, error } = await supabase
+    .from("retur_manifest")
+    .select("*")
+    .range(from, to);
+
+  console.log(data);
+
+  const tbody =
+    document.getElementById("manifestBody");
 
   tbody.innerHTML = "";
 
   if (!data || data.length === 0) {
+
     tbody.innerHTML = `
       <tr>
-        <td colspan="2">Belum ada data</td>
+        <td colspan="3">
+          Belum ada data
+        </td>
       </tr>
     `;
+
     return;
   }
 
   data.reverse().forEach(item => {
+
     tbody.innerHTML += `
       <tr>
         <td>${item.resi}</td>
@@ -146,24 +152,8 @@ async function loadManifest() {
     `;
   });
 
-}
-
-async function loadPage(page) {
-
-  const from = (currentPage - 1) * limit;
-  const to = from + (limit - 1);
-
-  const { data } = await client
-    .from("retur_manifest")
-    .select("*")
-    .range(from, to);
-
-  let html = "";
-
-  document.getElementById("data").innerHTML = html;
+  setupPagination();
 }
 
 setupPagination();
 loadPage(1);
-
-loadManifest();
