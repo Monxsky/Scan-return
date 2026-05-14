@@ -47,20 +47,6 @@ async function loadPage({
   });
 }
 
-function changePage(
-  page,
-  table,
-  tbodyId
-){
-
-  loadPage({
-    page,
-    table,
-    tbodyId,
-    renderRow: window.currentRenderRow
-  });
-}
-
 async function setupPagination({
 
   table,
@@ -69,14 +55,18 @@ async function setupPagination({
 
 }) {
 
+  window.currentTable = table;
+  window.currentTbodyId = tbodyId;
+  window.currentRenderRow = renderRow;
+
   const { count } = await client
     .from(table)
     .select("*", {
-      count:"exact",
-      head:true
+      count: "exact",
+      head: true
     });
 
-  const totalPages = 
+  const totalPages =
     Math.ceil(count / limit);
 
   let html = "";
@@ -85,15 +75,9 @@ async function setupPagination({
 
     html += `
       <button
-        onclick="
-         changePage(
-         ${i},
-         '${table}'
-         '${tbodyId}'
-        )
-      "
-    >
-       ${i}
+        onclick="changePage(${i})"
+      >
+        ${i}
       </button>
     `;
   }
@@ -101,18 +85,19 @@ async function setupPagination({
   document
     .getElementById("pagination")
     .innerHTML = html;
-
-  window.currentRenderRow =
-    renderRow;
 }
 
 function changePage(page){
-  loadPage({
-    page,
-    table,
-    tbodyId,
-    renderRow: window.currentRenderRow
-  });
 
-  setupPagination();
+  loadPage({
+
+    page,
+
+    table: window.currentTable,
+
+    tbodyId: window.currentTbodyId,
+
+    renderRow: window.currentRenderRow
+
+  });
 }
