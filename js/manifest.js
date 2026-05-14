@@ -154,7 +154,7 @@ async function loadPage(page) {
   const to = from + (limit - 1);
 
   const { data } = await client
-    .from("manifest")
+    .from("retur_manifest")
     .select("*")
     .range(from, to);
 
