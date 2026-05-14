@@ -1,4 +1,4 @@
-const client = window.supabase.createClient(
+const supabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
