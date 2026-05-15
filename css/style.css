@@ -5,6 +5,20 @@ body{
   font-family:Lexend;
 }
 
+.menu{
+  position:fixed;
+  top:0;
+  lest:-250px;
+  width:250px;
+  height:100%
+  background:#141836
+  transition:0.3s;
+}
+
+.menu.show{
+  left:0;
+}
+
 .dashboard{
   display:flex;
   gap:15px;
