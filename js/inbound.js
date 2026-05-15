@@ -44,6 +44,7 @@ async function loadInbound() {
       tbody.innerHTML += `
         <tr>
           <td>${item.resi}</td>
+          <td>${item.ekspedisi}</td>
           <td>${item.status}</td>
           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
         </tr>
@@ -88,6 +89,7 @@ setupPagination({
   renderRow: (item) => `
     <tr>
       <td>${item.resi}</td>
+      <td>${item.ekspedisi}</td>
       <td>${item.status}</td>
       <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
     </tr>
@@ -101,6 +103,7 @@ loadPage({
   renderRow: (item) => `
     <tr>
       <td>${item.resi}</td>
+      <td>${item.ekspedisi}</td>
       <td>${item.status}</td>
       <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
     </tr>
