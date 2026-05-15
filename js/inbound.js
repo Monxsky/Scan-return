@@ -109,3 +109,43 @@ loadPage({
     </tr>
   `
 });
+
+// ======================
+// REPAIR DATA LAMA
+// ======================
+
+async function repairEkspedisi() {
+
+  const { data } =
+  await client
+  .from("inbound")
+  .select("*")
+  .is("ekspedisi", null);
+
+  for (const item of data) {
+
+    const ekspedisi =
+    detectExpedisi(item.resi);
+
+    await client
+    .from("inbound")
+    .update({
+
+      ekspedisi
+
+    })
+    .eq("id", item.id);
+
+    console.log(
+      item.resi,
+      ekspedisi
+    );
+
+  }
+
+  console.log(
+    "Repair selesai 😎"
+  );
+
+}
+repairEkspedisi();
