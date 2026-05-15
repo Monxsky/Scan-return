@@ -118,7 +118,7 @@ async function repairEkspedisi() {
 
   const { data } =
   await client
-  .from("inbound")
+  .from("scan_awb")
   .select("*")
   .is("ekspedisi", null);
 
@@ -128,7 +128,7 @@ async function repairEkspedisi() {
     detectExpedisi(item.resi);
 
     await client
-    .from("inbound")
+    .from("scan_awb")
     .update({
 
       ekspedisi
