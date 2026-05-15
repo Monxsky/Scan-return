@@ -1,3 +1,5 @@
+@media (min-width:768px){
+  
 body{
   width:flex;
   background:whitesmoke;
@@ -128,6 +130,15 @@ button{
   border-radius: 5px; /* Sudut melengkung */
   overflow: hidden; /* Memastikan gambar mengikuti border-radius */
   text-align:center;
+}
+.total retur{
+  background:#DBA858
+}
+.sudah tiba{
+background:#E89C31;
+}
+.belum tiba{
+  background:#8C0E0F
 }
 .inbound{
   background:#4CAF50;
@@ -262,4 +273,6 @@ tr:hover {
 
   background:#1e293b !important;
   color:white;
+}
+
 }
