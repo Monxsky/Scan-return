@@ -74,6 +74,7 @@ function renderTable(data) {
     tbody.innerHTML += `
       <tr>
         <td>${item.resi}</td>
+        <td>${item.ekspedisi}</td>
         <td>${item.status}</td>
         <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
       </tr>
