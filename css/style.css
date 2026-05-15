@@ -1,9 +1,16 @@
 body{
+  width:flex;
   background:whitesmoke;
   margin:0;
   font-family:Lexend;
 }
 
+.dashboard{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+  
 .container{
   display:flex;
   min-height:100vh;
@@ -100,11 +107,24 @@ button{
 
 .card {
   /* Bayangan kartu */
+  flex:1;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 300px;
   border-radius: 5px; /* Sudut melengkung */
   overflow: hidden; /* Memastikan gambar mengikuti border-radius */
+  text-align:center;
+}
+.inbound{
+  background:#4CAF50;
+}
+
+.retur{
+  background:#F44336;
+}
+
+.manifest{
+  background:#2196F3;
 }
 
 /* Efek hover saat mouse di atas card */
@@ -209,13 +229,13 @@ tr:hover {
 
 #pagination button{
 
-  width:30px;
-  height:30px;
+  width:15px;
+  height:15px;
 
   border:none;
   border-radius:6px;
 
-  background:#e5e7eb;
+  background:#3E2F84;
 
   cursor:pointer;
 }
