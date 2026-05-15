@@ -1,3 +1,25 @@
+import { detectExpedisi }
+from "./detect.js";
+
+async function scanResi() {
+
+  const resi =
+    input.value;
+
+  const ekspedisi =
+    detectExpedisi(resi);
+
+  await client
+  .from("inbound")
+  .insert([{
+
+    resi,
+    ekspedisi
+
+  }]);
+
+}
+// load inbound  //
 async function loadInbound() {
 
   const { data, error } = await client
