@@ -1,10 +1,12 @@
-import { detectExpedisi }
-from "./detect.js";
+// import { detectExpedisi }
+// from "./detect.js";
 
 async function scanResi() {
 
   const resi =
-    input.value;
+  document
+  .grtElementById("resiInput")
+  .value;
 
   const ekspedisi =
     detectExpedisi(resi);
@@ -14,7 +16,8 @@ async function scanResi() {
   .insert([{
 
     resi,
-    ekspedisi
+    ekspedisi,
+    status,
 
   }]);
 
