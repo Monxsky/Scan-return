@@ -1,7 +1,7 @@
 // expedisi.js
 
-export const expedisiRules = [
-
+// export const expedisiRules = [
+window.expedisiRules = [
   // ======================
   // J&T EXPRESS
   // ======================
