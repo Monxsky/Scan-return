@@ -104,6 +104,7 @@ function renderGlobalResult(
     tbody.innerHTML += `
       <tr>
         <td>${item.resi}</td>
+        <td>${item.ekspedisi}</td>
         <td>MANIFEST</td>
         <td>${item.status}</td>
       </tr>
@@ -118,6 +119,8 @@ function renderGlobalResult(
       <tr>
         <td>${item.resi}</td>
         <td>INBOUND</td>
+        <td>${item.ekspedisi}</td>
+        <td>${item.status}</td>
         <td>
           ${new Date(item.waktu)
             .toLocaleString('id-ID')}
