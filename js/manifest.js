@@ -168,3 +168,39 @@ loadPage({
 
   `
 });
+
+async function repairEkspedisi() {
+
+  const { data, error } =
+  await client
+  .from("retur_manifest")
+  .select("*")
+  .is("ekspedisi", null);
+
+  if (error) {
+
+    console.log(error);
+
+    return;
+
+  }
+
+  for (const item of data) {
+
+    const ekspedisi =
+    detectExpedisi(item.resi);
+
+    await client
+    .from("retur_manifest")
+    .update({
+
+      ekspedisi
+
+    })
+    .eq("id", item.id);
+
+  }
+
+  console.log("Repair selesai 😎");
+
+}
