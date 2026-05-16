@@ -120,7 +120,7 @@ async function scanResi() {
     detectExpedisi(resi);
 
   await client
-  .from("manifest")
+  .from("retur_manifest")
   .insert([{
 
     resi,
