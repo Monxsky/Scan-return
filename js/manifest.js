@@ -109,6 +109,28 @@ async function filterManifest() {
   renderManifest(data);
 }
 
+async function scanResi() {
+
+  const resi =
+  document
+  .grtElementById("resiInput")
+  .value;
+
+  const ekspedisi =
+    detectExpedisi(resi);
+
+  await client
+  .from("manifest")
+  .insert([{
+
+    resi,
+    ekspedisi,
+    status,
+
+  }]);
+
+}
+
 setupPagination({
 
   table:"retur_manifest",
@@ -119,6 +141,7 @@ setupPagination({
 
     <tr>
       <td>${item.resi}</td>
+      <td>${item.expedisi}</td>
       <td>${item.status}</td>
       <td>${item.created_at}</td>
     </tr>
@@ -138,6 +161,7 @@ loadPage({
 
     <tr>
       <td>${item.resi}</td>
+      <td>${item.expedisi}</td>
       <td>${item.status}</td>
       <td>${item.created_at}</td>
     </tr>
