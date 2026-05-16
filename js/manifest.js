@@ -204,3 +204,4 @@ async function repairEkspedisi() {
   console.log("Repair selesai 😎");
 
 }
+repairEkspedisi();
