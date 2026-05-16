@@ -45,10 +45,7 @@ href="../css/style.css">
 
     <h2>Dashboard</h2>
 
-  <tbody id="tableBody"></tbody>
-
-</table>
-
+    <!-- CARDS -->
     <div class="cards">
 
       <div class="card totalPerjalanan">
@@ -83,36 +80,49 @@ href="../css/style.css">
 
     </div>
 
+    <!-- SEARCH -->
+    <div class="search">
+
+      <input
+      type="text"
+      id="searchInput"
+      placeholder="Cari resi...">
+
+      <button onclick="globalSearch()">
+        Cari
+      </button>
+
+    </div>
+
+    <!-- TABLE -->
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Resi</th>
+          <th>Sumber</th>
+          <th>Status / Waktu</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="tableBody">
+
+      </tbody>
+
+    </table>
+
   </div>
 
 </div>
 
-  <div  class="search">
-     <input
-  type="text"
-  id="searchInput"
-  placeholder="Cari resi..."
->
-
-<button onclick="globalSearch()">
-  Cari
-</button>
-<table>
-
-  <thead>
-    <tr>
-      <th>Resi</th>
-      <th>Sumber</th>
-      <th>Status / Waktu</th>
-    </tr>
-  </thead>
-
-</table>
-  </div>
-  
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 <script src="../js/config.js"></script>
+
 <script src="../js/search.js"></script>
+
 <script src="../js/index.js"></script>
 
 </body>
