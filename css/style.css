@@ -54,6 +54,36 @@ body{
   background:#374151;
 }
 
+.sidebar a,
+.dropdown-btn {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sidebar a:hover,
+.dropdown-btn:hover {
+  background: #374151;
+}
+
+.dropdown-content {
+  display: none;
+  margin-left: 15px;
+}
+
+.dropdown-content a {
+  font-size: 14px;
+  background: #111827;
+}
+
+.dropdown-content.active {
+  display: block;
+}
+
 .content{
   flex:1;
   padding:20px;
