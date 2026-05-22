@@ -1,3 +1,21 @@
+
+const dropdownBtns =
+  document.querySelectorAll(".dropdown-btn");
+
+dropdownBtns.forEach((btn) => {
+
+  btn.addEventListener("click", () => {
+
+    const content =
+      btn.nextElementSibling;
+
+    content.classList.toggle("active");
+
+  });
+
+});
+
+
 async function uploadCSV() {
 
   const file = document.getElementById("csvFile").files[0];
