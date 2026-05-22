@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>INBOUND SHOPEE</title>
+  <link rel="styleSheet"
+    href="../css/style.css">
+</head>
+<body>
+
+<button class="menu-btn" id="menuBtn">
+☰
+</button>
+
+  <h1>
+    RESI INBOUND SHOPEE
+  </h1>
+
+  <div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <h2>MENU</h2>
+
+    <a href="../page/scan.html">
+      Scan
+    </a>
+
+    <a href="../page/index.html">
+      Dashboard
+    </a>
+
+    <a href="../page/manifest.html">
+      Manifest
+    </a>
+
+    <a href="../page/inbound.html">
+      Inbound
+    </a>
+
+  </div>
+
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th>Resi</th>
+            <th>Ekspedisi</th>
+            <th>Status</th>
+            <th>Waktu</th>
+          </tr>
+        </thead>
+
+        <tbody id="tableBody">
+
+        </tbody>
+      </table>
+    </div>
+
+    <div id="pagination"></div>
+    <div id="data"></div>
+
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/expedisi.js"></script>
+<script src="../js/detectexpedisi.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/inboundshopee.js"></script>
+<script src="../js/pagination.js"></script>
+<script src="../js/filter.js"></script>
+<script src="../js/inbound.js"></script>
+
+</body>
+</html>
