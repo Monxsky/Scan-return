@@ -18,6 +18,7 @@ async function loadInboundTikTok() {
     .select("*")
     .in("ekspedisi", [
       "SPX",
+      "SPX EXPRESS"
     ]);
 
     if (error) {
