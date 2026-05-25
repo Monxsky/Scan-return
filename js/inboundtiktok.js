@@ -17,7 +17,7 @@ async function loadInboundTikTok() {
     .from("scan_awb")
     .select("*")
     .in("ekspedisi", [
-      "JNT",
+      "J&T",
       "SiCepat"
     ]);
 
