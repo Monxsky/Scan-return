@@ -1,17 +1,17 @@
 // import { detectExpedisi }
 // from "./detect.js";
 
-const menuBtn =
-document.getElementById("menuBtn");
+// const menuBtn =
+// document.getElementById("menuBtn");
 
-const sidebar =
-document.querySelector(".sidebar");
+// const sidebar =
+// document.querySelector(".sidebar");
 
-menuBtn.addEventListener("click", () => {
+// menuBtn.addEventListener("click", () => {
 
-  sidebar.classList.toggle("show");
+//   sidebar.classList.toggle("show");
 
-});
+// });
 
 async function scanResi() {
 
