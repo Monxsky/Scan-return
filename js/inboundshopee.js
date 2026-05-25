@@ -18,14 +18,27 @@ async function loadInboundTikTok() {
     .select("*")
     .in("ekspedisi", [
       "SPX",
-
     ]);
 
-  if (error) {
-    console.error(error);
+    if (error) {
+    console.error("Supabase Error:", error);
     return;
   }
 
-  renderTable(data);
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = "";
 
+  data
+    .slice()
+    .reverse()
+    .forEach(item => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${item.resi}</td>
+          <td>${item.ekspedisi}</td>
+          <td>${item.status}</td>
+          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+        </tr>
+      `;
+    });
 }
