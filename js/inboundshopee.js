@@ -18,7 +18,7 @@ async function loadInboundShopee() {
     .select("*")
     .in("ekspedisi", [
       "SPX",
-      "SPX EXPRESS"
+      "Shopee Express"
     ]);
 
     if (error) {
