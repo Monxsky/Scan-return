@@ -158,6 +158,7 @@ async function scanResi() {
     ekspedisi,
     pengirim,
     status,
+    batas_kirim,
 
   }]);
 
@@ -176,6 +177,7 @@ setupPagination({
       <td>${item.ekspedisi}</td>
       <td>${item.Pengirim}</td>
       <td>${item.status}</td>
+      <td>${item.batas_kirim}</td>
       <td>${item.created_at}</td>
     </tr>
 
@@ -197,6 +199,7 @@ loadPage({
       <td>${item.ekspedisi}</td>
       <td>${item.Pengirim}</td>
       <td>${item.status}</td>
+      <td>${item.batas_kirim}</td>
       <td>${item.created_at}</td>
     </tr>
 
