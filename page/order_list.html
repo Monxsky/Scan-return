@@ -1,1 +1,148 @@
 
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>PESANAN UNTUK DI KIRIM</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+</head>
+
+<body>
+
+<button class="menu-btn" id="menuBtn">
+☰
+</button>
+
+<div class="container">
+
+  <div class="sidebar">
+
+    <h2>MENU</h2>
+
+    <a href="../page/scan.html">
+      Scan
+    </a>
+
+    <a href="../page/index.html">
+      Dashboard
+    </a>
+
+      <!-- MANIFEST -->
+  <div class="dropdown">
+
+    <div class="dropdown-btn">
+      Manifest ▼
+    </div>
+
+    <div class="dropdown-content">
+
+      <a href="../page/manifesttiktok.html">
+        TikTok
+      </a>
+
+      <a href="../page/manifestshopee.html">
+        Shopee
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- INBOUND -->
+  <div class="dropdown">
+
+    <div class="dropdown-btn">
+      Inbound ▼
+    </div>
+
+    <div class="dropdown-content">
+
+      <a href="../page/inboundtiktok.html">
+        TikTok
+      </a>
+
+      <a href="../page/inboundshopee.html">
+        Shopee
+      </a>
+
+  </div>
+
+</div>
+
+</div>
+
+  <div class="content">
+
+    <h2>PESANAN UNTUK DI KIRIM</h2>
+
+    <input
+      type="file"
+      id="csvFile"
+      accept=".csv">
+
+    <button onclick="uploadCSV()">
+      Upload CSV
+    </button>
+
+    <input type="date" id="startDate">
+    <input type="date" id="endDate">
+
+    <button onclick="filtermanifest()">
+     Cari
+   </button>
+
+    <input
+  type="text"
+  id="searchInput"
+  placeholder="Cari resi..."
+>
+
+<button onclick="searchResi()">
+  Cari
+</button>
+    
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Resi</th>
+          <th>Expedisi</th>
+          <th>Pengirim</th>
+          <th>Status</th>
+          <th>waktu</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="manifestBody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<div id="pagination"></div>
+  <div id="data"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/expedisi.js"></script>
+<script src="../js/detectexpedisi.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/pagination.js"></script>
+<script src="../js/filter.js"></script>
+<script src="../js/order_list.js"></script>
+
+</body>
+</html>
