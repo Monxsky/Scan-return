@@ -31,6 +31,30 @@ async function loadSidebar() {
     )
     .innerHTML = html;
 
+  // MOBILE MENU
+  const menuBtn =
+    document.getElementById(
+      "menuBtn"
+    );
+
+  const sidebar =
+    document.querySelector(
+      ".sidebar"
+    );
+
+  if(menuBtn && sidebar){
+
+    menuBtn.addEventListener(
+      "click",
+      () => {
+        sidebar.classList.toggle(
+          "show"
+        );
+      }
+    );
+
+  }
+
   // dropdown
   document
     .querySelectorAll(".dropdown-btn")
