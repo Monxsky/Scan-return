@@ -14,7 +14,7 @@ h1{
   text-align: center
 }
 /* LAYOUT */
-.container{
+.app-wrapper{
   display:flex;
   min-height:100vh;
 }
