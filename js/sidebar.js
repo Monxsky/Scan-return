@@ -2,7 +2,7 @@ async function loadSidebar() {
 
   const response =
     await fetch(
-      "../components/sidebar.html"
+      "../component/sidebar.html"
     );
 
   const html =
