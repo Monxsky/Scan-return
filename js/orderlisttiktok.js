@@ -24,7 +24,7 @@ async function loadOrderListTikTok() {
       tbody.innerHTML += `
         <tr>
           <td>${item.resi}</td>
-          <td>${item.pengirim}</td>
+          <td>${item.Pengirim}</td>
           <td>${item.ekspedisi}</td>
           <td>${item.status}</td>
           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
