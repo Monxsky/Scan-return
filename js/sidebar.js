@@ -74,7 +74,7 @@ async function loadSidebar() {
 
     });
 
-}
+// }
 
 const menuBtn =
   document.getElementById(
