@@ -31,29 +31,29 @@ async function loadSidebar() {
     )
     .innerHTML = html;
 
-  // // MOBILE MENU
-  // const menuBtn =
-  //   document.getElementById(
-  //     "menuBtn"
-  //   );
+  // MOBILE MENU
+  const menuBtn =
+    document.getElementById(
+      "menuBtn"
+    );
 
-  // const sidebar =
-  //   document.querySelector(
-  //     ".sidebar"
-  //   );
+  const sidebar =
+    document.querySelector(
+      ".sidebar"
+    );
 
-  // if(menuBtn && sidebar){
+  if(menuBtn && sidebar){
 
-  //   menuBtn.addEventListener(
-  //     "click",
-  //     () => {
-  //       sidebar.classList.toggle(
-  //         "show"
-  //       );
-  //     }
-  //   );
+    menuBtn.addEventListener(
+      "click",
+      () => {
+        sidebar.classList.toggle(
+          "show"
+        );
+      }
+    );
 
-  // }
+  }
 
   // dropdown
   document
@@ -76,26 +76,26 @@ async function loadSidebar() {
 
 }
 
-const menuBtn =
-  document.getElementById(
-    "menuBtn"
-  );
+// const menuBtn =
+//   document.getElementById(
+//     "menuBtn"
+//   );
 
-const sidebar =
-  document.querySelector(
-    ".sidebar"
-  );
+// const sidebar =
+//   document.querySelector(
+//     ".sidebar"
+//   );
 
-menuBtn.addEventListener(
-  "click",
-  () => {
-console.log("MENU DIKLIK");
+// menuBtn.addEventListener(
+//   "click",
+//   () => {
+// console.log("MENU DIKLIK");
     
-    sidebar.classList.toggle(
-      "show"
-    );
-    console.log(sidebar.className);
-  }
-);
+//     sidebar.classList.toggle(
+//       "show"
+//     );
+//     console.log(sidebar.className);
+//   }
+// );
 
 loadSidebar();
