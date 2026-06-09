@@ -2,7 +2,7 @@ async function loadOrderListTikTok() {
 
   const { data, error } =
     await client
-    .from("order_liat")
+    .from("order_list")
     .select("*")
     .in("ekspedisi", [
       "J&T",
