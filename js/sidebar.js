@@ -15,45 +15,45 @@ async function loadSidebar() {
     .innerHTML = html;
 }
 
-async function loadSidebar() {
+// async function loadSidebar() {
 
-  const response =
-    await fetch(
-      "../component/sidebar.html"
-    );
+//   const response =
+//     await fetch(
+//       "../component/sidebar.html"
+//     );
 
-  const html =
-    await response.text();
+//   const html =
+//     await response.text();
 
-  document
-    .getElementById(
-      "sidebar-container"
-    )
-    .innerHTML = html;
+//   document
+//     .getElementById(
+//       "sidebar-container"
+//     )
+//     .innerHTML = html;
 
-  // MOBILE MENU
-  const menuBtn =
-    document.getElementById(
-      "menuBtn"
-    );
+  // // MOBILE MENU
+  // const menuBtn =
+  //   document.getElementById(
+  //     "menuBtn"
+  //   );
 
-  const sidebar =
-    document.querySelector(
-      ".sidebar"
-    );
+  // const sidebar =
+  //   document.querySelector(
+  //     ".sidebar"
+  //   );
 
-  if(menuBtn && sidebar){
+  // if(menuBtn && sidebar){
 
-    menuBtn.addEventListener(
-      "click",
-      () => {
-        sidebar.classList.toggle(
-          "show"
-        );
-      }
-    );
+  //   menuBtn.addEventListener(
+  //     "click",
+  //     () => {
+  //       sidebar.classList.toggle(
+  //         "show"
+  //       );
+  //     }
+  //   );
 
-  }
+  // }
 
   // dropdown
   document
