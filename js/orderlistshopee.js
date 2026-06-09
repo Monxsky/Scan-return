@@ -31,4 +31,4 @@ async function loadOrderListShopee() {
       `;
     });
 }
-loadOrdeListShopee();
+loadOrderListShopee();
