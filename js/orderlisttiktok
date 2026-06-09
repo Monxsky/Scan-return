@@ -1,0 +1,35 @@
+async function loadOrderListTikTok() {
+
+  const { data, error } =
+    await client
+    .from("order_liat")
+    .select("*")
+    .in("ekspedisi", [
+      "J&T",
+      "SiCepat"
+    ]);
+
+    if (error) {
+    console.error("Supabase Error:", error);
+    return;
+  }
+
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = "";
+
+  data
+    .slice()
+    .reverse()
+    .forEach(item => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${item.resi}</td>
+          <td>${item.pengirim}</td>
+          <td>${item.ekspedisi}</td>
+          <td>${item.status}</td>
+          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+        </tr>
+      `;
+    });
+}
+loadOrderListTikTok();
