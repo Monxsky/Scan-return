@@ -89,9 +89,12 @@ const sidebar =
 menuBtn.addEventListener(
   "click",
   () => {
+console.log("MENU DIKLIK");
+    
     sidebar.classList.toggle(
       "show"
     );
+    console.log(sidebar.className);
   }
 );
 
