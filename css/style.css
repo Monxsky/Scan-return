@@ -107,10 +107,21 @@ h2{
 }
 
 /* DASHBOARD */
-.dashboard{
+/* .dashboard{
   display:flex;
   gap:15px;
   flex-wrap:wrap;
+} */
+.dashboard-header{
+  display:flex;
+  flex-direction:column;
+}
+
+.search-box{
+  margin-top:20px;
+
+  display:flex;
+  gap:10px;
 }
 /* CARD PESANAN */
 /* .cards-pesanan{
