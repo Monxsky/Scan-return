@@ -113,22 +113,22 @@ h2{
   flex-wrap:wrap;
 }
 /* CARD PESANAN */
-.cards-pesanan{
+/* .cards-pesanan{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-}
+} */
 
 /* CARD */
 .cards{
-  display:flex;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:10px;
-  flex-wrap:wrap;
 }
 
 .card{
-  flex:1;
-  min-width:200px;
+  min-width:0;
+}
 
   box-shadow:0 4px 8px rgba(0,0,0,0.2);
   transition:0.3s;
