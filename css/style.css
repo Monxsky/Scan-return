@@ -50,6 +50,19 @@ h1{
   background:#374151;
 }
 
+.sidebar-logo {
+    text-align: center;      /* Posisikan logo di tengah sidebar */
+    padding: 20px 10px;      /* Beri jarak atas/bawah */
+    border-bottom: 1px solid #ccc; /* Garis pembatas opsional di bawah logo */
+}
+
+.sidebar-logo img {
+    width: 100%;             /* Sesuaikan dengan lebar sidebar */
+    max-width: 150px;        /* Batasi agar logo tidak terlalu besar */
+    height: auto;            /* Menjaga rasio gambar agar tidak gepeng */
+    object-fit: contain;
+}
+
 /* DROPDOWN */
 .dropdown-content{
   display:none;
