@@ -66,7 +66,7 @@ async function loadSidebar() {
 
           btn.nextElementSibling
             .classList.toggle(
-              "active"
+              "show"
             );
 
         }
