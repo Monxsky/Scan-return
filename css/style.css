@@ -308,7 +308,7 @@ tr:hover{
     z-index:999;
   }
 
-  .sidebar.show{
+  .sidebar.active{
     left:0;
   }
 
