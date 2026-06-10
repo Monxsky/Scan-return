@@ -120,10 +120,10 @@ h2{
 } */
 
 /* CARD */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+.cards-container{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
 }
 
 .card{
