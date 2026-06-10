@@ -112,6 +112,12 @@ h2{
   gap:15px;
   flex-wrap:wrap;
 }
+/* CARD PESANAN */
+.cards-pesanan{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
 /* CARD */
 .cards{
