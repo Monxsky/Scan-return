@@ -22,7 +22,7 @@ h1{
 /* SIDEBAR */
 .sidebar{
   width:180px;
-  height:500px;
+  /* height:500px; */
   height:100vh;
   background:#111827;
   color:white;
