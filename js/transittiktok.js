@@ -18,6 +18,8 @@ async function loadOrderListTikTok() {
 
     console.log(
   item.resi,
+  item.batas_kirim,
+  item.ekspedisi,
   item.batas_kirim
 );
 
