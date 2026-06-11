@@ -14,7 +14,7 @@ async function loadOrderListTikTok() {
   const transitData =
   data.filter(item => {
 
-    return isBatasKirim(item);
+    return isTransitToday(item);
 
   });
 
