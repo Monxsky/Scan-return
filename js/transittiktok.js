@@ -42,3 +42,17 @@ async function loadOrderListTikTok() {
     });
 }
 loadOrderListTikTok();
+
+function isTransitToday(item){
+
+  const today =
+    new Date()
+      .toISOString()
+      .split("T")[0];
+
+  return item.batas_kirim === today;
+}
+console.log(
+  item.resi,
+  item.batas_kirim
+);
