@@ -50,6 +50,8 @@ loadOrderListTikTok();
 
 function isTransitToday(item){
 
+  console.log(item);
+
   const today =
     new Date()
       .toISOString()
