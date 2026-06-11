@@ -1,6 +1,18 @@
 // import { detectExpedisi }
 // from "./detect.js";
 
+// const menuBtn =
+// document.getElementById("menuBtn");
+
+// const sidebar =
+// document.querySelector(".sidebar");
+
+// menuBtn.addEventListener("click", () => {
+
+//   sidebar.classList.toggle("show");
+
+// });
+
 async function scanResi() {
 
   const resi =
@@ -45,8 +57,10 @@ async function loadInbound() {
         <tr>
           <td>${item.resi}</td>
           <td>${item.ekspedisi}</td>
+          <td>${item.Pengirim}</td>
           <td>${item.status}</td>
           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+          <td>${item.batas_kirim}</td>
         </tr>
       `;
     });
@@ -75,9 +89,11 @@ function renderTable(data) {
     tbody.innerHTML += `
       <tr>
         <td>${item.resi}</td>
-        <td>${item.ekspedisi}</td>
-        <td>${item.status}</td>
-        <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
+          <td>${item.ekspedisi}</td>
+          <td>${item.Pengirim}</td>
+          <td>${item.status}</td>
+          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+          <td>${item.batas_kirim}</td>
       </tr>
     `;
   });
@@ -89,9 +105,11 @@ setupPagination({
   renderRow: (item) => `
     <tr>
       <td>${item.resi}</td>
-      <td>${item.ekspedisi}</td>
-      <td>${item.status}</td>
-      <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
+          <td>${item.ekspedisi}</td>
+          <td>${item.Pengirim}</td>
+          <td>${item.status}</td>
+          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+          <td>${item.batas_kirim}</td>
     </tr>
   `
 });
@@ -103,9 +121,11 @@ loadPage({
   renderRow: (item) => `
     <tr>
       <td>${item.resi}</td>
-      <td>${item.ekspedisi}</td>
-      <td>${item.status}</td>
-      <td>${new Date(item.waktu || item.created_at).toLocaleString("id-ID")}</td>
+          <td>${item.ekspedisi}</td>
+          <td>${item.Pengirim}</td>
+          <td>${item.status}</td>
+          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+          <td>${item.batas_kirim}</td>
     </tr>
   `
 });

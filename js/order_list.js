@@ -1,3 +1,4 @@
+
 const menuBtn =
 document.getElementById("menuBtn");
 
@@ -56,7 +57,7 @@ async function uploadCSV() {
 function doSearch() {
 
   searchResi(
-    "retur_manifest",
+    "order_list",
     renderManifest
   );
 
@@ -64,7 +65,7 @@ function doSearch() {
   
   // 1. ambil data existing dari Supabase
   const existingRes = await fetch(
-    `${SUPABASE_URL}/rest/v1/retur_manifest?select=resi`,
+    `${SUPABASE_URL}/rest/v1/order_list?select=resi`,
     {
       headers: {
         apikey: SUPABASE_KEY,
@@ -101,7 +102,7 @@ function doSearch() {
 
   // 4. insert data unik saja
   const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/retur_manifest`,
+    `${SUPABASE_URL}/rest/v1/order_list`,
     {
       method: "POST",
       headers: {
@@ -150,13 +151,14 @@ async function scanResi() {
     detectExpedisi(resi);
 
   await client
-  .from("retur_manifest")
+  .from("order_list")
   .insert([{
 
     resi,
     ekspedisi,
     pengirim,
     status,
+    batas_kirim,
 
   }]);
 
@@ -164,7 +166,7 @@ async function scanResi() {
 
 setupPagination({
 
-  table:"retur_manifest",
+  table:"order_list",
 
   tbodyId:"manifestBody",
 
@@ -175,6 +177,7 @@ setupPagination({
       <td>${item.ekspedisi}</td>
       <td>${item.Pengirim}</td>
       <td>${item.status}</td>
+      <td>${item.batas_kirim}</td>
       <td>${item.created_at}</td>
     </tr>
 
@@ -185,7 +188,7 @@ loadPage({
 
   page:1,
 
-  table:"retur_manifest",
+  table:"order_list",
 
   tbodyId:"manifestBody",
 
@@ -196,6 +199,7 @@ loadPage({
       <td>${item.ekspedisi}</td>
       <td>${item.Pengirim}</td>
       <td>${item.status}</td>
+      <td>${item.batas_kirim}</td>
       <td>${item.created_at}</td>
     </tr>
 
@@ -206,7 +210,7 @@ async function repairEkspedisi() {
 
   const { data, error } =
   await client
-  .from("retur_manifest")
+  .from("order_list")
   .select("*")
   .is("ekspedisi", null);
 
@@ -224,7 +228,7 @@ async function repairEkspedisi() {
     detectExpedisi(item.resi);
 
     await client
-    .from("retur_manifest")
+    .from("order_list")
     .update({
 
       ekspedisi

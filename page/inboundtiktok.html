@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="CONTENT-TYPE"
+        content="text/html; charset=UTF-8">
+
+  <title>INBOUND TIKTOK</title>
+
+  <link rel="stylesheet"
+        href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- BUTTON MENU -->
+  <button class="menu-btn" id="menuBtn">
+    ☰
+  </button>
+
+  <h1>RESI INBOUND TIKTOK</h1>
+
+  <div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <h2>MENU</h2>
+
+      <a href="../page/scan.html">
+        Scan
+      </a>
+
+      <a href="../page/index.html">
+        Dashboard
+      </a>
+
+      <!-- MANIFEST -->
+      <div class="dropdown">
+
+        <div class="dropdown-btn">
+          Manifest ▼
+        </div>
+
+        <div class="dropdown-content">
+
+          <a href="../page/manifesttiktok.html">
+            TikTok
+          </a>
+
+          <a href="../page/manifestshopee.html">
+            Shopee
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- INBOUND -->
+      <div class="dropdown">
+
+        <div class="dropdown-btn">
+          Inbound ▼
+        </div>
+
+        <div class="dropdown-content">
+
+          <a href="../page/inboundtiktok.html">
+            TikTok
+          </a>
+
+          <a href="../page/inboundshopee.html">
+            Shopee
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- END SIDEBAR -->
+
+
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Resi</th>
+            <th>Ekspedisi</th>
+            <th>Status</th>
+            <th>Waktu</th>
+          </tr>
+        </thead>
+
+        <tbody id="tableBody">
+        </tbody>
+
+      </table>
+
+      <div id="pagination"></div>
+
+      <div id="data"></div>
+
+    </div>
+    <!-- END CONTENT -->
+
+  </div>
+  <!-- END CONTAINER -->
+
+
+
+  <!-- SCRIPT -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/Gscript.js"></script>
+  <script src="../js/expedisi.js"></script>
+  <script src="../js/detectexpedisi.js"></script>
+  <script src="../js/state.js"></script>
+  <script src="../js/pagination.js"></script>
+  <script src="../js/filter.js"></script>
+  <script src="../js/inboundtiktok.js"></script>
+  <!-- <script src="../js/inbound.js"></script> -->
+
+</body>
+
+</html>
