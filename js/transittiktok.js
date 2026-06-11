@@ -50,12 +50,17 @@ loadOrderListTikTok();
 
 function isTransitToday(item){
 
-  console.log(item);
-
   const today =
     new Date()
       .toISOString()
       .split("T")[0];
+
+  console.log(
+    "Today:",
+    today,
+    "Batas:",
+    item.batas_kirim
+  );
 
   return item.batas_kirim === today;
 }
