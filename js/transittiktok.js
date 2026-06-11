@@ -64,31 +64,32 @@ function isTransitToday(item){
   }
 
   // SiCepat
-  const created =
-    new Date(item.created_at);
+  if(item.ekspedisi === "SiCepat"){
 
-  const jam =
-    created.getHours();
+    const created =
+      new Date(item.created_at);
 
-  let transitDate =
-    new Date(created);
+    const jam =
+      created.getHours();
 
-  if(jam >= 15){
+    let transitDate =
+      new Date(created);
 
-    transitDate.setDate(
-      transitDate.getDate() + 1
+    if(jam >= 15){
+
+      transitDate.setDate(
+        transitDate.getDate() + 1
+      );
+
+    }
+
+    return (
+      transitDate
+        .toLocaleDateString("sv-SE")
+      ===
+      today
     );
-
   }
 
-  const transitDay =
-    transitDate
-      .toLocaleDateString("sv-SE");
-
-  return transitDay === today;
-
-  console.log(
-  item.ekspedisi,
-  item.created_at
-);
+  return false;
 }
