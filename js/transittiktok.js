@@ -87,4 +87,8 @@ function isTransitToday(item){
 
   return transitDay === today;
 
+  console.log(
+  item.ekspedisi,
+  item.created_at
+);
 }
