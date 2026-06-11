@@ -16,6 +16,11 @@ async function loadOrderListTikTok() {
 
     return isTransitToday(item);
 
+    console.log(
+  item.resi,
+  item.batas_kirim
+);
+
   });
 
     if (error) {
@@ -52,7 +57,3 @@ function isTransitToday(item){
 
   return item.batas_kirim === today;
 }
-console.log(
-  item.resi,
-  item.batas_kirim
-);
