@@ -1,32 +1,44 @@
-// function isTransitToday(order){
-//   const transitDate =
-//   getBatasKirim(order);
-
-//   const today =
-//   new Date()
-//   .toISOString()
-//   >split("T")[0];
-
-//   return transitDate === today;
-// }
-
-async function loadTransitShopee() {
+async function loadOrderListTikTok() {
 
   const { data, error } =
     await client
-      .from("order_list")
-      .select("*")
-      .eq("ekspedisi", "SPX");
+    .from("order_list")
+    .select("*")
+    .in("ekspedisi", [
+      "J&T",
+      "J&T Express",
+      "SiCepat"
+    ]);
 
-}
 
-const transitOrders =
-  data.filter(order => {
+  const transitData =
+  data.filter(item => {
 
-    return isTransitToday(order);
+    return isTransitToday(item);
 
   });
 
-  renderTransitTable(
-  transitOrders
-);
+    if (error) {
+    console.error("Supabase Error:", error);
+    return;
+  }
+
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = "";
+
+  transitData
+    .slice()
+    .reverse()
+    .forEach(item => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${item.resi}</td>
+          <td>${item.Pengirim}</td>
+          <td>${item.ekspedisi}</td>
+          <td>${item.status}</td>
+          <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
+        </tr>
+      `;
+    });
+}
+loadOrderListTikTok();
