@@ -53,16 +53,38 @@ loadOrderListTikTok();
 function isTransitToday(item){
 
   const today =
-  new Date()
-    .toLocaleDateString(
-      "sv-SE"
-    );
-  console.log(
-    "Today:",
-    today,
-    "Batas:",
-    item.batas_kirim
-  );
+    new Date()
+      .toLocaleDateString("sv-SE");
 
-  return item.batas_kirim === today;
+  // SPX & J&T
+  if(item.batas_kirim){
+
+    return item.batas_kirim === today;
+
+  }
+
+  // SiCepat
+  const created =
+    new Date(item.created_at);
+
+  const jam =
+    created.getHours();
+
+  let transitDate =
+    new Date(created);
+
+  if(jam >= 15){
+
+    transitDate.setDate(
+      transitDate.getDate() + 1
+    );
+
+  }
+
+  const transitDay =
+    transitDate
+      .toLocaleDateString("sv-SE");
+
+  return transitDay === today;
+
 }
