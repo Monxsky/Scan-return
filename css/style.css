@@ -73,7 +73,7 @@ h2{
   margin-left:15px;
 }
 
-.dropdown-content.active{
+.dropdown-content.show{
   display:block;
 }
 
