@@ -6,7 +6,7 @@ async function loadOrderListTikTok() {
     .select("*")
     .in("ekspedisi", [
       "SPX",
-      "SPX Express",
+      "Shopee Express",
       "J&T Cargo"
     ]);
 
