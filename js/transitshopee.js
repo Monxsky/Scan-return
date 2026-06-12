@@ -88,15 +88,15 @@ function isTransitToday(item){
 
   //   }
 
-    return (
-      transitDate
-        .toLocaleDateString("sv-SE")
-      ===
-      today
-    );
-  }
+  //   return (
+  //     transitDate
+  //       .toLocaleDateString("sv-SE")
+  //     ===
+  //     today
+  //   );
+  // }
 
-  return false;
+  // return false;
 // conversi WIB
 function getWIBDate(dateString){
 
