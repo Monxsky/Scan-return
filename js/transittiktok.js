@@ -54,8 +54,10 @@ loadOrderListTikTok();
 function isTransitToday(item){
 
   const today =
+  getWIBDate(
     new Date()
-      .toLocaleDateString("sv-SE");
+  )
+  .toLocaleDateString("sv-SE");
 
   // SPX & J&T
   if(item.batas_kirim){
@@ -68,7 +70,9 @@ function isTransitToday(item){
   if(item.ekspedisi === "SiCepat"){
 
     const created =
-      new Date(item.created_at);
+    getWIBDate(
+      item.created_at
+    );
 
     const jam =
       created.getHours();
@@ -93,4 +97,18 @@ function isTransitToday(item){
   }
 
   return false;
+// conversi WIB
+function getWIBDate(dateString){
+
+  return new Date(
+    new Date(dateString)
+      .toLocaleString(
+        "en-US",
+        {
+          timeZone: "Asia/Jakarta"
+        }
+      )
+  );
+
+}
 }
