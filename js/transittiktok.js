@@ -79,6 +79,7 @@ function isTransitToday(item){
 
       transitDate.setDate(
         transitDate.getDate() + 1
+        console.log(transitData);
       );
 
     }
