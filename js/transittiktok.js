@@ -42,7 +42,6 @@ async function loadOrderListTikTok() {
           <td>${item.resi}</td>
           <td>${item.Pengirim}</td>
           <td>${item.ekspedisi}</td>
-          // <td>${item.batas_kirim}</td>
           <td>${item.status}</td>
           <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
         </tr>
