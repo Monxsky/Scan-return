@@ -47,6 +47,7 @@ h2{
   border-radius:8px;
   margin-bottom:5px;
   cursor:pointer;
+  font-size:12px;
 }
 
 .sidebar a:hover,
