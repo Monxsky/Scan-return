@@ -78,7 +78,7 @@ h2{
 }
 
 .dropdown-content a{
-  font-size:14px;
+  font-size:8px;
 }
 
 /* CONTENT */
@@ -102,7 +102,7 @@ h2{
   padding:10px 14px;
   border-radius:8px;
 
-  font-size:20px;
+  font-size:15px;
   cursor:pointer;
 }
 
@@ -229,7 +229,7 @@ button{
 table{
   width:100%;
   border-collapse:collapse;
-  font-size:14px;
+  font-size:8px;
   background:white;
 }
 
@@ -322,7 +322,7 @@ tr:hover{
   }
 
   table{
-    font-size:12px;
+    font-size:6px;
   }
 
 }
