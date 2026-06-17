@@ -212,6 +212,8 @@ setupPagination({
 
   tbodyId:"manifestBody",
 
+  ekspedisiFilter,
+
   renderRow:(item)=>`
 
     <tr>
@@ -232,6 +234,8 @@ loadPage({
   table:"retur_manifest",
 
   tbodyId:"manifestBody",
+
+  ekspedisiFilter,
 
   renderRow:(item)=>`
 
