@@ -2,10 +2,11 @@ const limit = 50;
 
 async function loadPage({
 
-  page,
+page,
   table,
   tbodyId,
-  renderRow
+  renderRow,
+  ekspedisiFilter = []
 
 }) {
 
@@ -17,10 +18,21 @@ async function loadPage({
   const to =
     from + (limit - 1);
 
-  const { data, error } = await client
-    .from(table)
-    .select("*")
-    .range(from, to);
+  let query = client
+  .from(table)
+  .select("*");
+
+if (ekspedisiFilter.length > 0) {
+
+  query = query.in(
+    "ekspedisi",
+    ekspedisiFilter
+  );
+
+}
+
+const { data, error } =
+  await query.range(from, to);
 
   const tbody =
     document.getElementById(tbodyId);
@@ -51,20 +63,36 @@ async function setupPagination({
 
   table,
   tbodyId,
-  renderRow
+  renderRow,
+  ekspedisiFilter = []
 
 }) {
 
   window.currentTable = table;
   window.currentTbodyId = tbodyId;
   window.currentRenderRow = renderRow;
+  window.currentEkspedisiFilter =
+  ekspedisiFilter;
 
-  const { count } = await client
-    .from(table)
-    .select("*", {
-      count: "exact",
-      head: true
-    });
+  let countQuery = client
+  .from(table)
+  .select("*", {
+    count: "exact",
+    head: true
+  });
+
+if (ekspedisiFilter.length > 0) {
+
+  countQuery =
+    countQuery.in(
+      "ekspedisi",
+      ekspedisiFilter
+    );
+
+}
+
+const { count } =
+  await countQuery;
 
   const totalPages =
     Math.ceil(count / limit);
@@ -97,7 +125,11 @@ function changePage(page){
 
     tbodyId: window.currentTbodyId,
 
-    renderRow: window.currentRenderRow
+    renderRow: window.currentRenderRow,
+
+    ekspedisiFilter:
+      window.currentEkspedisiFilter
 
   });
+
 }
