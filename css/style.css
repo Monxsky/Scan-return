@@ -25,7 +25,7 @@ h2{
 
 /* SIDEBAR */
 .sidebar{
-  width:180px;
+  width:130px;
   /* height:500px; */
   height:100vh;
   background:#111827;
@@ -303,7 +303,7 @@ tr:hover{
     left:-250px;
     top:0;
 
-    width:220px;
+    width:130px;
     height:100vh;
 
     z-index:999;
