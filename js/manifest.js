@@ -152,19 +152,25 @@ const ekspedisiFilter =
 const titleMap = {
 
   shopee:
-    "Manifest Shopee",
+    "PAKET MANIFEST SHOPEE",
 
   tiktok:
-    "Manifest TikTok"
+    "PAKET MANIFEST TIKTOK"
 
 };
 
-document.getElementById(
-  "pageTitle"
-).textContent =
-  titleMap[platform] ||
-  "Manifest";
+const titleElement =
+  document.getElementById(
+    "pageTitle"
+  );
 
+if (titleElement) {
+
+  titleElement.textContent =
+    titleMap[platform] ||
+    "PAKET MANIFEST";
+
+}
 // FILTER //
 async function filterManifest() {
 
