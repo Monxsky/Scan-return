@@ -1,14 +1,14 @@
-const menuBtn =
-document.getElementById("menuBtn");
+// const menuBtn =
+// document.getElementById("menuBtn");
 
-const sidebar =
-document.querySelector(".sidebar");
+// const sidebar =
+// document.querySelector(".sidebar");
 
-menuBtn.addEventListener("click", () => {
+// menuBtn.addEventListener("click", () => {
 
-  sidebar.classList.toggle("show");
+//   sidebar.classList.toggle("show");
 
-});
+// });
 
 
 const dropdownBtns =
@@ -121,7 +121,51 @@ function doSearch() {
   loadManifest();
 }
 
+// PARAMETER PLATFORM //
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
 
+const platform =
+  params.get("platform");
+
+const filterMap = {
+
+  shopee: [
+    "SPX",
+    "Shopee Express",
+    "J&T Cargo"
+  ],
+
+  tiktok: [
+    "J&T",
+    "SiCepat"
+  ]
+
+};
+
+const ekspedisiFilter =
+  filterMap[platform] || [];
+
+// TITLE PAGE //
+const titleMap = {
+
+  shopee:
+    "Manifest Shopee",
+
+  tiktok:
+    "Manifest TikTok"
+
+};
+
+document.getElementById(
+  "pageTitle"
+).textContent =
+  titleMap[platform] ||
+  "Manifest";
+
+// FILTER //
 async function filterManifest() {
 
   const start =
