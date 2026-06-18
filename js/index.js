@@ -142,8 +142,6 @@ function renderGlobalResult(
   });
 
 }
-// UPLOAD CSV //
-
 async function uploadCSV() {
 
   const file = document.getElementById("csvFile").files[0];
@@ -195,6 +193,16 @@ async function uploadCSV() {
     }
   });
 
+  // 3. notif hasil filter
+  if (duplicateCount > 0) {
+    alert(`⚠️ ${duplicateCount} resi duplikat tidak diimport`);
+  }
+
+  if (uniqueData.length === 0) {
+    alert("Tidak ada data baru untuk diimport");
+    return;
+  }
+
     // 4. insert data unik saja
   const res = await fetch(
     `${SUPABASE_URL}/rest/v1/retur_manifest`,
@@ -216,6 +224,7 @@ async function uploadCSV() {
 
   loadManifest();
 }
+
 
 // ==========================
 // START DASHBOARD
