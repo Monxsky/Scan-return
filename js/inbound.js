@@ -85,11 +85,29 @@ if (current) {
 // load inbound  //
 async function loadInbound() {
 
-  const { data, error } = await client
+  let query =
+  client
     .from("scan_awb")
     .select("*");
 
-  if (error) {
+if (
+  current?.ekspedisi?.length
+) {
+
+  query =
+    query.in(
+      "ekspedisi",
+      current.ekspedisi
+    );
+
+}
+
+const {
+  data,
+  error
+} = await query;
+
+if (error) {
     console.error("Supabase Error:", error);
     return;
   }
