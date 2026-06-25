@@ -206,7 +206,49 @@ function renderTable(data) {
 //     </tr>
 //   `
 // });
+setupPagination({
 
+  table:"scan_awb",
+
+  tbodyId:"tableBody",
+
+  ekspedisiFilter,
+
+  renderRow:(item)=>`
+
+    <tr>
+      <td>${item.resi}</td>
+      <td>${item.ekspedisi}</td>
+      <td>${item.Pengirim}</td>
+      <td>${item.status}</td>
+      <td>${item.created_at}</td>
+    </tr>
+
+  `
+});
+
+loadPage({
+
+  page:1,
+
+  table:"scan_awb",
+
+  tbodyId:"tableBody",
+
+  ekspedisiFilter,
+
+  renderRow:(item)=>`
+
+    <tr>
+      <td>${item.resi}</td>
+      <td>${item.ekspedisi}</td>
+      <td>${item.Pengirim}</td>
+      <td>${item.status}</td>
+      <td>${item.created_at}</td>
+    </tr>
+
+  `
+});
 // ======================
 // REPAIR DATA LAMA
 // ======================
