@@ -71,6 +71,17 @@ const config = {
 
 const current =
   config[platform];
+
+if (current) {
+
+  document
+    .getElementById(
+      "pageTitle"
+    )
+    .textContent =
+      current.title;
+
+}
 // load inbound  //
 async function loadInbound() {
 
