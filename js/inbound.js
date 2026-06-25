@@ -34,6 +34,43 @@ async function scanResi() {
   }]);
 
 }
+
+// Parameter Platform
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const platform =
+  params.get("platform");
+
+const config = {
+
+  shopee: {
+    title:
+      "SCAN INBOUND SHOPEE",
+
+    ekspedisi: [
+      "SPX",
+      "Shopee Express",
+      "J&T Cargo"
+    ]
+  },
+
+  tiktok: {
+    title:
+      "SCAN INBOUND TIKTOK",
+
+    ekspedisi: [
+      "J&T",
+      "SiCepat"
+    ]
+  }
+
+};
+
+const current =
+  config[platform];
 // load inbound  //
 async function loadInbound() {
 
