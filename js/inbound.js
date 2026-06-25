@@ -206,49 +206,51 @@ function renderTable(data) {
 //     </tr>
 //   `
 // });
-// setupPagination({
+setupPagination({
 
-//   table:"scan_awb",
+  table:"scan_awb",
 
-//   tbodyId:"tableBody",
+  tbodyId:"tableBody",
 
-//   ekspedisiFilter,
+  ekspedisiFilter,
+  current?.ekspedisi || [],
 
-//   renderRow:(item)=>`
+  renderRow:(item)=>`
 
-//     <tr>
-//       <td>${item.resi}</td>
-//       <td>${item.ekspedisi}</td>
-//       <td>${item.Pengirim}</td>
-//       <td>${item.status}</td>
-//       <td>${item.created_at}</td>
-//     </tr>
+    <tr>
+      <td>${item.resi}</td>
+      <td>${item.ekspedisi}</td>
+      <td>${item.Pengirim}</td>
+      <td>${item.status}</td>
+      <td>${item.created_at}</td>
+    </tr>
 
-//   `
-// });
+  `
+});
 
-// loadPage({
+loadPage({
 
-//   page:1,
+  page:1,
 
-//   table:"scan_awb",
+  table:"scan_awb",
 
-//   tbodyId:"tableBody",
+  tbodyId:"tableBody",
 
-//   ekspedisiFilter,
+  ekspedisiFilter,
+  current?.ekspedisi || [],
 
-//   renderRow:(item)=>`
+  renderRow:(item)=>`
 
-//     <tr>
-//       <td>${item.resi}</td>
-//       <td>${item.ekspedisi}</td>
-//       <td>${item.Pengirim}</td>
-//       <td>${item.status}</td>
-//       <td>${item.created_at}</td>
-//     </tr>
+    <tr>
+      <td>${item.resi}</td>
+      <td>${item.ekspedisi}</td>
+      <td>${item.Pengirim}</td>
+      <td>${item.status}</td>
+      <td>${item.created_at}</td>
+    </tr>
 
-//   `
-// });
+  `
+});
 // ======================
 // REPAIR DATA LAMA
 // ======================
@@ -288,4 +290,3 @@ async function repairEkspedisi() {
 
 }
 repairEkspedisi();
-loadInbound();
