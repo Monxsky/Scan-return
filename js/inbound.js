@@ -212,7 +212,7 @@ setupPagination({
 
   tbodyId:"tableBody",
 
-  ekspedisiFilter,
+  ekspedisiFilter:
   current?.ekspedisi || [],
 
   renderRow:(item)=>`
@@ -236,7 +236,7 @@ loadPage({
 
   tbodyId:"tableBody",
 
-  ekspedisiFilter,
+  ekspedisiFilter:
   current?.ekspedisi || [],
 
   renderRow:(item)=>`
