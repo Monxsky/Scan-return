@@ -17,7 +17,7 @@ async function scanResi() {
 
   const resi =
   document
-  .grtElementById("resiInput")
+  .getElementById("resiInput")
   .value;
 
   const ekspedisi =
