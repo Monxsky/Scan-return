@@ -91,7 +91,8 @@ async function loadInbound() {
     .select("*");
 
 if (
-  current?.ekspedisi?.length
+  current &&
+  current.ekspedisi.length > 0
 ) {
 
   query =
@@ -111,6 +112,16 @@ if (error) {
     console.error("Supabase Error:", error);
     return;
   }
+
+  console.log(
+    "Platform:",
+    current?.ekspedisi
+    );
+  
+  console.log(
+    "Filter:",
+    current?.ekspedisi
+    );
 
   const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
@@ -165,36 +176,36 @@ function renderTable(data) {
   });
 }
 
-setupPagination({
-  table: "scan_awb",
-  tbodyId: "tableBody",
-  renderRow: (item) => `
-    <tr>
-      <td>${item.resi}</td>
-          <td>${item.ekspedisi}</td>
-          <td>${item.Pengirim}</td>
-          <td>${item.status}</td>
-          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
-          <td>${item.batas_kirim}</td>
-    </tr>
-  `
-});
+// setupPagination({
+//   table: "scan_awb",
+//   tbodyId: "tableBody",
+//   renderRow: (item) => `
+//     <tr>
+//       <td>${item.resi}</td>
+//           <td>${item.ekspedisi}</td>
+//           <td>${item.Pengirim}</td>
+//           <td>${item.status}</td>
+//           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+//           <td>${item.batas_kirim}</td>
+//     </tr>
+//   `
+// });
 
-loadPage({
-  page: 1,
-  table: "scan_awb",
-  tbodyId: "tableBody",
-  renderRow: (item) => `
-    <tr>
-      <td>${item.resi}</td>
-          <td>${item.ekspedisi}</td>
-          <td>${item.Pengirim}</td>
-          <td>${item.status}</td>
-          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
-          <td>${item.batas_kirim}</td>
-    </tr>
-  `
-});
+// loadPage({
+//   page: 1,
+//   table: "scan_awb",
+//   tbodyId: "tableBody",
+//   renderRow: (item) => `
+//     <tr>
+//       <td>${item.resi}</td>
+//           <td>${item.ekspedisi}</td>
+//           <td>${item.Pengirim}</td>
+//           <td>${item.status}</td>
+//           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+//           <td>${item.batas_kirim}</td>
+//     </tr>
+//   `
+// });
 
 // ======================
 // REPAIR DATA LAMA
