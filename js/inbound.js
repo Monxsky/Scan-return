@@ -115,7 +115,7 @@ if (error) {
 
   console.log(
     "Platform:",
-    current?.ekspedisi
+    platform
     );
   
   console.log(
@@ -253,38 +253,39 @@ function renderTable(data) {
 // REPAIR DATA LAMA
 // ======================
 
-// async function repairEkspedisi() {
+async function repairEkspedisi() {
 
-//   const { data } =
-//   await client
-//   .from("scan_awb")
-//   .select("*")
-//   .is("ekspedisi", null);
+  const { data } =
+  await client
+  .from("scan_awb")
+  .select("*")
+  .is("ekspedisi", null);
 
-//   for (const item of data) {
+  for (const item of data) {
 
-//     const ekspedisi =
-//     detectExpedisi(item.resi);
+    const ekspedisi =
+    detectExpedisi(item.resi);
 
-//     await client
-//     .from("scan_awb")
-//     .update({
+    await client
+    .from("scan_awb")
+    .update({
 
-//       ekspedisi
+      ekspedisi
 
-//     })
-//     .eq("id", item.id);
+    })
+    .eq("id", item.id);
 
-//     console.log(
-//       item.resi,
-//       ekspedisi
-//     );
+    console.log(
+      item.resi,
+      ekspedisi
+    );
 
-//   }
+  }
 
-//   console.log(
-//     "Repair selesai 😎"
-//   );
+  console.log(
+    "Repair selesai 😎"
+  );
 
-// }
-// repairEkspedisi();
+}
+repairEkspedisi();
+loadInbound();
