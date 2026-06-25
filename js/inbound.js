@@ -206,85 +206,85 @@ function renderTable(data) {
 //     </tr>
 //   `
 // });
-setupPagination({
+// setupPagination({
 
-  table:"scan_awb",
+//   table:"scan_awb",
 
-  tbodyId:"tableBody",
+//   tbodyId:"tableBody",
 
-  ekspedisiFilter,
+//   ekspedisiFilter,
 
-  renderRow:(item)=>`
+//   renderRow:(item)=>`
 
-    <tr>
-      <td>${item.resi}</td>
-      <td>${item.ekspedisi}</td>
-      <td>${item.Pengirim}</td>
-      <td>${item.status}</td>
-      <td>${item.created_at}</td>
-    </tr>
+//     <tr>
+//       <td>${item.resi}</td>
+//       <td>${item.ekspedisi}</td>
+//       <td>${item.Pengirim}</td>
+//       <td>${item.status}</td>
+//       <td>${item.created_at}</td>
+//     </tr>
 
-  `
-});
+//   `
+// });
 
-loadPage({
+// loadPage({
 
-  page:1,
+//   page:1,
 
-  table:"scan_awb",
+//   table:"scan_awb",
 
-  tbodyId:"tableBody",
+//   tbodyId:"tableBody",
 
-  ekspedisiFilter,
+//   ekspedisiFilter,
 
-  renderRow:(item)=>`
+//   renderRow:(item)=>`
 
-    <tr>
-      <td>${item.resi}</td>
-      <td>${item.ekspedisi}</td>
-      <td>${item.Pengirim}</td>
-      <td>${item.status}</td>
-      <td>${item.created_at}</td>
-    </tr>
+//     <tr>
+//       <td>${item.resi}</td>
+//       <td>${item.ekspedisi}</td>
+//       <td>${item.Pengirim}</td>
+//       <td>${item.status}</td>
+//       <td>${item.created_at}</td>
+//     </tr>
 
-  `
-});
+//   `
+// });
 // ======================
 // REPAIR DATA LAMA
 // ======================
 
-async function repairEkspedisi() {
+// async function repairEkspedisi() {
 
-  const { data } =
-  await client
-  .from("scan_awb")
-  .select("*")
-  .is("ekspedisi", null);
+//   const { data } =
+//   await client
+//   .from("scan_awb")
+//   .select("*")
+//   .is("ekspedisi", null);
 
-  for (const item of data) {
+//   for (const item of data) {
 
-    const ekspedisi =
-    detectExpedisi(item.resi);
+//     const ekspedisi =
+//     detectExpedisi(item.resi);
 
-    await client
-    .from("scan_awb")
-    .update({
+//     await client
+//     .from("scan_awb")
+//     .update({
 
-      ekspedisi
+//       ekspedisi
 
-    })
-    .eq("id", item.id);
+//     })
+//     .eq("id", item.id);
 
-    console.log(
-      item.resi,
-      ekspedisi
-    );
+//     console.log(
+//       item.resi,
+//       ekspedisi
+//     );
 
-  }
+//   }
 
-  console.log(
-    "Repair selesai 😎"
-  );
+//   console.log(
+//     "Repair selesai 😎"
+//   );
 
-}
-repairEkspedisi();
+// }
+// repairEkspedisi();
