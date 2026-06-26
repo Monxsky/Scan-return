@@ -197,7 +197,11 @@ async function getAnalyticsData(tab){
             to
         )
     ]);
-
+console.log({
+    order,
+    inbound,
+    retur
+});
     return{
         order,
         inbound: 0,
