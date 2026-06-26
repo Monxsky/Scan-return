@@ -291,6 +291,14 @@ tr:hover{
   color:white;
 }
 
+/* Tab */
+ .tab-container { width: 400px; margin: 20px auto; border: 1px solid #ccc; }
+        .tab-menu { display: flex; background: #eee; }
+        .tab-button { flex: 1; padding: 10px; border: none; cursor: pointer; }
+        .tab-button.active { background: #fff; border-bottom: 2px solid blue; }
+        .tab-content { display: none; padding: 15px; }
+        .tab-content.active { display: block; }
+
 /* MOBILE */
 @media(max-width:768px){
 
