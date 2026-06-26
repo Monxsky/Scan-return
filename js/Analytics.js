@@ -165,12 +165,33 @@ async function getAnalyticsData(tab){
     // if(error){
     //     throw error;
     // }
-    const  order = await getCount(
-        "order_list",
-        tab,
-        from,
-        to
-    );
+    const  [
+        order,
+        inbound,
+        retur
+
+    ] = await Promise.all([
+        getCount(
+            "order_list",
+            tab,
+            from,
+            to
+        ),
+
+        getcount(
+            "inbound",
+            tab,
+            from,
+            to
+        ),
+
+        getCount(
+            "retur_manifest",
+            tab,
+            from,
+            to
+        )
+    ]);
 
     return{
         order,
