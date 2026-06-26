@@ -89,7 +89,7 @@ async function getAnalyticsData(tab){
         order:100,
         Inbound:80,
         retur:5
-        chart:[]
+        // chart:[]
 
         };
 
