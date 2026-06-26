@@ -126,15 +126,18 @@ console.log("TAB :", tab);
 // REAL DATA
 async function getAnalyticsData(tab){
 
-    const from =
-    document
-    .getElementById("filterFrom")
-    .value;
+    const container =
+document.getElementById(currentTab);
 
-    const to =
-    document
-    .getElementById("filterTo")
-    .value;
+const from =
+container
+.querySelector(".filterFrom")
+.value;
+
+const to =
+container
+.querySelector(".filterTo")
+.value;
 
     // // ORDER QUERY
     // let orderQuery = client
@@ -246,9 +249,56 @@ function hideLoading(){
     console.log("Selesai");
 
 }
-// DASHBOARD BUKA
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
+    // Load pertama
     loadAnalytics("semua");
+
+    // Event klik tab
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+
+        btn.addEventListener("click", async () => {
+
+            // Hapus active tombol
+            document.querySelectorAll(".tab-btn")
+            .forEach(b => b.classList.remove("active"));
+
+            // Active tombol sekarang
+            btn.classList.add("active");
+
+            // Hapus active content
+            document.querySelectorAll(".tab-content")
+            .forEach(c => c.classList.remove("active"));
+
+            // Ambil nama tab
+            const tab =
+            btn.dataset.tab;
+
+            currentTab = tab;
+
+            // Tampilkan content
+            document
+            .getElementById(tab)
+            .classList.add("active");
+
+            console.log("Klik Tab :", tab);
+
+            // Load analytics
+            await loadAnalytics(tab);
+
+        });
+
+    });
+
+document.querySelectorAll(".btnAnalytics")
+.forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        loadAnalytics(currentTab);
+
+    });
+
+});
 
 });
