@@ -178,7 +178,7 @@ async function getAnalyticsData(tab){
             to
         ),
 
-        getcount(
+        getCount(
             "inbound",
             tab,
             from,
