@@ -103,7 +103,7 @@ async function getAnalyticsData(tab){
 
         orderQuery =
         orderQuery.in(
-            "ekspedisi"'
+            "ekspedisi",
             MARKETPLACE[tab]
         );
     }
