@@ -94,7 +94,8 @@ async function getAnalyticsData(tab){
     });
     // FILTER TANGGAL
     orderQuery =
-        buildDataQuery,
+    buildDataQuery(
+        orderQuery,
         from,
         to
     );
