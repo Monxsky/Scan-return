@@ -173,7 +173,7 @@ async function getAnalyticsData(tab){
     );
 
     return{
-        order: count ?? 0,
+        order,
         inbound: 0,
         retur: 0,
         chart:[]
