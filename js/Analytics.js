@@ -214,14 +214,17 @@ console.log({
 // RENDER DATA
 function renderSummary(data){
 
-    document.getElementById("orderCount").textContent =
-    data.order;
+    const container =
+        document.getElementById(currentTab);
 
-    document.getElementById("inboundCount").textContent =
-    data.inbound;
+    container.querySelector(".orderCount").textContent =
+        data.order;
 
-    document.getElementById("returCount").textContent =
-    data.retur;
+    container.querySelector(".inboundCount").textContent =
+        data.inbound;
+
+    container.querySelector(".returCount").textContent =
+        data.retur;
 
 }
 // RENDER CHART
