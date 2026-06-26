@@ -107,11 +107,81 @@ href="../css/style.css">
 ======================== -->
 
 <div class="analytics-tabs">
-
-    <button class="tab-btn active" data-tab="semua">
+<!-- TAB SEMUA -->
+ <div id="semua" class="tab-content active">   
+ <button class="tab-btn active" data-tab="semua">
         📊 Semua
     </button>
+  <!-- FILTER -->
 
+<div class="analytics-filter">
+
+    <div>
+
+        <label>Dari</label>
+
+        <input
+            type="date"
+            id="filterFrom">
+
+    </div>
+
+    <div>
+
+        <label>Sampai</label>
+
+        <input
+            type="date"
+            id="filterTo">
+
+    </div>
+
+    <button id="btnAnalytics">
+
+        Terapkan
+
+    </button>
+
+</div>
+
+<!-- SUMMARY -->
+
+<div class="analytics-summary">
+
+    <div class="analytics-card">
+
+        <h4>📦 Order Masuk</h4>
+
+        <h1 id="orderCount">0</h1>
+
+    </div>
+
+    <div class="analytics-card">
+
+        <h4>🚚 Inbound</h4>
+
+        <h1 id="inboundCount">0</h1>
+
+    </div>
+
+    <div class="analytics-card">
+
+        <h4>↩ Retur</h4>
+
+        <h1 id="returCount">0</h1>
+
+    </div>
+
+</div>
+
+<!-- CHART -->
+
+<div class="analytics-chart">
+
+    <canvas id="analyticsChart"></canvas>
+
+</div>
+<!-- TAB SHOPEE -->
     <button class="tab-btn" data-tab="shopee">
         🛒 Shopee
     </button>
