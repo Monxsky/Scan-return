@@ -45,6 +45,52 @@ function buildDataQuery(query, from, to){
     return query;
 
 }
+// HELPER
+async function getCount(table, tab, from, to){
+
+    let query = client
+
+    .from(table)
+
+    .select("*",{
+
+        count:"exact",
+
+        head:true
+
+    });
+
+    query = buildDateQuery(
+        query,
+        from,
+        to
+    );
+
+    if(MARKETPLACE[tab]){
+
+        query = query.in(
+            "ekspedisi",
+            MARKETPLACE[tab]
+        );
+
+    }
+
+    const {
+
+        count,
+        error
+
+    } = await query;
+
+    if(error){
+
+        throw error;
+
+    }
+
+    return count ?? 0;
+
+}
 // LOAD
 async function loadAnalytics(tab = "semua"){
 
@@ -85,46 +131,52 @@ async function getAnalyticsData(tab){
     .getElementById("filterTo")
     .value;
 
-    // ORDER QUERY
-    let orderQuery = client
-    .from("order_list")
-    .select("*",{
-        count:"exact",
-        head:true
-    });
-    // FILTER TANGGAL
-    orderQuery =
-    buildDataQuery(
-        orderQuery,
+    // // ORDER QUERY
+    // let orderQuery = client
+    // .from("order_list")
+    // .select("*",{
+    //     count:"exact",
+    //     head:true
+    // });
+    // // FILTER TANGGAL
+    // orderQuery =
+    // buildDataQuery(
+    //     orderQuery,
+    //     from,
+    //     to
+    // );
+    // // FILTER EKSPEDISI
+    // if (MARKETPLACE[tab]){
+
+    //     orderQuery =
+    //     orderQuery.in(
+    //         "ekspedisi",
+    //         MARKETPLACE[tab]
+    //     );
+    // }
+
+    // // JALANKAN QUERY
+    // const {
+    //     count,
+    //     error
+
+    // } = await  orderQuery;
+
+    // if(error){
+    //     throw error;
+    // }
+    const  order = await getCount(
+        "order_list",
+        tab,
         from,
         to
     );
-    // FILTER EKSPEDISI
-    if (MARKETPLACE[tab]){
-
-        orderQuery =
-        orderQuery.in(
-            "ekspedisi",
-            MARKETPLACE[tab]
-        );
-    }
-
-    // JALANKAN QUERY
-    const {
-        count,
-        error
-
-    } = await  orderQuery;
-
-    if(error){
-        throw error;
-    }
 
     return{
         order: count ?? 0,
         inbound: 0,
         retur: 0,
-        //chart:[]
+        chart:[]
 
     };
 
