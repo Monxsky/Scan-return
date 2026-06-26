@@ -102,16 +102,57 @@ href="../css/style.css">
     </div>
    
    </div>
-<div class="tab-container">
-    <div class="tab-menu">
-        <button class="tab-button-active" onclick="openTab(event, 't1')">Semua</button>
-        <button class="tab-button-active" onclick="openTab(event, 't2')">Shopee</button>
-        <button class="tab-button-active" onclick="openTab(event, 't3')">Tiktok</button>
+<!-- =======================
+        ANALYTICS TAB
+======================== -->
+
+<div class="analytics-tabs">
+
+    <button class="tab-btn active" data-tab="semua">
+        📊 Semua
+    </button>
+
+    <button class="tab-btn" data-tab="shopee">
+        🛒 Shopee
+    </button>
+
+    <button class="tab-btn" data-tab="tiktok">
+        🎵 TikTok
+    </button>
+
+    <button class="tab-btn" data-tab="tokopedia">
+        🟢 Tokopedia
+    </button>
+
+    <button class="tab-btn" data-tab="lazada">
+        🟣 Lazada
+    </button>
+
+</div>
+
+<div class="analytics-content">
+
+    <div id="semua" class="tab-content active">
+        <!-- Isi dashboard Semua -->
     </div>
-    <div id="t1" class="tab-conten active">Content 1</div>
-    <div id="t2" class="tab-content">Content 2</div>
-    <div id="t3" class="tab-content">Content 3</div>
-   </div>
+
+    <div id="shopee" class="tab-content">
+        <!-- Isi dashboard Shopee -->
+    </div>
+
+    <div id="tiktok" class="tab-content">
+        <!-- Isi dashboard TikTok -->
+    </div>
+
+    <div id="tokopedia" class="tab-content">
+        <!-- Isi dashboard Tokopedia -->
+    </div>
+
+    <div id="lazada" class="tab-content">
+        <!-- Isi dashboard Lazada -->
+    </div>
+
+</div>
    
 <h1>Upload data manifest</h1>
    <input
