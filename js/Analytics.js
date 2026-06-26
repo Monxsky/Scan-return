@@ -87,7 +87,12 @@ async function getCount(table, tab, from, to){
         throw error;
 
     }
-
+console.log({
+    table,
+    tab,
+    filter: MARKETPLACE[tab],
+    count
+});
     return count ?? 0;
 
 }
