@@ -383,6 +383,17 @@ to{
 
 }
 
+.tab-btn.active{
+
+    background:#f97316;
+    color:#fff;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 6px 15px rgba(249,115,22,.25);
+
+}
+
 }
 /* MOBILE */
 @media(max-width:768px){
