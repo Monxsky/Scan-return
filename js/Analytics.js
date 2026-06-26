@@ -98,7 +98,7 @@ console.log({
 }
 // LOAD
 async function loadAnalytics(tab = "semua"){
-
+console.log("TAB :", tab);
     currentTab = tab;
 
     showLoading();
