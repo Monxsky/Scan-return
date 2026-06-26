@@ -85,13 +85,47 @@ async function getAnalyticsData(tab){
     .getElementById("filterTo")
     .value;
 
-    return{
-        order:100,
-        Inbound:80,
-        retur:5
-        // chart:[]
+    // ORDER QUERY
+    let orderQuery = client
+    .from("order_list")
+    .select("*",{
+        count:"exact",
+        head:true
+    });
+    // FILTER TANGGAL
+    orderQuery =
+        buildDataQuery,
+        from,
+        to
+    );
+    // FILTER EKSPEDISI
+    if (MARKETPLACE[tab]){
 
-        };
+        orderQuery =
+        orderQuery.in(
+            "ekspedisi"'
+            MARKETPLACE[tab]
+        );
+    }
+
+    // JALANKAN QUERY
+    const {
+        count,
+        error
+
+    } = await  orderQuery;
+
+    if(error){
+        throw error;
+    }
+
+    return{
+        order: count ?? 0,
+        inbound: 0,
+        retur: 0,
+        //chart:[]
+
+    };
 
 }
 // RENDER DATA
