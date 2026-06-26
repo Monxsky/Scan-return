@@ -179,7 +179,7 @@ async function getAnalyticsData(tab){
         ),
 
         getCount(
-            "inbound",
+            "scan_awb",
             tab,
             from,
             to
