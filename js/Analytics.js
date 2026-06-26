@@ -60,7 +60,7 @@ async function getCount(table, tab, from, to){
 
     });
 
-    query = buildDateQuery(
+    query = buildDataQuery(
         query,
         from,
         to
