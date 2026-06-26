@@ -213,7 +213,8 @@ console.log({
 }
 // RENDER DATA
 function renderSummary(data){
-
+     console.log("RENDER SUMMARY:", data);
+    
     const container =
         document.getElementById(currentTab);
 
