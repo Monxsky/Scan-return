@@ -21,6 +21,31 @@ let currentTab = "semua";
 
 const cache = {};
 
+// Build data function
+function buildDateQuery(query, from, to){
+
+    if(from){
+
+        query = query.gte(
+            "created_at",
+            from
+        );
+
+    }
+
+    if(to){
+
+        query = query.lte(
+            "created_at",
+            to + "T23:59:59"
+        );
+
+    }
+
+    return query;
+
+}
+// LOAD
 async function loadAnalytics(tab = "semua"){
 
     currentTab = tab;
@@ -47,20 +72,18 @@ async function loadAnalytics(tab = "semua"){
 
 }
 
-// DUMMY DATA
+// REAL DATA
 async function getAnalyticsData(tab){
 
-    return{
+    const from =
+    document
+    .getElementById("filterFrom")
+    .value;
 
-        order:10,
-
-        inbound:5,
-
-        retur:0,
-
-        chart:[]
-
-    };
+    const to =
+    document
+    .getElementById("filterTo")
+    .value;
 
 }
 // RENDER DATA
