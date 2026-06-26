@@ -22,7 +22,7 @@ let currentTab = "semua";
 const cache = {};
 
 // Build data function
-function buildDateQuery(query, from, to){
+function buildDataQuery(query, from, to){
 
     if(from){
 
