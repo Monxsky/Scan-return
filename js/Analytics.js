@@ -204,8 +204,8 @@ console.log({
 });
     return{
         order,
-        inbound: 0,
-        retur: 0,
+        inbound,
+        retur,
         chart:[]
 
     };
