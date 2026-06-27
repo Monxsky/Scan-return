@@ -7,7 +7,7 @@ async function loadOrderListTikTok() {
     .in("ekspedisi", [
       "J&T",
       "J&T Express",
-      "SiCepat"
+      "Sicepat"
     ]);
 
     if (error) {
