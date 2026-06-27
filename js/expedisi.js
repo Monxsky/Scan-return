@@ -41,7 +41,8 @@ window.expedisiRules = [
       return (
         resi.startsWith("SPX") ||
         resi.startsWith("SPXID") ||
-        resi.startsWith("SP")
+        resi.startsWith("SP") ||
+        resi.startsWith("ID")
       );
 
     }
@@ -150,7 +151,7 @@ window.expedisiRules = [
 
       return (
 
-        resi.startsWith("ID") &&
+        resi.startsWith("IDEX") &&
         /\d/.test(resi)
 
       );
