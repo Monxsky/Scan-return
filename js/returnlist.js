@@ -173,10 +173,10 @@ setupPagination({
   renderRow:(item)=>`
 
     <tr>
+      <td>${item.tracking_number}</td>
       <td>${item.external_return_id}</td>
       <td>${item.return_status}</td>
       <td>${item.process_status}</td>
-      <td>${item.tracking_number}</td>
       <td>${item.created_at}</td>
     </tr>
 
@@ -194,12 +194,13 @@ loadPage({
   renderRow:(item)=>`
 
     <tr>
+      <td>${item.tracking_number}</td>
       <td>${item.external_return_id}</td>
       <td>${item.return_status}</td>
       <td>${item.process_status}</td>
-      <td>${item.tracking_number}</td>
       <td>${item.created_at}</td>
     </tr>
+
 
   `
 });
