@@ -2,11 +2,10 @@ async function loadOrderListShopee() {
 
   const { data, error } =
     await client
-    .from("order_list")
+    .from("daftar_pesanan")
     .select("*")
-    .in("ekspedisi", [
-      "SPX",
-      "Shopee Express"
+    .in("marketplace", [
+      "SHOPEE_ID"
     ]);
 
     if (error) {
