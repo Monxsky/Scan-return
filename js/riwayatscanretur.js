@@ -1,4 +1,4 @@
-const tbody = document.getElementById("riwayatBody");
+const tbody = document.getElementById("tableBody");
 
 document.addEventListener("DOMContentLoaded", () => {
     loadRiwayat();
