@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+</head>
+
+<body>
+  <!-- BUTTON MENU -->
+<div class="app-wrapper">
+   <button class="menu-btn" id="menuBtn">
+☰
+</button>
+  <div id="sidebar-container"></div>
+  <div class="content">
+
+    <h2 id="pageTitle">DATA PESANAN RETUR</h2>
+
+    <input
+      type="file"
+      id="csvFile"
+      accept=".csv">
+
+  <!--  <button onclick="uploadCSV()">
+      Upload CSV
+    </button>
+
+    <input type="date" id="startDate">
+    <input type="date" id="endDate">
+
+    <button onclick="filterManifest()">
+     Cari
+   </button> -->
+
+    <input
+  type="text"
+  id="searchInput"
+  placeholder="Cari resi..."
+>
+
+<button onclick="searchResi()">
+  Cari
+</button>
+    
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Resi</th>
+          <th>Expedisi</th>
+          <!-- <th>Pengirim</th>-->
+          <th>Status</th>
+          <th>waktu</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="manifestBody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<div id="pagination"></div>
+  <div id="data"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/expedisi.js"></script>
+<script src="../js/detectexpedisi.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/pagination.js"></script>
+<script src="../js/filter.js"></script>
+<script src="../js/returnlist.js"></script>
+  <h1 id="pageTitle"></h1>
+
+</body>
+</html>
