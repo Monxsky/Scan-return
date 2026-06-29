@@ -3,12 +3,11 @@ const MARKETPLACE = {
     semua: null,
 
     shopee: [
-        "Shopee Express"
+        "SHOPEE_ID"
     ],
 
     tiktok: [
-        "J&T",
-        "SiCepat"
+        "TIKTOK_ID"
     ],
 
     tokopedia: [],
@@ -69,7 +68,7 @@ async function getCount(table, tab, from, to){
     if(MARKETPLACE[tab]){
 
         query = query.in(
-            "ekspedisi",
+            "marketplace",
             MARKETPLACE[tab]
         );
 
@@ -180,7 +179,7 @@ container
 
     ] = await Promise.all([
         getCount(
-            "order_list",
+            "daftar_pesanan",
             tab,
             from,
             to
