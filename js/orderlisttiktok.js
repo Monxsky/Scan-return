@@ -22,7 +22,7 @@ async function loadOrderListTikTok() {
     .forEach(item => {
       tbody.innerHTML += `
         <tr>
-        <td>${item.externalOrderId}</td>
+        <td>${item.marketplace_order_id}</td>
           <td>${item.resi}</td>
           <td>${item.Pengirim}</td>
           <td>${item.ekspedisi}</td>
