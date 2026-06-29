@@ -57,7 +57,7 @@ async function uploadCSV() {
 function doSearch() {
 
   searchResi(
-    "order_list",
+    "daftar_pesanan",
     renderManifest
   );
 
