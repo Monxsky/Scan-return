@@ -2,13 +2,9 @@ const MARKETPLACE = {
 
     semua: null,
 
-    shopee: [
-        "SHOPEE_ID"
-    ],
+    shopee: ["SHOPEE_ID"],
 
-    tiktok: [
-        "TIKTOK_ID"
-    ],
+    tiktok: ["TIKTOK_ID"],
 
     tokopedia: [],
 
