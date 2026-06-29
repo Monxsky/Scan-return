@@ -30,7 +30,7 @@ async function loadRiwayat() {
         error: returError
     } = await client
     .from("pesanan_retur")
-    .select("resi");
+    .select("tracking_number");
 
     if(returError){
         console.error(returError);
