@@ -203,40 +203,41 @@ loadPage({
 
   `
 });
+loadReturnList();
 
-async function repairEkspedisi() {
+// async function repairEkspedisi() {
 
-  const { data, error } =
-  await client
-  .from("order_list")
-  .select("*")
-  .is("ekspedisi", null);
+//   const { data, error } =
+//   await client
+//   .from("order_list")
+//   .select("*")
+//   .is("ekspedisi", null);
 
-  if (error) {
+//   if (error) {
 
-    console.log(error);
+//     console.log(error);
 
-    return;
+//     return;
 
-  }
+//   }
 
-  for (const item of data) {
+//   for (const item of data) {
 
-    const ekspedisi =
-    detectExpedisi(item.resi);
+//     const ekspedisi =
+//     detectExpedisi(item.resi);
 
-    await client
-    .from("order_list")
-    .update({
+//     await client
+//     .from("order_list")
+//     .update({
 
-      ekspedisi
+//       ekspedisi
 
-    })
-    .eq("id", item.id);
+//     })
+//     .eq("id", item.id);
 
-  }
+//   }
 
-  console.log("Repair selesai 😎");
+//   console.log("Repair selesai 😎");
 
-}
-repairEkspedisi();
+// }
+// repairEkspedisi();
