@@ -24,7 +24,6 @@ async function loadOrderListTikTok() {
         <tr>
         <td>${item.marketplace_order_id}</td>
           <td>${item.resi}</td>
-          <td>${item.Pengirim}</td>
           <td>${item.ekspedisi}</td>
           <td>${item.status}</td>
           <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
