@@ -20,6 +20,8 @@ let currentTab = "semua";
 
 const cache = {};
 
+let analyticsChart = null;
+
 // Build data function
 function buildDataQuery(query, from, to){
 
@@ -199,6 +201,12 @@ container
             to
         )
     ]);
+    const chart =
+await getChartData(
+    tab,
+    from,
+    to
+);
 console.log({
     order,
     inbound,
@@ -208,9 +216,47 @@ console.log({
         order,
         inbound,
         retur,
-        chart:[]
+        chart
 
     };
+
+}
+
+// chart
+
+async function getChartData(tab, from, to){
+
+    let query = client
+        .from("daftar_pesanan")
+        .select("created_at, marketplace");
+
+    query = buildDataQuery(query, from, to);
+
+    if(MARKETPLACE[tab]){
+        query = query.in(
+            "marketplace",
+            MARKETPLACE[tab]
+        );
+    }
+
+    const { data, error } = await query;
+
+    if(error) throw error;
+
+    const result = {};
+
+    data.forEach(item => {
+
+        const date = item.created_at.slice(0,10);
+
+        result[date] = (result[date] || 0) + 1;
+
+    });
+
+    return Object.entries(result).map(([date,total]) => ({
+        date,
+        total
+    }));
 
 }
 // RENDER DATA
@@ -233,7 +279,59 @@ function renderSummary(data){
 // RENDER CHART
 function renderChart(chartData){
 
-    console.log(chartData);
+    const ctx =
+        document
+        .getElementById("analyticsChart");
+
+    if(analyticsChart){
+
+        analyticsChart.destroy();
+
+    }
+
+    analyticsChart = new Chart(ctx,{
+
+        type:"line",
+
+        data:{
+
+            labels:
+                chartData.map(d=>d.date),
+
+            datasets:[{
+
+                label:"Order",
+
+                data:
+                    chartData.map(d=>d.total),
+
+                borderColor:"#f97316",
+
+                backgroundColor:"rgba(249,115,22,.15)",
+
+                fill:true,
+
+                tension:0.35
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+
+                legend:{
+                    display:false
+                }
+
+            }
+
+        }
+
+    });
 
 }
 // LOADING
