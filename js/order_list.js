@@ -65,7 +65,7 @@ function doSearch() {
   
   // 1. ambil data existing dari Supabase
   const existingRes = await fetch(
-    `${SUPABASE_URL}/rest/v1/order_list?select=resi`,
+    `${SUPABASE_URL}/rest/v1/daftar_pesanan?select=resi`,
     {
       headers: {
         apikey: SUPABASE_KEY,
@@ -102,7 +102,7 @@ function doSearch() {
 
   // 4. insert data unik saja
   const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/order_list`,
+    `${SUPABASE_URL}/rest/v1/daftar_pesanan`,
     {
       method: "POST",
       headers: {
@@ -151,7 +151,7 @@ async function scanResi() {
     detectExpedisi(resi);
 
   await client
-  .from("order_list")
+  .from("daftar_pesanan")
   .insert([{
 
     resi,
@@ -166,7 +166,7 @@ async function scanResi() {
 
 setupPagination({
 
-  table:"order_list",
+  table:"daftar_pesanan",
 
   tbodyId:"manifestBody",
 
@@ -188,7 +188,7 @@ loadPage({
 
   page:1,
 
-  table:"order_list",
+  table:"daftar_pesanan",
 
   tbodyId:"manifestBody",
 
