@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Inbound</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+</head>
+
+<body>
+
+  <!-- BUTTON MENU -->
+<div class="app-wrapper">
+   <button class="menu-btn" id="menuBtn">
+☰
+</button>
+  <div id="sidebar-container"></div>
+  <div class="content">
+
+    <h2 id="pageTitle">RIWAYAT PAKET INBOUND</h2>
+
+  <!-- CONTENT -->
+    <h2>Inbound</h2>
+
+<input type="date" id="startDate">
+<input type="date" id="endDate">
+
+<button onclick="filterTanggal()">
+  Filter
+</button>
+
+<input
+  type="text"
+  id="searchInput"
+  placeholder="Cari resi..."
+>
+
+<button onclick="doSearch()">
+  Cari
+</button>
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Resi</th>
+          <th>Expedisi</th>
+          <th>Status</th>
+          <th>Waktu terima</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="tableBody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<div id="pagination"></div>
+  <div id="data"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/expedisi.js"></script>
+<script src="../js/detectexpedisi.js"></script>
+<script src="../js/state.js"></script>
+<script src="../js/pagination.js"></script>
+<script src="../js/filter.js"></script>
+<script src="../js/riwayatscanretur.js"></script>
+  <h1 id="pageTitle"></h1>
+
+</body>
+</html>
