@@ -2,12 +2,10 @@ async function loadOrderListTikTok() {
 
   const { data, error } =
     await client
-    .from("order_list")
+    .from("daftar_pesanan")
     .select("*")
-    .in("ekspedisi", [
-      "J&T",
-      "J&T Express",
-      "Sicepat"
+    .in("marketplace", [
+      "TIKTOK_ID"
     ]);
 
     if (error) {
