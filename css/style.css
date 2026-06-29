@@ -476,7 +476,8 @@ box-shadow:0 5px 15px rgba(0,0,0,.08);
 
 }
 
-.analytics-card h4{
+.analytics-card h4
+.analytics-card h1{
 
 margin:0;
 
@@ -484,15 +485,7 @@ color:#666;
 
 }
 
-.analytics-card h1{
-
-margin-top:15px;
-
-font-size:38px;
-
-color:#ff6b00;
-
-}
+/*
 
 .analytics-chart{
 
