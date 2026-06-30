@@ -10,28 +10,55 @@ renderToolbar({
 
 });
 
-const statusFilter = document.getElementById("statusFilter");
+const statusFilter =
+document.getElementById("statusFilter");
 
-if (statusFilter) {
+if(statusFilter){
 
-    statusFilter.addEventListener("change", function () {
+    statusFilter.addEventListener("change",()=>{
 
-        loadOrderListTikTok(this.value);
+        filterState.status =
+        statusFilter.value;
+
+        loadOrderListTikTok();
 
     });
 
 }
-
 loadOrderListTikTok();
-async function loadOrderListTikTok(status = "") {
+async function loadOrderListTikTok() {
 
     let query = client
         .from("daftar_pesanan")
         .select("*")
-        .in("marketplace", ["TIKTOK_ID"]);
 
-    if (status) {
-        query = query.eq("status", status);
+    if(filterState.marketplace){
+
+    query =
+    query.eq(
+        "marketplace",
+        filterState.marketplace
+    );
+
+}
+
+    if(filterState.status){
+
+    query =
+    query.eq(
+        "status",
+        filterState.status
+    );
+
+}
+
+    if(filterState.search){
+
+        query=query.ilike(
+            "marketplace_order_id",
+            `%${filterState.search}%`
+        );
+
     }
 
     const { data, error } = await query;
