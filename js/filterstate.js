@@ -1,9 +1,18 @@
-window.filterState = {
+window.appState = {
 
-    status: "",
+    filter:{
 
-    marketplace: "TIKTOK_ID",
+        status:"",
+        ekspedisi:"",
+        search:""
 
-    search: ""
+    },
+
+    pagination:{
+
+        page:1,
+        limit:100
+
+    }
 
 };
