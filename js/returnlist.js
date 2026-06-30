@@ -6,7 +6,7 @@ renderToolbar({
     filters: {
 
         returnStatus: true,
-        synScan: true
+        syncScan: true
 
     },
 
