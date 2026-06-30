@@ -1,3 +1,8 @@
+import { createFilterBar } from "./components/filterBar.js";
+
+document.getElementById("filterContainer").innerHTML =
+    createFilterBar();
+
 async function loadOrderListTikTok() {
 
   const { data, error } =
