@@ -175,33 +175,31 @@ const to =
 container
 .querySelector(".filterTo")
 .value;
-const  [
-        order,
-        inbound,
-        retur
+const [
+    order,
+    inbound,
+    retur
+] = await Promise.all([
 
-    ] = await Promise.all([
-        getCount(
-            "daftar_pesanan",
-            tab,
-            from,
-            to
-        ),
+    getOrderCount(
+        tab,
+        from,
+        to
+    ),
 
-        getCount(
-            "scan_awb",
-            tab,
-            from,
-            to
-        ),
+    getInboundCount(
+        tab,
+        from,
+        to
+    ),
 
-        getCount(
-            "pesanan_retur",
-            tab,
-            from,
-            to
-        )
-    ]);
+    getReturCount(
+        tab,
+        from,
+        to
+    )
+
+]);
     const chart =
 await getChartData(
     tab,
