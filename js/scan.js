@@ -120,7 +120,7 @@ async function sendData() {
     // 2. UPDATE manifest kalau ada
     for (const item of data) {
       await fetch(
-        `${SUPABASE_URL}/rest/v1/retur_manifest?resi=eq.${item.resi}`,
+        `${SUPABASE_URL}/rest/v1/pesanan_retur?resi=eq.${item.resi}`,
         {
           method: "PATCH",
           headers: {
