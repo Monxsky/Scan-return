@@ -1,7 +1,3 @@
-import { createFilterBar } from "./components/filterBar.js";
-
-document.getElementById("filterContainer").innerHTML =
-
 async function loadOrderListTikTok() {
 
   const { data, error } =
@@ -36,4 +32,3 @@ async function loadOrderListTikTok() {
     });
 }
 loadOrderListTikTok();
-createFilterBar();
