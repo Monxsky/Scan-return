@@ -1,6 +1,13 @@
 (function () {
 
-    function renderToolbar() {
+    function renderToolbar(options = {}) {
+
+        const {
+            title = "",
+            status = false,
+            search = false,
+            refresh = false
+        } = options;
 
         const toolbar = document.getElementById("toolbar");
 
@@ -12,27 +19,44 @@
 
                 <div class="toolbar-left">
 
-                    <label>Status</label>
+                    ${title ? `<h3>${title}</h3>` : ""}
 
-                    <select id="statusFilter">
+                    ${status ? `
+                        <div class="toolbar-item">
 
-                        <option value="">Semua Status</option>
-                        <option value="PAID">PAID</option>
-                        <option value="READY_TO_SHIP">READY TO SHIP</option>
-                        <option value="SHIPPING">SHIPPING</option>
-                        <option value="DELIVERED">DELIVERED</option>
-                        <option value="CANCELED">CANCELED</option>
+                            <label>Status</label>
 
-                    </select>
+                            <select id="statusFilter">
+
+                                <option value="">Semua Status</option>
+                                <option value="PAID">PAID</option>
+                                <option value="READY_TO_SHIP">READY TO SHIP</option>
+                                <option value="SHIPPING">SHIPPING</option>
+                                <option value="DELIVERED">DELIVERED</option>
+                                <option value="CANCELED">CANCELED</option>
+
+                            </select>
+
+                        </div>
+                    ` : ""}
 
                 </div>
 
                 <div class="toolbar-right">
 
-                    <input
-                        type="text"
-                        placeholder="Cari pesanan..."
-                    >
+                    ${search ? `
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Cari..."
+                        >
+                    ` : ""}
+
+                    ${refresh ? `
+                        <button id="btnRefresh">
+                            Refresh
+                        </button>
+                    ` : ""}
 
                 </div>
 
