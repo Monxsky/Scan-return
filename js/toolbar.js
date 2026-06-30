@@ -51,6 +51,25 @@
 
                 ` : ""}
 
+                ${filters.returnStatus ? `
+
+    <div class="toolbar-item">
+
+        <label>Status Retur</label>
+
+        <select id="returnStatusFilter">
+
+            <option value="">Semua Status</option>
+            <option value="WAITING_RETURN">Waiting Return</option>
+            <option value="RETURNING">Returning</option>
+            <option value="RETURNED">Returned</option>
+
+        </select>
+
+    </div>
+
+` : ""}
+
                 ${filters.expedisi ? `
 
                     <div class="toolbar-item">
