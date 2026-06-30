@@ -1,0 +1,88 @@
+.toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    background:#fff;
+
+    padding:18px 20px;
+
+    border-radius:10px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.toolbar-left{
+
+    display:flex;
+
+    align-items:end;
+
+    gap:15px;
+
+}
+
+.toolbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.toolbar-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+.toolbar h3{
+
+    margin-right:15px;
+
+    font-size:18px;
+
+}
+
+.toolbar select,
+.toolbar input{
+
+    height:36px;
+
+    padding:0 10px;
+
+    border:1px solid #ddd;
+
+    border-radius:6px;
+
+}
+
+.toolbar button{
+
+    height:36px;
+
+    padding:0 15px;
+
+    border:none;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
