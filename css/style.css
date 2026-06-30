@@ -1,3 +1,25 @@
+/*Badge */
+.badge-green{
+
+    background:#d1fae5;
+    color:#065f46;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+
+}
+
+.badge-red{
+
+    background:#fee2e2;
+    color:#991b1b;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+
+}
 /* summery card */
 .summary-cards{
 
