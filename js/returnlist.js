@@ -184,7 +184,7 @@ async function scanResi() {
 }
 
 const returnStatusFilter =
-    document.getElementById("returnStatusFilter");
+    document.getElementById("returnStatusFilter")
     ?.addEventListener("change", () => {
 
         window.appState.filter.returnStatus =
