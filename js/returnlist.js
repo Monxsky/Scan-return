@@ -239,8 +239,9 @@ setupPagination({
     return query;
 
 }
-console.log("Filter:", window.appState.filter.returnStatus);
+
 });
+console.log("Filter:", window.appState.filter.returnStatus);
 // loadReturnList();
 
 // async function repairEkspedisi() {
