@@ -1,3 +1,4 @@
+const MARKETPLACE = document.body.dataset.marketplace;
 
 const menuBtn =
 document.getElementById("menuBtn");
@@ -122,6 +123,9 @@ function doSearch() {
   loadManifest();
 }
 
+const params = new URLSearchParams(window.location.search);
+
+const MARKETPLACE = params.get("marketplace");
 
 async function filterManifest() {
 
@@ -148,7 +152,7 @@ async function scanResi() {
   .value;
 
   const ekspedisi =
-    detectExpedisi(resi);
+    detectekspedisi(resi);
 
   await client
   .from("pesanan_retur")
@@ -166,43 +170,50 @@ async function scanResi() {
 
 setupPagination({
 
-  table:"pesanan_retur",
+    table: "pesanan_retur",
 
-  tbodyId:"manifestBody",
+    tbodyId: "manifestBody",
 
-  renderRow:(item)=>`
+    filter: {
+        marketplace: MARKETPLACE
+    },
 
-    <tr>
-      <td>${item.tracking_number}</td>
-      <td>${item.external_return_id}</td>
-      <td>${item.return_status}</td>
-      <td>${item.process_status}</td>
-      <td>${item.created_at}</td>
-    </tr>
+    renderRow: (item) => `
 
-  `
+        <tr>
+            <td>${item.tracking_number}</td>
+            <td>${item.external_return_id}</td>
+            <td>${item.return_status}</td>
+            <td>${item.process_status}</td>
+            <td>${item.created_at}</td>
+        </tr>
+
+    `
 });
 
-loadPage({
+   loadPage({
 
-  page:1,
+    page:1,
 
-  table:"pesanan_retur",
+    table:"pesanan_retur",
 
-  tbodyId:"manifestBody",
+    tbodyId:"manifestBody",
 
-  renderRow:(item)=>`
+    filter:{
+        marketplace: MARKETPLACE
+    },
 
-    <tr>
-      <td>${item.tracking_number}</td>
-      <td>${item.external_return_id}</td>
-      <td>${item.return_status}</td>
-      <td>${item.process_status}</td>
-      <td>${item.created_at}</td>
-    </tr>
+    renderRow:(item)=>`
 
+        <tr>
+            <td>${item.tracking_number}</td>
+            <td>${item.external_return_id}</td>
+            <td>${item.return_status}</td>
+            <td>${item.process_status}</td>
+            <td>${item.created_at}</td>
+        </tr>
 
-  `
+    `
 });
 loadReturnList();
 
@@ -225,7 +236,7 @@ loadReturnList();
 //   for (const item of data) {
 
 //     const ekspedisi =
-//     detectExpedisi(item.resi);
+//     detectekspedisi(item.resi);
 
 //     await client
 //     .from("order_list")
