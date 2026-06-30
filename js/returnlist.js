@@ -1,4 +1,4 @@
-createToolbar("return")
+
 renderToolbar({
 
     title: "Daftar Retur",
@@ -184,11 +184,11 @@ async function scanResi() {
 }
 
 const returnStatusFilter =
-    document.getElementById("returnStatusFilter")
-    ?.addEventListener("change", () => {
+    document.getElementById("returnStatusFilter");
+    returnStatusFilter?.addEventListener("change", () => {
 
         window.appState.filter.returnStatus =
-            document.getElementById("returnStatusFilter").value;
+            returnStatusFilter.value;
         loadPage(1);
 });
 
@@ -221,11 +221,11 @@ setupPagination({
         MARKETPLACE
     );
 
-    if(appState.filter.returnStatus){
+    if(window.appState.filter.returnStatus){
 
         query = query.eq(
             "return_status",
-            appState.filter.returnStatus
+            window.appState.filter.returnStatus
         );
 
     }
