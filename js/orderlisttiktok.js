@@ -1,5 +1,4 @@
-document.getElementById("toolbar")
-renderMenubar();
+
 async function loadOrderListTikTok() {
 
   const { data, error } =
@@ -33,5 +32,10 @@ async function loadOrderListTikTok() {
       `;
     });
 }
-loadOrderListTikTok();
+document.addEventListener("DOMContentLoaded", () => {
 
+    renderToolbar();
+
+    loadOrderListTikTok();
+
+});
