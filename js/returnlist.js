@@ -1,3 +1,4 @@
+creatToolbar("return")
 renderToolbar({
 
     title: "Daftar Retur",
@@ -184,19 +185,12 @@ async function scanResi() {
 
 const returnStatusFilter =
     document.getElementById("returnStatusFilter");
+    ?.addEventListener("change", () => {
 
-if (returnStatusFilter) {
-
-    returnStatusFilter.addEventListener("change", () => {
-
-        appState.filter.returnStatus =
-            returnStatusFilter.value;
- console.log("Filter dipilih:", window.appState.filter.returnStatus);
-        loadPage({ page: 1 });
-
-    });
-
-}
+        windows.appState.filter.returnStatus =
+            document.getElementById("returnStatusFilter").value;
+        loadPage(1);
+});
 
 setupPagination({
 
