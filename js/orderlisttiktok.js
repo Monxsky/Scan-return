@@ -1,3 +1,4 @@
+renderToolBar();
 async function loadOrderListTikTok() {
 
   const { data, error } =
@@ -32,4 +33,3 @@ async function loadOrderListTikTok() {
     });
 }
 loadOrderListTikTok();
-renderMenuBar();
