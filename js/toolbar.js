@@ -119,12 +119,15 @@
                 ` : ""}
 
                
-<button id="btnSyncScan">
+                ${filters.syncScan ? `
 
-    🔄 Sync Scan
+                <button id="btnSyncScan">
 
-</button>
+                        🔄 Sync Scan
 
+                </button>
+
+                ` : ""}
 
             </div>
 
