@@ -112,11 +112,21 @@
 
                     <button id="btnRefresh">
 
-                        Refresh
+                       🔄 Refresh
 
                     </button>
 
                 ` : ""}
+
+                ${filters.syncScan ? `
+
+<button id="btnSyncScan">
+
+    🔄 Sync Scan
+
+</button>
+
+` : ""}
 
             </div>
 
