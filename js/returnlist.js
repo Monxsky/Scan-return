@@ -1,4 +1,6 @@
-const MARKETPLACE = document.body.dataset.marketplace;
+const params = new URLSearchParams(window.location.search);
+
+const MARKETPLACE = params.get("marketplace");
 
 const menuBtn =
 document.getElementById("menuBtn");
@@ -123,9 +125,7 @@ function doSearch() {
   loadManifest();
 }
 
-const params = new URLSearchParams(window.location.search);
 
-const MARKETPLACE = params.get("marketplace");
 
 async function filterManifest() {
 
@@ -174,46 +174,31 @@ setupPagination({
 
     tbodyId: "manifestBody",
 
-    filter: {
-        marketplace: MARKETPLACE
+    renderRow(item){
+
+        return `
+
+            <tr>
+                <td>${item.tracking_number}</td>
+                <td>${item.external_return_id}</td>
+                <td>${item.return_status}</td>
+                <td>${item.process_status}</td>
+                <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
+            </tr>
+
+        `;
+
     },
 
-    renderRow: (item) => `
+    buildQuery(query){
 
-        <tr>
-            <td>${item.tracking_number}</td>
-            <td>${item.external_return_id}</td>
-            <td>${item.return_status}</td>
-            <td>${item.process_status}</td>
-            <td>${item.created_at}</td>
-        </tr>
+        return query.eq(
+            "marketplace",
+            MARKETPLACE
+        );
 
-    `
-});
+    }
 
-   loadPage({
-
-    page:1,
-
-    table:"pesanan_retur",
-
-    tbodyId:"manifestBody",
-
-    filter:{
-        marketplace: MARKETPLACE
-    },
-
-    renderRow:(item)=>`
-
-        <tr>
-            <td>${item.tracking_number}</td>
-            <td>${item.external_return_id}</td>
-            <td>${item.return_status}</td>
-            <td>${item.process_status}</td>
-            <td>${item.created_at}</td>
-        </tr>
-
-    `
 });
 loadReturnList();
 
