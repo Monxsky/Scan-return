@@ -513,14 +513,13 @@ box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 /* Tool Bar */
 #toolbar{
-
-    margin-bottom:20px;
+margin-bottom:50px;
 
 }
 
 .toolbar{
 
-    background:#fff;
+    background:#ffff;
 
     border-radius:10px;
 
