@@ -42,58 +42,98 @@ function buildDataQuery(query, from, to){
     return query;
 
 }
-// HELPER
-async function getCount(table, tab, from, to){
 
+async function getOrderCount(tab, from, to) {
     let query = client
-
-    .from(table)
-
-    .select("*",{
-
-        count:"exact",
-
-        head:true
-
+    .from("daftar_pesanan")
+    .select("*", {
+        count: "exact",
+        head: true
     });
 
-    query = buildDataQuery(
-        query,
-        from,
-        to
-    );
+    query = buildDataQuery(query, from, to);
 
-    if(MARKETPLACE[tab]){
+    if (MARKETPLACE[tab]) {
+        query = query.in("marketplace", MARKETPLACE[tab]);
+        }
 
-        query = query.in(
-            "marketplace",
-            MARKETPLACE[tab]
-        );
+        const { count, error } = await query;
+        if (error) throw error;
 
-    }
-
-    const {
-
-        count,
-        error
-
-    } = await query;
-
-    if(error){
-
-        throw error;
-
-    }
-console.log({
-    table,
-    tab,
-    filter: MARKETPLACE[tab],
-    count
-});
-    return count ?? 0;
-
+        return count ?? 0;
+    
 }
-// LOAD
+
+function getInboundFilter(tab, query){
+    switch(tab){
+        case "shopee":
+            return query.or(
+                "resi.ilike.SPX%,resi.ilike.SPXID%,resi.ilike.ID%"
+            );
+        case "tiktok":
+            return query.or(
+                "resi.ilike.J&T%,resi.ilike.J&T Express%,resi.ilike.0029%"
+            );
+        default:
+            return query;    
+    }
+}
+
+async function getInboundCount(tab, from, to) {
+    let query = client
+    .from("scan_awb")
+    .select("*", {
+        count: "exact",
+        head: true
+    });
+
+    query = buildDataQuery(query, from, to);
+
+    query = getInboundFilter(tab, query);
+
+        const { count, error } = await query;
+        if (error) throw error;
+
+        return count ?? 0;
+    
+}
+
+async function getReturCount(tab, from, to) {
+
+    let query = client
+        .from("pesanan_retur")
+        .select("*", {
+            count: "exact",
+            head: true
+        });
+
+    query = buildDataQuery(query, from, to);
+
+    if (MARKETPLACE[tab]) {
+        query = query.in("marketplace", MARKETPLACE[tab]);
+    }
+
+    const { count, error } = await query;
+
+    if (error) throw error;
+
+    return count ?? 0;
+}
+
+async function getAnalyticsData(tab) {
+
+    const [
+        order,
+        retur,
+        inbound
+    ] = await Promise.all([
+        getOrderCount(tab, from, to),
+        getReturCount(tab, from, to),
+        getInboundCount(tab, from, to)
+    ]);
+    
+}
+
 async function loadAnalytics(tab = "semua"){
 console.log("TAB :", tab);
     currentTab = tab;
@@ -135,42 +175,7 @@ const to =
 container
 .querySelector(".filterTo")
 .value;
-
-    // // ORDER QUERY
-    // let orderQuery = client
-    // .from("order_list")
-    // .select("*",{
-    //     count:"exact",
-    //     head:true
-    // });
-    // // FILTER TANGGAL
-    // orderQuery =
-    // buildDataQuery(
-    //     orderQuery,
-    //     from,
-    //     to
-    // );
-    // // FILTER EKSPEDISI
-    // if (MARKETPLACE[tab]){
-
-    //     orderQuery =
-    //     orderQuery.in(
-    //         "ekspedisi",
-    //         MARKETPLACE[tab]
-    //     );
-    // }
-
-    // // JALANKAN QUERY
-    // const {
-    //     count,
-    //     error
-
-    // } = await  orderQuery;
-
-    // if(error){
-    //     throw error;
-    // }
-    const  [
+const  [
         order,
         inbound,
         retur
