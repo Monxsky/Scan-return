@@ -500,7 +500,28 @@ box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 }
+/* Tool Bar */
+.content{
 
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    padding:20px;
+
+}
+
+.page-content{
+
+    background:#fff;
+
+    border-radius:10px;
+
+    padding:20px;
+
+}
 /* Filter Bar */
 .filter-bar{
 
