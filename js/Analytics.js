@@ -164,7 +164,7 @@ console.log("TAB :", tab);
 async function getAnalyticsData(tab){
 
     const container =
-document.getElementById(Tab);
+document.getElementById(tab);
 
 const from =
 container
@@ -353,39 +353,27 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event klik tab
     document.querySelectorAll(".tab-btn").forEach(btn => {
 
-        btn.addEventListener("click", (e) => {
-             e.preventDefault();
+        btn.addEventListener("click", async (e) => {
+    e.preventDefault();
 
-            loadAnalytics(currentTab);
+    const tab = btn.dataset.tab;
+    currentTab = tab;
 
-            // Hapus active tombol
-            document.querySelectorAll(".tab-btn")
-            .forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-btn")
+        .forEach(b => b.classList.remove("active"));
 
-            // Active tombol sekarang
-            btn.classList.add("active");
+    btn.classList.add("active");
 
-            // Hapus active content
-            document.querySelectorAll(".tab-content")
-            .forEach(c => c.classList.remove("active"));
+    document.querySelectorAll(".tab-content")
+        .forEach(c => c.classList.remove("active"));
 
-            // Ambil nama tab
-            const tab =
-            btn.dataset.tab;
+    document.getElementById(tab)
+        .classList.add("active");
 
-            currentTab = tab;
+    console.log("Klik Tab :", tab);
 
-            // Tampilkan content
-            document
-            .getElementById(tab)
-            .classList.add("active");
-
-            console.log("Klik Tab :", tab);
-
-            // Load analytics
-            await loadAnalytics(tab);
-
-        });
+    await loadAnalytics(tab);
+});
 
     });
 
