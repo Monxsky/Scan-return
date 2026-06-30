@@ -1,4 +1,16 @@
+renderToolbar({
 
+    title: "Order TikTok",
+
+    status: true,
+
+    search: true,
+
+    refresh: true
+
+});
+
+loadOrderListTikTok();
 async function loadOrderListTikTok() {
 
   const { data, error } =
@@ -32,10 +44,6 @@ async function loadOrderListTikTok() {
       `;
     });
 }
-document.addEventListener("DOMContentLoaded", () => {
 
-    renderToolbar();
+loadOrderListTikTok();
 
-    loadOrderListTikTok();
-
-});
