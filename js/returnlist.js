@@ -187,7 +187,7 @@ const returnStatusFilter =
     document.getElementById("returnStatusFilter");
     ?.addEventListener("change", () => {
 
-        windows.appState.filter.returnStatus =
+        window.appState.filter.returnStatus =
             document.getElementById("returnStatusFilter").value;
         loadPage(1);
 });
