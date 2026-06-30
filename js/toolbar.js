@@ -1,7 +1,8 @@
 (function () {
 
     function renderToolbar(options = {}) {
-
+    console.log("Toolbar Options:", options);
+    console.log("Toolbar Filters:", options.filters);
         const {
 
             title = "",
