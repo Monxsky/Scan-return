@@ -118,7 +118,7 @@
 
                 ` : ""}
 
-                ${filters.syncScan ? `
+                // ${filters.syncScan ? `
 
 <button id="btnSyncScan">
 
@@ -126,7 +126,7 @@
 
 </button>
 
-` : ""}
+// ` : ""}
 
             </div>
 
