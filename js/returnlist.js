@@ -13,20 +13,46 @@ renderToolbar({
     refresh: true
 
 });
-console.log(document.getElementById("toolbar").innerHTML);
+// console.log(document.getElementById("toolbar").innerHTML);
 
 const params = new URLSearchParams(window.location.search);
 
 const MARKETPLACE = params.get("marketplace");
 
+// tombol SyncScan
 async function syncOldScan(){
 
-    alert(
-        "Sebentar ya bre..."
-    );
+    const btn =
+        document.getElementById("btnSyncScan");
+
+    btn.disabled = true;
+    btn.innerText = "⏳ Sync...";
+
+    const { error } =
+        await client.rpc("sync_old_scan");
+
+    if(error){
+
+        console.error(error);
+
+        alert("❌ Gagal sinkronisasi");
+
+    }else{
+
+        alert("✅ Sinkronisasi selesai!");
+
+        // Refresh card summary
+        await loadSummary();
+
+        // Refresh tabel
+        await loadPage(1);
+
+    }
+
+    btn.disabled = false;
+    btn.innerText = "🔄 Sync Scan";
 
 }
-
 const menuBtn =
 document.getElementById("menuBtn");
 
