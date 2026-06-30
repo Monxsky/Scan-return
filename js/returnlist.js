@@ -1,3 +1,17 @@
+renderToolbar({
+
+    title: "Daftar Retur",
+
+    filters: {
+
+        returnStatus: true
+
+    },
+
+    refresh: true
+
+});
+
 const params = new URLSearchParams(window.location.search);
 
 const MARKETPLACE = params.get("marketplace");
@@ -168,6 +182,22 @@ async function scanResi() {
 
 }
 
+const returnStatusFilter =
+    document.getElementById("returnStatusFilter");
+
+if (returnStatusFilter) {
+
+    returnStatusFilter.addEventListener("change", () => {
+
+        appState.filter.returnStatus =
+            returnStatusFilter.value;
+
+        loadPage({ page: 1 });
+
+    });
+
+}
+
 setupPagination({
 
     table: "pesanan_retur",
@@ -192,12 +222,23 @@ setupPagination({
 
     buildQuery(query){
 
-        return query.eq(
-            "marketplace",
-            MARKETPLACE
+    query = query.eq(
+        "marketplace",
+        MARKETPLACE
+    );
+
+    if(appState.filter.returnStatus){
+
+        query = query.eq(
+            "return_status",
+            appState.filter.returnStatus
         );
 
     }
+
+    return query;
+
+}
 
 });
 // loadReturnList();
