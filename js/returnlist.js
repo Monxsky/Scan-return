@@ -13,6 +13,7 @@ renderToolbar({
     refresh: true
 
 });
+console.log(document.getElementById("toolbar").innerHTML);
 
 const params = new URLSearchParams(window.location.search);
 
