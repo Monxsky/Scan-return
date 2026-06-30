@@ -110,7 +110,7 @@ async function getReturCount(tab, from, to) {
     query = buildDataQuery(query, from, to);
 
     if (MARKETPLACE[tab]) {
-        query = query.in("marketplace_order_id", MARKETPLACE[tab]);
+        query = query.in("marketplace", MARKETPLACE[tab]);
     }
 
     const { count, error } = await query;
