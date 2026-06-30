@@ -191,7 +191,7 @@ if (returnStatusFilter) {
 
         appState.filter.returnStatus =
             returnStatusFilter.value;
-
+ console.log("Filter dipilih:", window.appState.filter.returnStatus);
         loadPage({ page: 1 });
 
     });
