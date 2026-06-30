@@ -1,22 +1,16 @@
 const PAGE_LIMIT = 50;
 
 const paginationState = {
-
     page: 1,
-
     limit: PAGE_LIMIT,
-
+    totalPages: 1,
     table: "",
-
     tbodyId: "",
-
     renderRow: null,
-
     buildQuery: null
-
 };
 
-async function loadPage(page = 1){
+async function loadPage(page = 1) {
 
     paginationState.page = page;
 
@@ -30,23 +24,16 @@ async function loadPage(page = 1){
         .from(paginationState.table)
         .select("*");
 
-    if(typeof paginationState.buildQuery === "function"){
-
-        query =
-            paginationState.buildQuery(query);
-
+    if (paginationState.buildQuery) {
+        query = paginationState.buildQuery(query);
     }
 
-    query = query.range(from, to);
+    const { data, error } =
+        await query.range(from, to);
 
-    const { data, error } = await query;
-
-    if(error){
-
+    if (error) {
         console.error(error);
-
         return;
-
     }
 
     const tbody =
@@ -56,34 +43,33 @@ async function loadPage(page = 1){
 
     tbody.innerHTML = "";
 
-    if(!data || data.length === 0){
+    if (!data || data.length === 0) {
 
-        tbody.innerHTML=`
-            <tr>
-
-                <td colspan="20">
-
-                    Tidak ada data
-
-                </td>
-
-            </tr>
+        tbody.innerHTML = `
+        <tr>
+            <td colspan="20">
+                Tidak ada data
+            </td>
+        </tr>
         `;
 
-        return;
+        updatePaginationUI();
 
+        return;
     }
 
-    data.forEach(item=>{
+    data.forEach(item => {
 
         tbody.innerHTML +=
             paginationState.renderRow(item);
 
     });
 
+    updatePaginationUI();
+
 }
 
-async function setupPagination(options){
+async function setupPagination(options) {
 
     paginationState.table =
         options.table;
@@ -99,26 +85,25 @@ async function setupPagination(options){
 
     let countQuery =
         client
-        .from(paginationState.table)
-        .select("*",{
-
-            count:"exact",
-
-            head:true
-
+        .from(options.table)
+        .select("*", {
+            count: "exact",
+            head: true
         });
 
-    if(typeof paginationState.buildQuery==="function"){
+    if (paginationState.buildQuery) {
 
         countQuery =
-            paginationState.buildQuery(countQuery);
+            paginationState.buildQuery(
+                countQuery
+            );
 
     }
 
     const { count } =
         await countQuery;
 
-    const totalPages =
+    paginationState.totalPages =
         Math.max(
             1,
             Math.ceil(
@@ -127,51 +112,72 @@ async function setupPagination(options){
             )
         );
 
-    let html = "";
+    paginationState.page = 1;
 
-    for(let i=1;i<=totalPages;i++){
-
-        html += `
-            <button
-                class="${
-                    i===paginationState.page
-                    ? "active-page"
-                    : ""
-                }"
-                onclick="changePage(${i})"
-            >
-                ${i}
-            </button>
-        `;
-
-    }
-
-    document
-        .getElementById("pagination")
-        .innerHTML = html;
-
-    await loadPage(
-        paginationState.page
-    );
+    await loadPage(1);
 
 }
 
-async function changePage(page){
-
-    await loadPage(page);
+function updatePaginationUI() {
 
     document
-        .querySelectorAll("#pagination button")
-        .forEach((btn,index)=>{
+        .getElementById("pagination")
+        .innerHTML = `
 
-            btn.classList.toggle(
+        <button
+            id="prevPage"
+            ${paginationState.page === 1 ? "disabled" : ""}
+        >
+            ◀ Previous
+        </button>
 
-                "active-page",
+        <span class="page-info">
 
-                index + 1 === page
+            Halaman
+            ${paginationState.page}
+            /
+            ${paginationState.totalPages}
 
-            );
+        </span>
 
-        });
+        <button
+            id="nextPage"
+            ${paginationState.page === paginationState.totalPages ? "disabled" : ""}
+        >
+            Next ▶
+        </button>
+
+    `;
+
+    document
+        .getElementById("prevPage")
+        .onclick = () => {
+
+            if (paginationState.page > 1) {
+
+                loadPage(
+                    paginationState.page - 1
+                );
+
+            }
+
+        };
+
+    document
+        .getElementById("nextPage")
+        .onclick = () => {
+
+            if (
+                paginationState.page <
+                paginationState.totalPages
+            ) {
+
+                loadPage(
+                    paginationState.page + 1
+                );
+
+            }
+
+        };
 
 }
