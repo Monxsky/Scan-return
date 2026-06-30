@@ -192,6 +192,46 @@ const returnStatusFilter =
         loadPage(1);
 });
 
+async function loadSummary(){
+
+    const { data, error } = await client
+        .from("pesanan_retur")
+        .select("tracking_number, scan_at")
+        .eq("marketplace", MARKETPLACE);
+
+    if(error){
+
+        console.error(error);
+        return;
+
+    }
+
+    const total = data.length;
+
+    const scanned = data.filter(
+        item => item.scan_at
+    ).length;
+
+    const pending = total - scanned;
+
+    const progress = total > 0
+        ? Math.round((scanned / total) * 100)
+        : 0;
+
+    document.getElementById("totalReturn").innerText =
+        total;
+
+    document.getElementById("totalScanned").innerText =
+        scanned;
+
+    document.getElementById("totalPending").innerText =
+        pending;
+
+    document.getElementById("scanProgress").innerText =
+        `${progress}%`;
+
+}
+
 setupPagination({
 
     table: "pesanan_retur",
@@ -235,6 +275,8 @@ setupPagination({
 }
 
 });
+
+loadSummary();
 console.log("Filter:", window.appState.filter.returnStatus);
 // loadReturnList();
 
