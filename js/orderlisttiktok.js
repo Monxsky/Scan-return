@@ -2,14 +2,19 @@ renderToolbar({
 
     title: "Order TikTok",
 
-    status: true,
+    filters: {
 
-    search: true,
+        status: true,
+
+        expedisi: true,
+
+        search: true
+
+    },
 
     refresh: true
 
 });
-
 const statusFilter =
 document.getElementById("statusFilter");
 
