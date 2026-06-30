@@ -233,7 +233,8 @@ async function loadSummary(){
     const { data, error } = await client
         .from("pesanan_retur")
         .select("tracking_number, scan_at")
-        .eq("marketplace", MARKETPLACE);
+        .eq("marketplace", MARKETPLACE)
+        .not("tracking_number, "is", null)
 
     if(error){
 
@@ -242,7 +243,10 @@ async function loadSummary(){
 
     }
 
-    const total = data.length;
+    const filteredData = data.filter(
+    item => item.tracking_number && item.tracking_number.trim() !== ""
+);
+    const total = filteredData.length;
 
     const scanned = data.filter(
         item => item.scan_at
