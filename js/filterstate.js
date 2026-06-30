@@ -4,7 +4,8 @@ window.appState = {
 
         status:"",
         ekspedisi:"",
-        search:""
+        search:"",
+        returnStatus:""
 
     },
 
