@@ -234,7 +234,7 @@ async function loadSummary(){
         .from("pesanan_retur")
         .select("tracking_number, scan_at")
         .eq("marketplace", MARKETPLACE)
-        .not("tracking_number, "is", null)
+        .not("tracking_number, "is", null);
 
     if(error){
 
