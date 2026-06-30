@@ -1,135 +1,177 @@
-const limit = 50;
+const PAGE_LIMIT = 50;
 
-async function loadPage({
+const paginationState = {
 
-page,
-  table,
-  tbodyId,
-  renderRow,
-  ekspedisiFilter = []
+    page: 1,
 
-}) {
+    limit: PAGE_LIMIT,
 
-  currentPage = page;
+    table: "",
 
-  const from =
-    (currentPage - 1) * limit;
+    tbodyId: "",
 
-  const to =
-    from + (limit - 1);
+    renderRow: null,
 
-  let query = client
-  .from(table)
-  .select("*");
+    buildQuery: null
 
-if (ekspedisiFilter.length > 0) {
+};
 
-  query = query.in(
-    "ekspedisi",
-    ekspedisiFilter
-  );
+async function loadPage(page = 1){
+
+    paginationState.page = page;
+
+    const from =
+        (page - 1) * paginationState.limit;
+
+    const to =
+        from + paginationState.limit - 1;
+
+    let query = client
+        .from(paginationState.table)
+        .select("*");
+
+    if(typeof paginationState.buildQuery === "function"){
+
+        query =
+            paginationState.buildQuery(query);
+
+    }
+
+    query = query.range(from, to);
+
+    const { data, error } = await query;
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+    const tbody =
+        document.getElementById(
+            paginationState.tbodyId
+        );
+
+    tbody.innerHTML = "";
+
+    if(!data || data.length === 0){
+
+        tbody.innerHTML=`
+            <tr>
+
+                <td colspan="20">
+
+                    Tidak ada data
+
+                </td>
+
+            </tr>
+        `;
+
+        return;
+
+    }
+
+    data.forEach(item=>{
+
+        tbody.innerHTML +=
+            paginationState.renderRow(item);
+
+    });
 
 }
 
-const { data, error } =
-  await query.range(from, to);
+async function setupPagination(options){
 
-  const tbody =
-    document.getElementById(tbodyId);
+    paginationState.table =
+        options.table;
 
-  tbody.innerHTML = "";
+    paginationState.tbodyId =
+        options.tbodyId;
 
-  if (!data || data.length === 0) {
+    paginationState.renderRow =
+        options.renderRow;
 
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="5">
-          Belum ada data
-        </td>
-      </tr>
-    `;
+    paginationState.buildQuery =
+        options.buildQuery;
 
-    return;
-  }
+    let countQuery =
+        client
+        .from(paginationState.table)
+        .select("*",{
 
-  data.forEach(item => {
+            count:"exact",
 
-    tbody.innerHTML += renderRow(item);
+            head:true
 
-  });
-}
+        });
 
-async function setupPagination({
+    if(typeof paginationState.buildQuery==="function"){
 
-  table,
-  tbodyId,
-  renderRow,
-  ekspedisiFilter = []
+        countQuery =
+            paginationState.buildQuery(countQuery);
 
-}) {
+    }
 
-  window.currentTable = table;
-  window.currentTbodyId = tbodyId;
-  window.currentRenderRow = renderRow;
-  window.currentEkspedisiFilter =
-  ekspedisiFilter;
+    const { count } =
+        await countQuery;
 
-  let countQuery = client
-  .from(table)
-  .select("*", {
-    count: "exact",
-    head: true
-  });
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                count /
+                paginationState.limit
+            )
+        );
 
-if (ekspedisiFilter.length > 0) {
+    let html = "";
 
-  countQuery =
-    countQuery.in(
-      "ekspedisi",
-      ekspedisiFilter
+    for(let i=1;i<=totalPages;i++){
+
+        html += `
+            <button
+                class="${
+                    i===paginationState.page
+                    ? "active-page"
+                    : ""
+                }"
+                onclick="changePage(${i})"
+            >
+                ${i}
+            </button>
+        `;
+
+    }
+
+    document
+        .getElementById("pagination")
+        .innerHTML = html;
+
+    await loadPage(
+        paginationState.page
     );
 
 }
 
-const { count } =
-  await countQuery;
+async function changePage(page){
 
-  const totalPages =
-    Math.ceil(count / limit);
+    await loadPage(page);
 
-  let html = "";
+    document
+        .querySelectorAll("#pagination button")
+        .forEach((btn,index)=>{
 
-  for(let i = 1; i <= totalPages; i++) {
+            btn.classList.toggle(
 
-    html += `
-      <button
-        onclick="changePage(${i})"
-      >
-        ${i}
-      </button>
-    `;
-  }
+                "active-page",
 
-  document
-    .getElementById("pagination")
-    .innerHTML = html;
-}
+                index + 1 === page
 
-function changePage(page){
+            );
 
-  loadPage({
-
-    page,
-
-    table: window.currentTable,
-
-    tbodyId: window.currentTbodyId,
-
-    renderRow: window.currentRenderRow,
-
-    ekspedisiFilter:
-      window.currentEkspedisiFilter
-
-  });
+        });
 
 }
