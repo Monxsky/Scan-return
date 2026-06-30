@@ -284,6 +284,11 @@ setupPagination({
                 <td>${item.return_status}</td>
                 <td>${item.process_status}</td>
                 <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
+                <td>${item.scan_at
+                      ? `<span class="badge-green">✅ Sudah Scan</span>`
+                      : '<span class="badge-red">❌ Belum Scan</span>'
+                }
+            </td>
             </tr>
 
         `;
