@@ -1,28 +1,39 @@
 <link rel="stylesheet" href="../css/toolbar.css">
-export function createFilterBar() {
 
-    return `
-        <div class="filter-bar">
+<div class="filter-bar">
 
-            <div class="filter-item">
+    <!-- Status Order -->
+    <div class="filter-item" id="orderStatusContainer" style="display:none;">
 
-                <label>Status</label>
+        <label>Status</label>
 
-                <select id="statusFilter">
+        <select id="statusFilter">
 
-                    <option value="">Semua Status</option>
-                    <option value="PAID">PAID</option>
-                    <option value="READY_TO_SHIP">READY TO SHIP</option>
-                    <option value="SHIPPING">SHIPPING</option>
-                    <option value="DELIVERED">DELIVERED</option>
-                    <option value="CANCELED">CANCELED</option>
+            <option value="">Semua Status</option>
+            <option value="PAID">PAID</option>
+            <option value="READY_TO_SHIP">READY TO SHIP</option>
+            <option value="SHIPPING">SHIPPING</option>
+            <option value="DELIVERED">DELIVERED</option>
+            <option value="CANCELED">CANCELED</option>
 
-                </select>
+        </select>
 
-            </div>
+    </div>
 
-        </div>
-    `;
+    <!-- Status Retur -->
+    <div class="filter-item" id="returnStatusContainer" style="display:none;">
 
-}
+        <label>Status Retur</label>
 
+        <select id="returnStatusFilter">
+
+            <option value="">Semua Status</option>
+            <option value="WAITING_RETURN">WAITING_RETURN</option>
+            <option value="RETURNING">RETURNING</option>
+            <option value="RETURNED">RETURNED</option>
+
+        </select>
+
+    </div>
+
+</div>
