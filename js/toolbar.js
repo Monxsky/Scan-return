@@ -1,34 +1,38 @@
 (function () {
 
-    function renderToolbar(containerId = "toolBar") {
+    function renderToolbar() {
 
-        const container = document.getElementById(containerId);
+        const toolbar = document.getElementById("toolbar");
 
-        if (!container) return;
+        if (!toolbar) return;
 
-        container.innerHTML = `
+        toolbar.innerHTML = `
 
-            <div class="menu-bar">
+            <div class="toolbar">
 
-                <div class="menu-item">
+                <div class="toolbar-left">
 
                     <label>Status</label>
 
                     <select id="statusFilter">
 
                         <option value="">Semua Status</option>
-
                         <option value="PAID">PAID</option>
-
                         <option value="READY_TO_SHIP">READY TO SHIP</option>
-
                         <option value="SHIPPING">SHIPPING</option>
-
                         <option value="DELIVERED">DELIVERED</option>
-
                         <option value="CANCELED">CANCELED</option>
 
                     </select>
+
+                </div>
+
+                <div class="toolbar-right">
+
+                    <input
+                        type="text"
+                        placeholder="Cari pesanan..."
+                    >
 
                 </div>
 
@@ -38,6 +42,6 @@
 
     }
 
-    window.renderMenuBar = renderMenuBar;
+    window.renderToolbar = renderToolbar;
 
 })();
