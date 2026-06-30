@@ -120,19 +120,19 @@ async function getReturCount(tab, from, to) {
     return count ?? 0;
 }
 
-async function getAnalyticsData(tab) {
+// async function getAnalyticsData(tab) {
 
-    const [
-        order,
-        retur,
-        inbound
-    ] = await Promise.all([
-        getOrderCount(tab, from, to),
-        getReturCount(tab, from, to),
-        getInboundCount(tab, from, to)
-    ]);
+//     const [
+//         order,
+//         retur,
+//         inbound
+//     ] = await Promise.all([
+//         getOrderCount(tab, from, to),
+//         getReturCount(tab, from, to),
+//         getInboundCount(tab, from, to)
+//     ]);
     
-}
+// }
 
 async function loadAnalytics(tab = "semua"){
 console.log("TAB :", tab);
@@ -164,7 +164,7 @@ console.log("TAB :", tab);
 async function getAnalyticsData(tab){
 
     const container =
-document.getElementById(currentTab);
+document.getElementById(Tab);
 
 const from =
 container
@@ -353,7 +353,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event klik tab
     document.querySelectorAll(".tab-btn").forEach(btn => {
 
-        btn.addEventListener("click", async () => {
+        btn.addEventListener("click", (e) => {
+             e.preventDefault();
+
+            loadAnalytics(currentTab);
 
             // Hapus active tombol
             document.querySelectorAll(".tab-btn")
