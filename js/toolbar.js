@@ -1,6 +1,6 @@
 (function () {
 
-    function renderMenuBar(containerId = "toolBar") {
+    function renderToolbar(containerId = "toolBar") {
 
         const container = document.getElementById(containerId);
 
