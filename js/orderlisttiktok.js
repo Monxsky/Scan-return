@@ -22,7 +22,7 @@ if(statusFilter){
 
     statusFilter.addEventListener("change",()=>{
 
-        filterState.status =
+        appState.filter.status =
         statusFilter.value;
 
         loadOrderListTikTok();
@@ -36,28 +36,19 @@ async function loadOrderListTikTok() {
     let query = client
         .from("daftar_pesanan")
         .select("*")
+        .eq("marketplace","TIKTOK_ID");
 
-    if(filterState.marketplace){
-
-    query =
-    query.eq(
-        "marketplace",
-        filterState.marketplace
-    );
-
-}
-
-    if(filterState.status){
+    if(appState.filter.status){
 
     query =
     query.eq(
         "status",
-        filterState.status
+        appState.filter.status
     );
 
 }
 
-    if(filterState.search){
+    if(appState.filter.search){
 
         query=query.ilike(
             "marketplace_order_id",
