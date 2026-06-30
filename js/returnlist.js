@@ -5,7 +5,8 @@ renderToolbar({
 
     filters: {
 
-        returnStatus: true
+        returnStatus: true,
+        synScan: true
 
     },
 
@@ -16,6 +17,14 @@ renderToolbar({
 const params = new URLSearchParams(window.location.search);
 
 const MARKETPLACE = params.get("marketplace");
+
+async function syncOldScan(){
+
+    alert(
+        "Sebentar ya bre..."
+    );
+
+}
 
 const menuBtn =
 document.getElementById("menuBtn");
@@ -277,6 +286,20 @@ setupPagination({
 });
 
 loadSummary();
+
+const btnSyncScan =
+document.getElementById(
+    "btnSyncScan"
+);
+
+if(btnSyncScan){
+
+    btnSyncScan.addEventListener(
+        "click",
+        syncOldScan
+    );
+
+}
 console.log("Filter:", window.appState.filter.returnStatus);
 // loadReturnList();
 
