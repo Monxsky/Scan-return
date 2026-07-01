@@ -1,13 +1,28 @@
-async function loadAlert(){
+async function loadReturnAlert() {
 
-    const { data } = await client
+    const sevenDaysAgo = new Date(
+        Date.now() - 1 * 60 * 1000
+        // 7 * 24 * 60 * 60 * 1000
+    ).toISOString();
 
-    .from("retur_alert")
+    const { data, error } = await client
+        .from("pesanan_retur")
+        .select("tracking_number, marketplace_order_id, nama_toko, returning_at")
+        .eq("return_status", "RETURNING")
+        .lte("returning_at", sevenDaysAgo);
 
-    .select("*")
+    if (error) {
+        console.error(error);
+        return [];
+    }
 
-    .eq("resolved",false);
-
-    document.getElementById("jumlahAlert").innerHTML=data.length;
-
+    return data;
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const alerts = await loadReturnAlert();
+
+    console.log(alerts);
+
+});
