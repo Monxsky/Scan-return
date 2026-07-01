@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     document
     .getElementById("btnOpenAlert")
     .addEventListener("click", () => {
-    console.log("TOMBOL DIKLIK");
-        // window.dispatchEvent(
-        //     new CustomEvent("show-overdue")
-        // );
+    // console.log("TOMBOL DIKLIK");
+        window.dispatchEvent(
+            new CustomEvent("show-overdue")
+        );
 
     });
     console.log(alerts);
