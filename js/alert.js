@@ -8,6 +8,7 @@ async function loadReturnAlert() {
     const { data, error } = await client
         .from("pesanan_retur")
         .select("tracking_number, marketplace_order_id, nama_toko, returning_at")
+        .eq("marketplace", MARKETPLACE)
         .eq("return_status", "RETURNING")
         .lte("returning_at", sevenDaysAgo);
 
@@ -58,10 +59,10 @@ Segera lakukan pengecekan dengan pihak ekspedisi.
 document
     .getElementById("btnOpenAlert")
     .addEventListener("click", () => {
-
-        window.dispatchEvent(
-            new CustomEvent("show-overdue")
-        );
+console.log("TOMBOL DIKLIK");
+        // window.dispatchEvent(
+        //     new CustomEvent("show-overdue")
+        // );
 
     });
     // console.log("AFTER:", text.innerHTML);
