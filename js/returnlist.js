@@ -1,4 +1,4 @@
-
+let overdueMode = false;
 renderToolbar({
 
     title: "Daftar Retur",
@@ -314,7 +314,16 @@ setupPagination({
         );
 
     }
+    if (overdueMode) {
+        const sevenDaysAgo = new Date(
+            Date.now() - 2 * 60 * 60 * 1000
+        ).toISOString();
 
+        query = query
+        .eq("return_status", "RETURNING")
+        .lte("returning_at", sevenDaysAgo);
+
+    }
     return query;
 
 }
