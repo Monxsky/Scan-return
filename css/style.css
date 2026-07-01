@@ -1,3 +1,12 @@
+img,
+table,
+canvas{
+    max-width:100%;
+}
+body{
+    overflow-x:hidden;
+}
+
 /* Alert */
 .return-alert{
 
@@ -161,7 +170,7 @@ h2{
 .sidebar{
   width:130px;
   /* height:500px; */
-  height:100vh;
+  height:200vh;
   background:#111827;
   color:white;
   padding:20px;
@@ -457,16 +466,17 @@ tr:hover{
 }
 
 /* Tab */
-@media(max-width:768px){
  .analytics-tabs{
 
     display:flex;
     gap:8px;
-
-    margin-bottom:20px;
-
-    border-bottom:2px solid #e5e7eb;
-
+    overflow-x:auto;
+    white-space:no-wrap;
+    /*margin-bottom:20px;
+    border-bottom:2px solid #e5e7eb;*/
+}
+.analytics-tabs::-webkit-scrollbar{
+    display:none;
 }
 
 .tab-btn{
@@ -506,7 +516,7 @@ tr:hover{
     color:white;
 
 }
-}
+
 
 .analytics-content{
 
