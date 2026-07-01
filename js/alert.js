@@ -30,13 +30,13 @@ async function showReturnAlert(){
 
     const alerts =
         await loadReturnAlert();
-
+console.log("ALERTS:", alerts);
     const box =
         document.getElementById("returnAlert");
 
     const text =
         document.getElementById("returnAlertText");
-
+console.log("TEXT ELEMENT:", text);
     if(alerts.length===0){
 
         box.hidden=true;
