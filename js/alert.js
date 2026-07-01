@@ -8,7 +8,7 @@ async function loadReturnAlert() {
     const { data, error } = await client
         .from("pesanan_retur")
         .select("tracking_number, marketplace_order_id, nama_toko, returning_at")
-        .eq("return_status", "RETURNING");
+        .eq("return_status", "RETURNING")
         .lte("returning_at", sevenDaysAgo);
 
     if (error) {
