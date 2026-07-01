@@ -209,7 +209,7 @@ async function scanResi() {
   .from("pesanan_retur")
   .insert([{
 
-    external_return_id,
+    marketplace_order_id,
     return_status,
     process_status,
     tracking_number,
@@ -284,7 +284,7 @@ setupPagination({
 
             <tr>
                 <td>${item.tracking_number}</td>
-                <td>${item.external_return_id}</td>
+                <td>${item.marketplace_order_id}</td>
                 <td>${item.return_status}</td>
                 <td>${item.process_status}</td>
                 <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
