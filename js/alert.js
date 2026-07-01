@@ -27,28 +27,46 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-async function showReturnAlert(){
+// async function showReturnAlert(){
 
-    const alerts =
-        await loadReturnAlert();
-console.log("ALERTS:", alerts);
-    const box =
-        document.getElementById("returnAlert");
+//     const alerts =
+//         await loadReturnAlert();
+// console.log("ALERTS:", alerts);
+//     const box =
+//         document.getElementById("returnAlert");
 
-    const text =
-        document.getElementById("returnAlertText");
-console.log("TEXT ELEMENT:", text);
-    if(alerts.length===0){
+//     const text =
+//         document.getElementById("returnAlertText");
+// console.log("TEXT ELEMENT:", text);
+//     if(alerts.length===0){
 
-        box.hidden=true;
+//         box.hidden=true;
 
-        return;
+//         return;
 
-    }
+//     }
 
-    box.hidden=false;
+//     box.hidden=false;
 
-    text.innerHTML=
-        `⚠ Ada <b>${alerts.length}</b> retur yang sudah lebih dari 7 hari masih RETURNING.`;
+//     text.innerHTML=
+//         `⚠ Ada <b>${alerts.length}</b> retur yang sudah lebih dari 7 hari masih RETURNING.`;
 
+// }
+async function showReturnAlert() {
+
+    const alerts = await loadReturnAlert();
+
+    console.log("ALERTS:", alerts);
+
+    const box = document.getElementById("returnAlert");
+    const text = document.getElementById("returnAlertText");
+
+    console.log("BOX:", box);
+    console.log("TEXT:", text);
+
+    box.hidden = false;
+
+    text.innerHTML = `⚠ Ada <b>${alerts.length}</b> retur.`;
+
+    console.log("AFTER:", text.innerHTML);
 }
