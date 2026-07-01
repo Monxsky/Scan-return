@@ -285,6 +285,7 @@ setupPagination({
             <tr>
                 <td>${item.tracking_number}</td>
                 <td>${item.marketplace_order_id}</td>
+                <td>${item.nama_toko}</td>
                 <td>${item.return_status}</td>
                 <td>${item.process_status}</td>
                 <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
