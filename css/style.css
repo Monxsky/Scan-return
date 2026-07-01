@@ -1,3 +1,31 @@
+/* Alert */
+.return-alert{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#fff3cd;
+
+    border:1px solid #ffe69c;
+
+    color:#664d03;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+}
+
+.return-alert button{
+
+    cursor:pointer;
+
+}
 /*Badge */
 .badge-green{
 
