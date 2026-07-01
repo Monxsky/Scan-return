@@ -55,4 +55,13 @@ Segera lakukan pengecekan dengan pihak ekspedisi.
 `;
 }
 
+document
+    .getElementById("btnOpenAlert")
+    .addEventListener("click", () => {
+
+        window.dispatchEvent(
+            new CustomEvent("show-overdue")
+        );
+
+    });
     // console.log("AFTER:", text.innerHTML);
