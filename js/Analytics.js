@@ -49,7 +49,8 @@ async function getOrderCount(tab, from, to) {
     .select("*", {
         count: "exact",
         head: true
-    });
+    })
+        .eq("order_status", "READY_TO_SHIP");
 
     query = buildDataQuery(query, from, to);
 
