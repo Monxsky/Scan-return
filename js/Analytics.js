@@ -50,12 +50,12 @@ async function getOrderCount(tab, from, to) {
         count: "exact",
         head: true
     })
-        query = query.in("status", 
-            ["READY_TO_SHIP","SHIPPING","DELIVERED
-        ]);
 
     query = buildDataQuery(query, from, to);
 
+        query = query.in("status", 
+            ["READY_TO_SHIP","SHIPPING","DELIVERED
+        ]);
     if (MARKETPLACE[tab]) {
         query = query.in("marketplace", MARKETPLACE[tab]);
         }
