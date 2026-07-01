@@ -345,6 +345,13 @@ if(btnSyncScan){
     );
 
 }
+window.addEventListener("show-overdue", () => {
+
+    overdueMode = true;
+
+    // reload tabel
+
+});
 console.log("Filter:", window.appState.filter.returnStatus);
 // loadReturnList();
 
