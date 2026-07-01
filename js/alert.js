@@ -24,6 +24,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const alerts = await loadReturnAlert();
     await showReturnAlert();
+
+    document
+    .getElementById("btnOpenAlert")
+    .addEventListener("click", () => {
+    console.log("TOMBOL DIKLIK");
+        // window.dispatchEvent(
+        //     new CustomEvent("show-overdue")
+        // );
+
+    });
     console.log(alerts);
 
 });
@@ -55,14 +65,4 @@ console.log("TEXT ELEMENT:", text);
 Segera lakukan pengecekan dengan pihak ekspedisi.
 `;
 }
-
-document
-    .getElementById("btnOpenAlert")
-    .addEventListener("click", () => {
-console.log("TOMBOL DIKLIK");
-        // window.dispatchEvent(
-        //     new CustomEvent("show-overdue")
-        // );
-
-    });
     // console.log("AFTER:", text.innerHTML);
