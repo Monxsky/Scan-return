@@ -457,6 +457,7 @@ tr:hover{
 }
 
 /* Tab */
+@media(max-width:768px){
  .analytics-tabs{
 
     display:flex;
@@ -666,6 +667,8 @@ box-shadow:0 5px 15px rgba(0,0,0,.08);
 
 }
 /* Tool Bar */
+@media(max-width:768px){
+
 #toolbar{
 margin-bottom:50px;
 
@@ -709,7 +712,9 @@ margin-bottom:50px;
     padding:20px;
 
 }
+}
 /* Filter Bar */
+@media(max-width:768px){
 .filter-bar{
 
     display:flex;
@@ -747,6 +752,7 @@ margin-bottom:50px;
 
     border-radius:6px;
 
+}
 }
 /* MOBILE */
 @media(max-width:768px){
