@@ -25,3 +25,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(alerts);
 
 });
+
+async function showReturnAlert(){
+
+    const alerts =
+        await loadReturnAlert();
+
+    const box =
+        document.getElementById("returnAlert");
+
+    const text =
+        document.getElementById("returnAlertText");
+
+    if(alerts.length===0){
+
+        box.hidden=true;
+
+        return;
+
+    }
+
+    box.hidden=false;
+
+    text.innerHTML=
+        `⚠ Ada <b>${alerts.length}</b> retur yang sudah lebih dari 7 hari masih RETURNING.`;
+
+}
