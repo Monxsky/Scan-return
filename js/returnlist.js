@@ -349,7 +349,7 @@ window.addEventListener("show-overdue", () => {
 
     overdueMode = true;
 
-    // reload tabel
+     loadPage(1);
 
 });
 console.log("Filter:", window.appState.filter.returnStatus);
