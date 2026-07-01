@@ -55,4 +55,4 @@ Segera lakukan pengecekan dengan pihak ekspedisi.
 `;
 }
 
-    console.log("AFTER:", text.innerHTML);
+    // console.log("AFTER:", text.innerHTML);
