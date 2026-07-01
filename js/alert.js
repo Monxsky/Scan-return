@@ -21,7 +21,7 @@ async function loadReturnAlert() {
 document.addEventListener("DOMContentLoaded", async () => {
 
     const alerts = await loadReturnAlert();
-
+    await showReturnAlert();
     console.log(alerts);
 
 });
