@@ -2,7 +2,7 @@ console.log("alert.js loaded");
 async function loadReturnAlert() {
 
     const sevenDaysAgo = new Date(
-        Date.now() - 2 * 60 * 60 * 1000
+        Date.now() - 7 * 24 * 60 * 60 * 1000
     ).toISOString();
 
     const { data, error } = await client
