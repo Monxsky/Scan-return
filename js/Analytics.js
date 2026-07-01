@@ -50,7 +50,7 @@ async function getOrderCount(tab, from, to) {
         count: "exact",
         head: true
     })
-        .eq("status", 
+        query = query.in("status", 
             ["READY_TO_SHIP","SHIPPING","DELIVERED
         ]);
 
