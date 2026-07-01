@@ -1,3 +1,4 @@
+console.log("alert.js loaded");
 async function loadReturnAlert() {
 
     const sevenDaysAgo = new Date(
