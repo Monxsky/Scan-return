@@ -97,6 +97,32 @@
 
             </div>
 
+            ${filters.orderDate ? `
+
+<div class="toolbar-item">
+
+    <label>Tanggal Order</label>
+
+    <div class="date-filter">
+
+        <input
+            type="date"
+            id="orderDateFrom"
+        >
+
+        <span>-</span>
+
+        <input
+            type="date"
+            id="orderDateTo"
+        >
+
+    </div>
+
+</div>
+
+` : ""}
+
             <div class="toolbar-right">
 
                 ${filters.search ? `
