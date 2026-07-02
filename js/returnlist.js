@@ -246,7 +246,7 @@ if(orderDateTo){
         appState.filter.orderDateTo =
             orderDateTo.value;
 
-        loaPage(1);
+        loadPage(1);
 
     });
 
@@ -321,7 +321,7 @@ setupPagination({
                 <td>${item.nama_toko}</td>
                 <td>${item.return_status}</td>
                 <td>${item.process_status}</td>
-                // <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
+                /* <td>${new Date(item.created_at).toLocaleString("id-ID")}</td> */
                     <td>${
                         item.order_created_at
                         ? new Date(item.order_created_at).toLocaleString("id-ID")
