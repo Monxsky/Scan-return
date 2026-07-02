@@ -219,6 +219,38 @@ async function scanResi() {
   }]);
 
 }
+// FILTER SESUAI DI BUAT PESANAN
+const orderDateFrom =
+document.getElementById("orderDateFrom");
+
+const orderDateTo =
+document.getElementById("orderDateTo");
+
+if(orderDateFrom){
+
+    orderDateFrom.addEventListener("change",()=>{
+
+        appState.filter.orderDateFrom =
+            orderDateFrom.value;
+
+        loadPage(1);
+
+    });
+
+}
+
+if(orderDateTo){
+
+    orderDateTo.addEventListener("change",()=>{
+
+        appState.filter.orderDateTo =
+            orderDateTo.value;
+
+        loaPage(1);
+
+    });
+
+}
 
 const returnStatusFilter =
     document.getElementById("returnStatusFilter");
@@ -275,7 +307,7 @@ async function loadSummary(){
 
 setupPagination({
 
-    table: "pesanan_retur",
+    table: "v_pesanan_retur",
 
     tbodyId: "manifestBody",
 
@@ -289,7 +321,12 @@ setupPagination({
                 <td>${item.nama_toko}</td>
                 <td>${item.return_status}</td>
                 <td>${item.process_status}</td>
-                <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
+                // <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
+                    <td>${
+                        item.order_created_at
+                        ? new Date(item.order_created_at).toLocaleString("id-ID")
+                        : "-"
+                    }</td>
                 <td>${item.scan_at
                       ? `<span class="badge-green">✅ Sudah Scan</span>`
                       : '<span class="badge-red">❌ Belum Scan</span>'
@@ -326,6 +363,25 @@ setupPagination({
         .lte("returning_at", sevenDaysAgo);
 
     }
+
+    if(window.appState.filter.orderDateFrom){
+
+    query = query.gte(
+        "order_created_at",
+        window.appState.filter.orderDateFrom
+    );
+
+}
+
+if(window.appState.filter.orderDateTo){
+
+    query = query.lte(
+        "order_created_at",
+        window.appState.filter.orderDateTo + "T23:59:59"
+    );
+
+}
+        
     return query;
 
 }
