@@ -5,7 +5,9 @@ window.appState = {
         status:"",
         ekspedisi:"",
         search:"",
-        returnStatus:""
+        returnStatus:"",
+        orderDateFrom:"",
+        orderDateTo:""
 
     },
 
