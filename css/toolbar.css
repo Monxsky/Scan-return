@@ -86,3 +86,34 @@
     color:#fff;
 
 }
+@media(max-width:768px){
+.date-filter{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+}
+
+.date-filter input{
+
+    height:36px;
+
+    padding:0 10px;
+
+    border:1px solid #dcdcdc;
+
+    border-radius:6px;
+
+    font-size:14px;
+
+}
+
+.date-filter span{
+
+    font-weight:600;
+
+    color:#666;
+
+}
+}
