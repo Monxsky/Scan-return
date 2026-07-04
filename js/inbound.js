@@ -177,36 +177,20 @@ function renderTable(data) {
   });
 }
 
-// setupPagination({
-//   table: "scan_awb",
-//   tbodyId: "tableBody",
-//   renderRow: (item) => `
-//     <tr>
-//       <td>${item.resi}</td>
-//           <td>${item.ekspedisi}</td>
-//           <td>${item.Pengirim}</td>
-//           <td>${item.status}</td>
-//           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
-//           <td>${item.batas_kirim}</td>
-//     </tr>
-//   `
-// });
+const summary =
+await loadSummary(
 
-// loadPage({
-//   page: 1,
-//   table: "scan_awb",
-//   tbodyId: "tableBody",
-//   renderRow: (item) => `
-//     <tr>
-//       <td>${item.resi}</td>
-//           <td>${item.ekspedisi}</td>
-//           <td>${item.Pengirim}</td>
-//           <td>${item.status}</td>
-//           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
-//           <td>${item.batas_kirim}</td>
-//     </tr>
-//   `
-// });
+    "get_inbound_summary",
+
+    {
+
+        p_ekspedisi:
+        current?.ekspedisi
+
+    }
+
+);
+
 setupPagination({
 
   table:"scan_awb",
