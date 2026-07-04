@@ -309,32 +309,6 @@ function renderSummary(summary){
 
 }
 
-   async function refreshSummary(){
-
-    const summary =
-    await loadSummary(
-
-        "get_inbound_summary",
-
-        {
-
-            p_ekspedisi:
-            current?.ekspedisi,
-
-            p_date_from:
-            appState.filter.scanDateFrom,
-
-            p_date_to:
-            appState.filter.scanDateTo
-
-        }
-
-    );
-
-    renderSummary(summary);
-
-}
-
 // =============
 // SETUP TOOLBAR
 // =============
