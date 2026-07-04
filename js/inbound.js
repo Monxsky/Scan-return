@@ -1,17 +1,25 @@
-// import { detectExpedisi }
-// from "./detect.js";
+setupToolbar({
 
-// const menuBtn =
-// document.getElementById("menuBtn");
+    title: "Inbound",
 
-// const sidebar =
-// document.querySelector(".sidebar");
+    search: true,
 
-// menuBtn.addEventListener("click", () => {
+    refresh: true,
 
-//   sidebar.classList.toggle("show");
+    summary: {
 
-// });
+        rpc: "get_inbound_summary",
+
+        params: {
+
+            p_ekspedisi:
+            current?.ekspedisi || null
+
+        }
+
+    }
+
+});
 
 async function scanResi() {
 
@@ -222,7 +230,6 @@ loadPage({
 
   `
 });
-loadInboundSummary();
 // ======================
 // REPAIR DATA LAMA
 // ======================
