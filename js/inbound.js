@@ -192,19 +192,6 @@ setupToolbar({
 
 });
 
-scanDate.addEventListener("change",()=>{
-
-    appState.filter.scanDate =
-    scanDate.value;
-
-    if(window.reloadCurrentPage){
-
-        window.reloadCurrentPage();
-
-    }
-
-});
-
 setupPagination({
 
   table:"scan_awb",
