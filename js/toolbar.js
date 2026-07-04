@@ -269,6 +269,20 @@ function renderSummary(summary){
 
 }
 
+// evenListener
+scanDate.addEventListener("change",()=>{
+
+    appState.filter.scanDate =
+    scanDate.value;
+
+    if(window.reloadCurrentPage){
+
+        window.reloadCurrentPage();
+
+    }
+
+});
+
 // =============
 // SETUP TOOLBAR
 // =============
