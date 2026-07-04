@@ -351,7 +351,6 @@ setupPagination({
     query = query
         .eq("marketplace", MARKETPLACE)
         .neq("process_status", "CLOSED");
-    );
 
     if(window.appState.filter.returnStatus){
 
