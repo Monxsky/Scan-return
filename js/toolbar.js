@@ -101,24 +101,50 @@
 
             </div>
 
-            ${filters.orderDate ? `
+                                    ${filters.orderDate ? `
+                        
+                        <div class="toolbar-item">
+                        
+                            <label>Tanggal Order</label>
+                        
+                            <div class="date-filter">
+                        
+                                <input
+                                    type="date"
+                                    id="orderDateFrom"
+                                >
+                        
+                                <span>-</span>
+                        
+                                <input
+                                    type="date"
+                                    id="orderDateTo"
+                                >
+                        
+                            </div>
+                        
+                        </div>
+                        
+                        ` : ""}
+
+                        ${filters.scanDate ? `
 
 <div class="toolbar-item">
 
-    <label>Tanggal Order</label>
+    <label>Tanggal Scan</label>
 
     <div class="date-filter">
 
         <input
             type="date"
-            id="orderDateFrom"
+            id="scanDateFrom"
         >
 
         <span>-</span>
 
         <input
             type="date"
-            id="orderDateTo"
+            id="scanDateTo"
         >
 
     </div>
