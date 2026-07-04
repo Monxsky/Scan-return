@@ -192,6 +192,19 @@ setupToolbar({
 
 });
 
+scanDate.addEventListener("change",()=>{
+
+    appState.filter.scanDate =
+    scanDate.value;
+
+    if(window.reloadCurrentPage){
+
+        window.reloadCurrentPage();
+
+    }
+
+});
+
 setupPagination({
 
   table:"scan_awb",
@@ -242,6 +255,23 @@ setupPagination({
     }
 
 });
+
+window.reloadCurrentPage = () => {
+
+    setupPagination({
+
+        table:"scan_awb",
+
+        tbodyId:"tableBody",
+
+        buildQuery,
+
+        renderRow
+
+    });
+
+};
+reloadCurrentPage();
 // ======================
 // REPAIR DATA LAMA
 // ======================
