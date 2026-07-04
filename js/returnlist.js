@@ -348,7 +348,7 @@ setupPagination({
 
     buildQuery(query){
 
-    query = query.eq(
+    query = query
         .eq("marketplace", MARKETPLACE)
         .neq("process_status", "CLOSED");
     );
