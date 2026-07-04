@@ -9,6 +9,10 @@
 
             filters = {},
 
+            search = false,
+
+            refresh = false,
+
             refresh = false
 
         } = options;
