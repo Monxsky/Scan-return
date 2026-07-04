@@ -4,13 +4,13 @@ renderToolbar({
     title: "Daftar Retur",
 
     filters: {
-
         returnStatus: true,
-        search: true,
-        syncScan: true,
-        orderDate:true
+        ekspedisi: true,
+        orderDate: true
 
     },
+    search: true,
+    syncScan: true,
     refresh: true
 
 });
