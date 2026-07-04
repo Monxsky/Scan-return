@@ -298,20 +298,24 @@ setupToolbar({
 
     },
 
-    summary: {
+    summary:{
 
-        rpc: "get_inbound_summary",
+        rpc:"get_inbound_summary",
 
-        params: {
+        getParams(){
 
-            p_ekspedisi:
-            current?.ekspedisi || null,
+            return{
 
-            p_date_from:
-            appState.filter.scanDateFrom,
+                p_ekspedisi:
+                current?.ekspedisi,
 
-            p_date_to:
-            appState.filter.scanDateTo
+                p_date_from:
+                appState.filter.scanDateFrom,
+
+                p_date_to:
+                appState.filter.scanDateTo
+
+            };
 
         }
 
