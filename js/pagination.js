@@ -7,7 +7,8 @@ const paginationState = {
     table: "",
     tbodyId: "",
     renderRow: null,
-    buildQuery: null
+    buildQuery: null,
+    onLoaded: null
 };
 
 async function loadPage(page = 1) {
@@ -55,10 +56,6 @@ async function loadPage(page = 1) {
 
         updatePaginationUI();
 
-        if (paginationState.onLoaded) {
-    await paginationState.onLoaded(data);
-}
-
         return;
     }
 
@@ -70,6 +67,11 @@ async function loadPage(page = 1) {
     });
 
     updatePaginationUI();
+
+
+        if (paginationState.onLoaded) {
+    await paginationState.onLoaded(data);
+}
 
 }
 
@@ -86,6 +88,8 @@ async function setupPagination(options) {
 
     paginationState.buildQuery =
         options.buildQuery;
+    paginationState.onLoaded =
+    options.onLoaded;
 
     let countQuery =
         client
