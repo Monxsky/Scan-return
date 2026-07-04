@@ -6,12 +6,12 @@ renderToolbar({
     filters: {
 
         returnStatus: true,
+        search: true,
+        syncScan: true,
         orderDate:true
 
     },
-    search: true,
-    refresh: true,
-    syncScan: true
+    refresh: true
 
 });
 // console.log(document.getElementById("toolbar").innerHTML);
