@@ -106,7 +106,7 @@ async function getInboundCount(tab, from, to) {
 async function getReturCount(tab, from, to) {
 
     let query = client
-        .from("pesanan_retur")
+        .from("v_pesanan_retur")
         .select("*", {
             count: "exact",
             head: true
