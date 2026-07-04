@@ -392,8 +392,7 @@ if(window.appState.filter.orderDateTo){
 if(window.appState.filter.search){
 
     query = query.or(
-        `tracking_number.ilike.%${window.appState.filter.search}%,
-         marketplace_order_id.ilike.%${window.appState.filter.search}%`
+        `tracking_number.ilike.%${window.appState.filter.search}%,marketplace_order_id.ilike.%${window.appState.filter.search}%`
     );
 
 }
