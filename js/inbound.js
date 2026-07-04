@@ -1,26 +1,3 @@
-setupToolbar({
-
-    title: "Inbound",
-
-    search: true,
-
-    refresh: true,
-
-    summary: {
-
-        rpc: "get_inbound_summary",
-
-        params: {
-
-            p_ekspedisi:
-            current?.ekspedisi || null
-
-        }
-
-    }
-
-});
-
 async function scanResi() {
 
   const resi =
@@ -184,6 +161,32 @@ function renderTable(data) {
     `;
   });
 }
+
+// setup TOOLBAR
+// =============
+
+setupToolbar({
+
+    title: "Inbound",
+
+    search: true,
+
+    refresh: true,
+
+    summary: {
+
+        rpc: "get_inbound_summary",
+
+        params: {
+
+            p_ekspedisi:
+            current?.ekspedisi || null
+
+        }
+
+    }
+
+});
 
 setupPagination({
 
