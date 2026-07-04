@@ -442,7 +442,13 @@ buildQuery(query){
 
     return buildReturnQuery(query);
 
-}
+},
+
+ async onLoaded(){
+
+        await loadSummary();
+
+    }
 
 });
 
