@@ -305,7 +305,13 @@ setupToolbar({
         params: {
 
             p_ekspedisi:
-            current?.ekspedisi || null
+            current?.ekspedisi || null,
+
+            p_date_from:
+            appState.filter.scanDateFrom,
+
+            p_date_to:
+            appState.filter.scanDateTo
 
         }
 
