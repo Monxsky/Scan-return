@@ -251,13 +251,48 @@ const returnStatusFilter =
         loadPage(1);
 });
 
+// function buildReturnQuery() {
+
+//     let query = client
+//         .from("pesanan_retur")
+//         .select("*", { count: "exact" })
+//         .eq("marketplace", MARKETPLACE);
+
+//     // ==========================
+//     // Filter Tanggal Order
+//     // ==========================
+
+//     if (appState.filter.startDate) {
+
+//         query = query.gte(
+//             "order_create_time",
+//             appState.filter.startDate
+//         );
+
+//     }
+
+//     if (appState.filter.endDate) {
+
+//         query = query.lte(
+//             "order_create_time",
+//             appState.filter.endDate + "T23:59:59"
+//         );
+
+//     }
+
+//     return query;
+
+// }
+
 async function loadSummary(){
 
-    const { data, error } = await client
-        .from("v_pesanan_retur")
-        .select("tracking_number, scan_at")
-        .eq("marketplace", MARKETPLACE)
-        .eq("is_active_return", true);
+    let query = client
+    .from("v_pesanan_retur")
+    .select("tracking_number, scan_at");
+
+query = buildReturnQuery(query);
+
+const { data, error } = await query;
 
     if(error){
 
@@ -313,39 +348,7 @@ if(searchInput){
 }
 
 // PAGINATION
-setupPagination({
-
-    table: "v_pesanan_retur",
-
-    tbodyId: "manifestBody",
-
-    renderRow(item){
-
-        return `
-
-            <tr>
-                <td>${item.tracking_number}</td>
-                <td>${item.marketplace_order_id}</td>
-                <td>${item.nama_toko}</td>
-                <td>${item.return_status}</td>
-                <td>${item.process_status}</td>
-                    <td>${
-                        item.order_created_at
-                        ? new Date(item.order_created_at).toLocaleString("id-ID")
-                        : "-"
-                    }</td>
-                <td>${item.scan_at
-                      ? `<span class="badge-green">✅ Sudah Scan</span>`
-                      : '<span class="badge-red">❌ Belum Scan</span>'
-                }
-            </td>
-            </tr>
-
-        `;
-
-    },
-
-    buildQuery(query){
+ function buildReturnQuery(query){
 
     query = query
         .eq("marketplace", MARKETPLACE)
@@ -397,6 +400,44 @@ if(window.appState.filter.search){
 }
         
     return query;
+
+}
+
+setupPagination({
+
+    table: "v_pesanan_retur",
+
+    tbodyId: "manifestBody",
+
+    renderRow(item){
+
+        return `
+
+            <tr>
+                <td>${item.tracking_number}</td>
+                <td>${item.marketplace_order_id}</td>
+                <td>${item.nama_toko}</td>
+                <td>${item.return_status}</td>
+                <td>${item.process_status}</td>
+                    <td>${
+                        item.order_created_at
+                        ? new Date(item.order_created_at).toLocaleString("id-ID")
+                        : "-"
+                    }</td>
+                <td>${item.scan_at
+                      ? `<span class="badge-green">✅ Sudah Scan</span>`
+                      : '<span class="badge-red">❌ Belum Scan</span>'
+                }
+            </td>
+            </tr>
+
+        `;
+
+    },
+
+buildQuery(query){
+
+    return buildReturnQuery(query);
 
 }
 
