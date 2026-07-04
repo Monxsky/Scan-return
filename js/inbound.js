@@ -243,21 +243,21 @@ setupPagination({
 
 });
 
-window.reloadCurrentPage = () => {
+// window.reloadCurrentPage = () => {
 
-    setupPagination({
+//     setupPagination({
 
-        table:"scan_awb",
+//         table:"scan_awb",
 
-        tbodyId:"tableBody",
+//         tbodyId:"tableBody",
 
-        buildQuery,
+//         buildQuery,
 
-        renderRow
+//         renderRow
 
-    });
+//     });
 
-};
+// };
 reloadCurrentPage();
 // ======================
 // REPAIR DATA LAMA
