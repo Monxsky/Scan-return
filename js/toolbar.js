@@ -168,6 +168,28 @@
 
     }
 
+async function loadSummary(
+    rpc,
+    params = {}
+){
+
+    const { data, error } =
+    await client.rpc(
+        rpc,
+        params
+    );
+
+    if(error){
+
+        console.error(error);
+        return;
+
+    }
+
+    return data?.[0];
+
+}
+
     window.renderToolbar =
         renderToolbar;
 
