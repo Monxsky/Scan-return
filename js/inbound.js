@@ -174,9 +174,8 @@ setupToolbar({
     refresh: true,
 
      filters: {
-        returnStatus: true,
         ekspedisi: true,
-        orderDate: true
+        scanDate: true
 
     },
 
