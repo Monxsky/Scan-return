@@ -129,7 +129,7 @@
 
             <div class="toolbar-right">
 
-                ${filters.search ? `
+                ${search ? `
 
                     <input
                         id="searchInput"
@@ -150,7 +150,7 @@
                 ` : ""}
 
                
-                ${filters.syncScan ? `
+                ${syncScan ? `
 
                 <button id="btnSyncScan">
 
