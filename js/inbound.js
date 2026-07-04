@@ -123,7 +123,6 @@ if (error) {
           <td>${item.Pengirim}</td>
           <td>${item.status}</td>
           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
-          <td>${item.batas_kirim}</td>
         </tr>
       `;
     });
@@ -156,7 +155,6 @@ function renderTable(data) {
           <td>${item.Pengirim}</td>
           <td>${item.status}</td>
           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
-          <td>${item.batas_kirim}</td>
       </tr>
     `;
   });
