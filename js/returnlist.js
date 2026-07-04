@@ -257,8 +257,8 @@ async function loadSummary(){
         .from("pesanan_retur")
         .select("tracking_number, scan_at")
         .eq("marketplace", MARKETPLACE)
-        .neq("tracking_number", "")
-        .neq("process_status", "CLOSED");
+        .eq("marketplace", MARKETPLACE)
+        .eq("is_active_return", true)
 
     if(error){
 
@@ -350,7 +350,7 @@ setupPagination({
 
     query = query
         .eq("marketplace", MARKETPLACE)
-        .neq("process_status", "CLOSED");
+        .eq("is_active_return", true);
 
     if(window.appState.filter.returnStatus){
 
