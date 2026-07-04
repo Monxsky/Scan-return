@@ -194,38 +194,45 @@ setupToolbar({
 
 setupPagination({
 
-  table:"scan_awb",
+    table: "scan_awb",
 
-  tbodyId:"tableBody",
+    tbodyId: "tableBody",
 
- buildQuery(query){
+    buildQuery(query){
 
-    if(current?.ekspedisi?.length){
+        // Filter platform
+        if(current?.ekspedisi?.length){
 
-        query = query.in(
-            "ekspedisi",
-            current.ekspedisi
-        );
+            query = query.in(
+                "ekspedisi",
+                current.ekspedisi
+            );
 
-    }
+        }
 
-    if(appState.filter.scanDate){
+        // Filter tanggal scan mulai
+        if(appState.filter.scanDateFrom){
 
-        const start =
-            `${appState.filter.scanDate}T00:00:00`;
+            query = query.gte(
+                "created_at",
+                `${appState.filter.scanDateFrom}T00:00:00`
+            );
 
-        const end =
-            `${appState.filter.scanDate}T23:59:59`;
+        }
 
-        query = query
-            .gte("created_at", start)
-            .lt("created_at", end);
+        // Filter tanggal scan akhir
+        if(appState.filter.scanDateTo){
 
-    }
+            query = query.lte(
+                "created_at",
+                `${appState.filter.scanDateTo}T23:59:59`
+            );
 
-    return query;
+        }
 
-},
+        return query;
+
+    },
 
     renderRow(item){
 
@@ -243,22 +250,27 @@ setupPagination({
 
 });
 
-// window.reloadCurrentPage = () => {
+function initTable(){
 
-//     setupPagination({
+    setupPagination({
 
-//         table:"scan_awb",
+        table:"scan_awb",
 
-//         tbodyId:"tableBody",
+        tbodyId:"tableBody",
 
-//         buildQuery,
+        buildQuery,
 
-//         renderRow
+        renderRow
 
-//     });
+    });
 
-// };
-// reloadCurrentPage();
+}
+
+window.reloadCurrentPage = initTable;
+
+// Load pertama
+initTable();
+window.reloadCurrentPage();
 // ======================
 // REPAIR DATA LAMA
 // ======================
