@@ -198,45 +198,34 @@ setupPagination({
 
   tbodyId:"tableBody",
 
-  ekspedisiFilter:
-  current?.ekspedisi || [],
+ buildQuery(query){
 
-  renderRow:(item)=>`
+    if(current?.ekspedisi?.length){
 
-    <tr>
-      <td>${item.resi}</td>
-      <td>${item.ekspedisi}</td>
-      <td>${item.Pengirim}</td>
-      <td>${item.status}</td>
-      <td>${item.created_at}</td>
-    </tr>
+        query = query.in(
+            "ekspedisi",
+            current.ekspedisi
+        );
 
-  `
-});
+    }
 
-loadPage({
+    if(appState.filter.scanDate){
 
-  page:1,
+        const start =
+            `${appState.filter.scanDate}T00:00:00`;
 
-  table:"scan_awb",
+        const end =
+            `${appState.filter.scanDate}T23:59:59`;
 
-  tbodyId:"tableBody",
+        query = query
+            .gte("created_at", start)
+            .lt("created_at", end);
 
-  ekspedisiFilter:
-  current?.ekspedisi || [],
+    }
 
-  renderRow:(item)=>`
+    return query;
 
-    <tr>
-      <td>${item.resi}</td>
-      <td>${item.ekspedisi}</td>
-      <td>${item.Pengirim}</td>
-      <td>${item.status}</td>
-      <td>${item.created_at}</td>
-    </tr>
-
-  `
-});
+}
 // ======================
 // REPAIR DATA LAMA
 // ======================
