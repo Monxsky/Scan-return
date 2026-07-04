@@ -192,6 +192,95 @@ function buildQuery(query){
     return query;
 
 }
+
+function renderRow(item){
+
+    return `
+        <tr>
+            <td>${item.resi}</td>
+            <td>${item.ekspedisi}</td>
+            <td>${item.Pengirim}</td>
+            <td>${item.status}</td>
+            <td>${item.created_at}</td>
+        </tr>
+    `;
+
+}
+
+// setupPagination({
+
+//     table: "scan_awb",
+
+//     tbodyId: "tableBody",
+
+//     buildQuery(query){
+
+//         // Filter platform
+//         if(current?.ekspedisi?.length){
+
+//             query = query.in(
+//                 "ekspedisi",
+//                 current.ekspedisi
+//             );
+
+//         }
+
+//         // Filter tanggal scan mulai
+//         if(appState.filter.scanDateFrom){
+
+//             query = query.gte(
+//                 "created_at",
+//                 `${appState.filter.scanDateFrom}T00:00:00`
+//             );
+
+//         }
+
+//         // Filter tanggal scan akhir
+//         if(appState.filter.scanDateTo){
+
+//             query = query.lte(
+//                 "created_at",
+//                 `${appState.filter.scanDateTo}T23:59:59`
+//             );
+
+//         }
+
+//         return query;
+
+//     },
+
+//     renderRow(item){
+
+//         return `
+//             <tr>
+//                 <td>${item.resi}</td>
+//                 <td>${item.ekspedisi}</td>
+//                 <td>${item.Pengirim}</td>
+//                 <td>${item.status}</td>
+//                 <td>${item.created_at}</td>
+//             </tr>
+//         `;
+
+//     }
+
+// });
+
+function initTable(){
+
+    setupPagination({
+
+        table:"scan_awb",
+
+        tbodyId:"tableBody",
+
+        buildQuery,
+
+        renderRow
+
+    });
+
+}
+
 // setup TOOLBAR
 // =============
 
@@ -223,85 +312,12 @@ setupToolbar({
     }
 
 });
-
-setupPagination({
-
-    table: "scan_awb",
-
-    tbodyId: "tableBody",
-
-    buildQuery(query){
-
-        // Filter platform
-        if(current?.ekspedisi?.length){
-
-            query = query.in(
-                "ekspedisi",
-                current.ekspedisi
-            );
-
-        }
-
-        // Filter tanggal scan mulai
-        if(appState.filter.scanDateFrom){
-
-            query = query.gte(
-                "created_at",
-                `${appState.filter.scanDateFrom}T00:00:00`
-            );
-
-        }
-
-        // Filter tanggal scan akhir
-        if(appState.filter.scanDateTo){
-
-            query = query.lte(
-                "created_at",
-                `${appState.filter.scanDateTo}T23:59:59`
-            );
-
-        }
-
-        return query;
-
-    },
-
-    renderRow(item){
-
-        return `
-            <tr>
-                <td>${item.resi}</td>
-                <td>${item.ekspedisi}</td>
-                <td>${item.Pengirim}</td>
-                <td>${item.status}</td>
-                <td>${item.created_at}</td>
-            </tr>
-        `;
-
-    }
-
-});
-
-function initTable(){
-
-    setupPagination({
-
-        table:"scan_awb",
-
-        tbodyId:"tableBody",
-
-        buildQuery,
-
-        renderRow
-
-    });
-
-}
-
 window.reloadCurrentPage = initTable;
 
 // Load pertama
 initTable();
+
+
 window.reloadCurrentPage();
 // ======================
 // REPAIR DATA LAMA
