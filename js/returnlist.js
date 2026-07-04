@@ -254,11 +254,10 @@ const returnStatusFilter =
 async function loadSummary(){
 
     const { data, error } = await client
-        .from("pesanan_retur")
+        .from("v_pesanan_retur")
         .select("tracking_number, scan_at")
         .eq("marketplace", MARKETPLACE)
-        .eq("marketplace", MARKETPLACE)
-        .eq("is_active_return", true)
+        .eq("is_active_return", true);
 
     if(error){
 
