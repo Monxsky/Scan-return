@@ -258,7 +258,7 @@ setupPagination({
 //     });
 
 // };
-reloadCurrentPage();
+// reloadCurrentPage();
 // ======================
 // REPAIR DATA LAMA
 // ======================
