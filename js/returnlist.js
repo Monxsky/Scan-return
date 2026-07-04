@@ -445,7 +445,7 @@ buildQuery(query){
 },
 
  async onLoaded(){
-
+ console.log("🔥 onLoaded jalan");
         await loadSummary();
 
     }
