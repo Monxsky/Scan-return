@@ -160,6 +160,38 @@ function renderTable(data) {
   });
 }
 
+function buildQuery(query){
+
+    if(current?.ekspedisi?.length){
+
+        query = query.in(
+            "ekspedisi",
+            current.ekspedisi
+        );
+
+    }
+
+    if(appState.filter.scanDateFrom){
+
+        query = query.gte(
+            "created_at",
+            `${appState.filter.scanDateFrom}T00:00:00`
+        );
+
+    }
+
+    if(appState.filter.scanDateTo){
+
+        query = query.lte(
+            "created_at",
+            `${appState.filter.scanDateTo}T23:59:59`
+        );
+
+    }
+
+    return query;
+
+}
 // setup TOOLBAR
 // =============
 
