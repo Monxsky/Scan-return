@@ -13,7 +13,7 @@
 
             refresh = false,
 
-            refresh = false
+            syncScan = false
 
         } = options;
 
