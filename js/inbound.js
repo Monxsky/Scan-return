@@ -173,6 +173,13 @@ setupToolbar({
 
     refresh: true,
 
+     filters: {
+        returnStatus: true,
+        ekspedisi: true,
+        orderDate: true
+
+    },
+
     summary: {
 
         rpc: "get_inbound_summary",
