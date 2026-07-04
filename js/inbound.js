@@ -72,7 +72,7 @@ if (current) {
    async function refreshSummary(){
 
     const summary =
-    await loadSummary(
+    await client.rpc(
 
         "get_inbound_summary",
 
@@ -91,8 +91,14 @@ if (current) {
 
     );
 
-    renderSummary(summary);
+    if(error){
 
+    console.error(error);
+    return;
+
+}
+
+renderSummary(data?.[0]);
 }
 // load inbound  //
 async function loadInbound() {
