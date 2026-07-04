@@ -107,16 +107,6 @@ async function uploadCSV() {
       status: cols[1]?.trim() || "BELUM"
     };
   });
-
-
-function doSearch() {
-
-  searchResi(
-    "daftar_pesanan",
-    renderManifest
-  );
-
-}
   
   // 1. ambil data existing dari Supabase
   const existingRes = await fetch(
@@ -305,6 +295,24 @@ async function loadSummary(){
 
 }
 
+// SEARCH
+const searchInput =
+document.getElementById("searchInput");
+
+if(searchInput){
+
+    searchInput.addEventListener("input",()=>{
+
+        window.appState.filter.search =
+            searchInput.value;
+
+        loadPage(1);
+
+    });
+
+}
+
+// PAGINATION
 setupPagination({
 
     table: "v_pesanan_retur",
@@ -377,6 +385,15 @@ if(window.appState.filter.orderDateTo){
     query = query.lte(
         "order_created_at",
         window.appState.filter.orderDateTo + "T23:59:59"
+    );
+
+}
+
+if(window.appState.filter.search){
+
+    query = query.or(
+        `tracking_number.ilike.%${window.appState.filter.search}%,
+         marketplace_order_id.ilike.%${window.appState.filter.search}%`
     );
 
 }
