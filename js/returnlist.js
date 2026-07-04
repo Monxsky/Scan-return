@@ -258,6 +258,7 @@ async function loadSummary(){
         .select("tracking_number, scan_at")
         .eq("marketplace", MARKETPLACE)
         .neq("tracking_number", "")
+        .neq("process_status", "CLOSED");
 
     if(error){
 
@@ -348,8 +349,8 @@ setupPagination({
     buildQuery(query){
 
     query = query.eq(
-        "marketplace",
-        MARKETPLACE
+        .eq("marketplace", MARKETPLACE)
+        .neq("process_status", "CLOSED");
     );
 
     if(window.appState.filter.returnStatus){
