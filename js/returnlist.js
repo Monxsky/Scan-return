@@ -11,7 +11,9 @@ renderToolbar({
 
     },
 
-    refresh: true
+    refresh: true,
+
+    search: true
 
 });
 // console.log(document.getElementById("toolbar").innerHTML);
