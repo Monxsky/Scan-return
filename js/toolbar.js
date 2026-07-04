@@ -192,6 +192,46 @@
 
         `;
 
+        // evenListener
+ const scanDateFrom =
+document.getElementById("scanDateFrom");
+
+const scanDateTo =
+document.getElementById("scanDateTo");
+
+if(scanDateFrom){
+
+    scanDateFrom.addEventListener("change",()=>{
+
+        appState.filter.scanDateFrom =
+        scanDateFrom.value;
+
+        if(window.reloadCurrentPage){
+
+            window.reloadCurrentPage();
+
+        }
+
+    });
+
+}
+
+if(scanDateTo){
+
+    scanDateTo.addEventListener("change",()=>{
+
+        appState.filter.scanDateTo =
+        scanDateTo.value;
+
+        if(window.reloadCurrentPage){
+
+            window.reloadCurrentPage();
+
+        }
+
+    });
+
+}
     }
 
 async function loadSummary(
@@ -268,20 +308,6 @@ function renderSummary(summary){
     `;
 
 }
-
-// evenListener
-scanDate.addEventListener("change",()=>{
-
-    appState.filter.scanDate =
-    scanDate.value;
-
-    if(window.reloadCurrentPage){
-
-        window.reloadCurrentPage();
-
-    }
-
-});
 
 // =============
 // SETUP TOOLBAR
