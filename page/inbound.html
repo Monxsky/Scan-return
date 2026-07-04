@@ -26,24 +26,26 @@ href="../css/style.css">
     <h2 id="pageTitle">PAKET INBOUND</h2>
 
   <!-- CONTENT -->
-    <h2>Inbound</h2>
+ <div id="toolbar"></div>
 
-<input type="date" id="startDate">
-<input type="date" id="endDate">
+<div class="summary-grid">
 
-<button onclick="filterTanggal()">
-  Filter
-</button>
+    <div class="summary-card">
+        <h3>Total Scan</h3>
+        <span id="totalScan">0</span>
+    </div>
 
-<input
-  type="text"
-  id="searchInput"
-  placeholder="Cari resi..."
->
+    <div class="summary-card">
+        <h3>Hari Ini</h3>
+        <span id="todayScan">0</span>
+    </div>
 
-<button onclick="doSearch()">
-  Cari
-</button>
+    <div class="summary-card">
+        <h3>Last Scan</h3>
+        <span id="lastScan">-</span>
+    </div>
+
+</div>
     <table>
 
       <thead>
@@ -75,6 +77,8 @@ href="../css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="../js/config.js"></script>
 <script src="../js/sidebar.js"></script>
+<script src="../js/toolbar.js"></script>
+<script src="../js/summery.js"></script>
 <script src="../js/expedisi.js"></script>
 <script src="../js/detectexpedisi.js"></script>
 <script src="../js/state.js"></script>
