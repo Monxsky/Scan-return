@@ -177,20 +177,6 @@ function renderTable(data) {
   });
 }
 
-const summary =
-await loadSummary(
-
-    "get_inbound_summary",
-
-    {
-
-        p_ekspedisi:
-        current?.ekspedisi
-
-    }
-
-);
-
 setupPagination({
 
   table:"scan_awb",
