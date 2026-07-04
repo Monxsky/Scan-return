@@ -55,6 +55,10 @@ async function loadPage(page = 1) {
 
         updatePaginationUI();
 
+        if (paginationState.onLoaded) {
+    await paginationState.onLoaded(data);
+}
+
         return;
     }
 
