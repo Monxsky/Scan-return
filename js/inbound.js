@@ -225,7 +225,23 @@ setupPagination({
 
     return query;
 
-}
+},
+
+    renderRow(item){
+
+        return `
+            <tr>
+                <td>${item.resi}</td>
+                <td>${item.ekspedisi}</td>
+                <td>${item.Pengirim}</td>
+                <td>${item.status}</td>
+                <td>${item.created_at}</td>
+            </tr>
+        `;
+
+    }
+
+});
 // ======================
 // REPAIR DATA LAMA
 // ======================
