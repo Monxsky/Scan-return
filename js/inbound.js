@@ -71,8 +71,8 @@ if (current) {
 
    async function refreshSummary(){
 
-    const summary =
-    await client.rpc(
+    const { data, error } =
+await client.rpc(
 
         "get_inbound_summary",
 
