@@ -223,8 +223,8 @@ if(orderDateFrom){
         appState.filter.orderDateFrom =
             orderDateFrom.value;
 
-        await loadPage(1);
-        await loadSummary();
+loadPage(1);
+
 
     });
 
@@ -237,8 +237,8 @@ if(orderDateTo){
         appState.filter.orderDateTo =
             orderDateTo.value;
 
-        await loadPage(1);
-        await loadSummary();
+       loadPage(1);
+
 
 
     });
@@ -344,9 +344,9 @@ if(searchInput){
         window.appState.filter.search =
             searchInput.value;
 
-        await loadPage(1);
-        await loadSummary();
-    });
+loadPage(1);
+
+});
 
 }
 
@@ -464,9 +464,8 @@ if(btnSyncScan){
 window.addEventListener("show-overdue", () => {
 
     overdueMode = true;
+loadPage(1);
 
-     await loadPage(1);
-     await loadSummary();
 
 });
 console.log("Filter:", window.appState.filter.returnStatus);
