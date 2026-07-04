@@ -338,5 +338,5 @@ async function setupToolbar(options = {}){
         renderToolbar;
     window.setupToolbar =
         setupToolbar;
-
+    window.renderSummary = renderSummary;
 })();
