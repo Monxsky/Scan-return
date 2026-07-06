@@ -21,13 +21,14 @@ function enableSound() {
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 }
 // warning
-  function showWarning(msg, type = "error") {
-  const warning = document.getElementById("warning");
+  function showWarning(msg) {
+  const el = document.getElementById("warning");
+  if (!el) return;
 
-  warning.innerText = msg;
+  el.innerText = msg;
 
   setTimeout(() => {
-    warning.innerText = "";
+    el.innerText = "";
   }, 1500);
 }
 // bunyi sukses
@@ -213,7 +214,7 @@ window.onload = async () => {
 
         const status = await resolveOrderStatus(decodedText);
         const cacheKey = decodedText + ":" + status;
-        if (rejectedCache.has(decodedText)) {
+        if (rejectedCache.has(cacheKey)) {
             showWarning("⚠ sudah diproses");
             return;
         }
@@ -227,21 +228,25 @@ window.onload = async () => {
         if (status === "RETUR_EXIST") {
           showWarning("📦 Sudah retur");
           errorBeep();
+          return;
         }
 
         else if (status === "AUTO_REJECTED") {
           showWarning("🔁 REJECTED AUTO");
           beep();
+          return;
         }
 
         else if (status === "NORMAL_ORDER") {
           showWarning("✅ Normal order");
           beep();
+          return;
         }
 
         else if (status === "NOT_FOUND") {
           showWarning("❌ Tidak ditemukan");
           errorBeep();
+          return;
         }
 
         render();
