@@ -262,7 +262,7 @@ window.onload = async () => {
 
     await scanner.start(
       { facingMode: "environment" },
-      { fps: 13, qrbox: 250 },
+      { fps: 10, qrbox: 250 },
 
       async (decodedText) => {
         //  debug("SCAN: " + decodedText);
