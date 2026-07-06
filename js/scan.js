@@ -66,41 +66,80 @@ function errorBeep() {
   osc.stop(audioCtx.currentTime + 0.2);
 }
 // ======================================= RESOLVE ORDER =========================================== //
+// async function resolveOrderStatus(resi) {
+
+//   // cek di pesanan_retur dulu
+//   const { data: retur } = await client
+//     .from("pesanan_retur")
+//     .select("*")
+//     .eq("tracking_number", resi)
+//     .maybeSingle();
+// debug("RESULT: " + JSON.stringify(order));
+//   if (retur) {
+//     return "RETUR_EXIST";
+//   }
+
+//   // cek di daftar_pesanan
+//   const { data: order } = await client
+//     .from("daftar_pesanan")
+//     .select("*")
+//     .eq("tracking_number", resi)
+//     .maybeSingle();
+// debug("RESULT: " + JSON.stringify(order));
+//   if (!order) {
+//     return "NOT_FOUND";
+//   }
+
+//   // REJECTED ENGINE (VERSI SIMPLE DULU)
+//   const isRejected =
+//     order.is_rejected === true ||
+//     order.order_status === "CANCELLED";
+
+//   if (isRejected) {
+//     await syncRejectedOrder(order);
+//     return "AUTO_REJECTED";
+//   }
+
+//   return "NORMAL_ORDER";
+// }
 async function resolveOrderStatus(resi) {
 
-  // cek di pesanan_retur dulu
-  const { data: retur } = await client
+  debug("1. Cek retur");
+
+  const { data: retur, error: returError } = await client
     .from("pesanan_retur")
     .select("*")
     .eq("tracking_number", resi)
     .maybeSingle();
-debug("RESULT: " + JSON.stringify(order));
+
+  debug("2. Retur selesai");
+
+  if (returError) {
+    debug("RETUR ERROR: " + returError.message);
+  }
+
   if (retur) {
+    debug("3. Ketemu retur");
     return "RETUR_EXIST";
   }
 
-  // cek di daftar_pesanan
-  const { data: order } = await client
+  debug("4. Cek daftar_pesanan");
+
+  const { data: order, error: orderError } = await client
     .from("daftar_pesanan")
     .select("*")
     .eq("tracking_number", resi)
     .maybeSingle();
-debug("RESULT: " + JSON.stringify(order));
-  if (!order) {
-    return "NOT_FOUND";
+
+  debug("5. Query order selesai");
+
+  if (orderError) {
+    debug("ORDER ERROR: " + orderError.message);
   }
 
-  // REJECTED ENGINE (VERSI SIMPLE DULU)
-  const isRejected =
-    order.is_rejected === true ||
-    order.order_status === "CANCELLED";
+  debug("6. Order = " + JSON.stringify(order));
 
-  if (isRejected) {
-    await syncRejectedOrder(order);
-    return "AUTO_REJECTED";
-  }
-
-  return "NORMAL_ORDER";
+  // lanjut seperti biasa...
 }
 // ganti mode
 function setMode(m) {
