@@ -6,22 +6,31 @@ async function syncRejectedOrder(order) {
 
   if (!isRejected) return "NOT_REJECTED";
 
-  await client
-    .from("pesanan_retur")
-    .upsert(
-      [{
-        order_id: order.order_id,
-        marketplace_order_id: order.marketplace_order_id,
-        tracking_number: order.tracking_number,
-        marketplace: order.marketplace,
-        return_status: "REJECTED_AUTO",
-        process_status: "SYNC_ENGINE",
-        created_at: new Date().toISOString()
-      }],
-      { onConflict: "marketplace_order_id" }
-    );
+  const payload = {
+    order_id: order.order_id,
+    marketplace_order_id: order.marketplace_order_id,
+    external_return_id: order.external_return_id || null,
+    tracking_number: order.tracking_number,
+    marketplace: order.marketplace,
+    return_status: "REJECTED_AUTO",
+    process_status: "SYNC_ENGINE",
+    created_at: new Date().toISOString()
+  };
 
-  const { error } = await client
+  // UPSERT = idempotent layer
+  const { error: upsertError } = await client
+    .from("pesanan_retur")
+    .upsert(payload, {
+      onConflict: "marketplace_order_id,external_return_id"
+    });
+
+  if (upsertError) {
+    console.log("UPSERT ERROR:", upsertError);
+    return "FAILED";
+  }
+
+  // UPDATE daftar_pesanan (jangan ganggu kalau sudah true)
+  const { error: updateError } = await client
     .from("daftar_pesanan")
     .update({
       is_rejected: true,
@@ -29,29 +38,11 @@ async function syncRejectedOrder(order) {
     })
     .eq("marketplace_order_id", order.marketplace_order_id);
 
-  if (error) {
-    console.log("UPDATE ERROR:", error);
+  if (updateError) {
+    console.log("UPDATE ERROR:", updateError);
   }
 
   return "SYNCED";
 }
 
 window.syncRejectedOrder = syncRejectedOrder;
-
-async function runRejectedSyncBatch() {
-
-  const { data } = await client
-    .from("daftar_pesanan")
-    .select("*")
-    .eq("order_status", "CANCELLED")
-    .eq("is_rejected", false);
-
-  if (!data || data.length === 0) return;
-
-  for (const order of data) {
-    const result = await syncRejectedOrder(order);
-    console.log(order.marketplace_order_id, result);
-  }
-
-  console.log("SYNC REJECTED DONE");
-}
