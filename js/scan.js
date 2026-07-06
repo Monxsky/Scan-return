@@ -44,7 +44,42 @@ function errorBeep() {
   osc.start();
   osc.stop(audioCtx.currentTime + 0.2);
 }
+// ======================================= RESOLVE ORDER =========================================== //
+async function resolveOrderStatus(resi) {
 
+  // cek di pesanan_retur dulu
+  const { data: retur } = await client
+    .from("pesanan_retur")
+    .select("*")
+    .eq("tracking_number", resi)
+    .maybeSingle();
+
+  if (retur) {
+    return "RETUR_EXIST";
+  }
+
+  // cek di daftar_pesanan
+  const { data: order } = await client
+    .from("daftar_pesanan")
+    .select("*")
+    .eq("tracking_number", resi)
+    .maybeSingle();
+
+  if (!order) {
+    return "NOT_FOUND";
+  }
+
+  // REJECTED ENGINE (VERSI SIMPLE DULU)
+  const isRejected =
+    order.is_rejected === true ||
+    order.order_status === "CANCELLED";
+
+  if (isRejected) {
+    return "AUTO_REJECTED";
+  }
+
+  return "NORMAL_ORDER";
+}
 // ganti mode
 function setMode(m) {
   enableSound();
@@ -157,7 +192,7 @@ window.onload = async () => {
       { facingMode: "environment" },
       { fps: 10, qrbox: 250 },
 
-      (decodedText) => {
+   async (decodedText) => {
 
         if (data.find(d => d.resi === decodedText)) {
           errorBeep();
@@ -167,12 +202,30 @@ window.onload = async () => {
           }, 2000);
           return;
         }
-
+        const status = await resolveOrderStatus(decodedText);
         data.push({
           resi: decodedText,
-          status: mode
+          status: status
         });
+        if (status === "RETUR_EXIST") {
+  document.getElementById("warning").innerText = "📦 Sudah retur";
+  errorBeep();
+}
 
+if (status === "AUTO_REJECTED") {
+  document.getElementById("warning").innerText = "🔁 REJECTED AUTO";
+  beep();
+}
+
+if (status === "NORMAL_ORDER") {
+  document.getElementById("warning").innerText = "✅ Normal order";
+  beep();
+}
+
+if (status === "NOT_FOUND") {
+  document.getElementById("warning").innerText = "❌ Tidak ditemukan";
+  errorBeep();
+}
         beep();
         render();
       }
