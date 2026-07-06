@@ -328,6 +328,8 @@ window.onload = async () => {
 
     );
 
+  }
+
   } catch (err) {
     console.log(err);
     alert("Camera gagal dibuka!");
