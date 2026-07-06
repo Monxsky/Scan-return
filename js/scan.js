@@ -110,7 +110,8 @@ async function resolveOrderStatus(resi) {
     .from("pesanan_retur")
     .select("*")
     .eq("tracking_number", resi)
-    .maybeSingle();
+    // .maybeSingle();
+    .limit(1);
 
   debug("2. Retur selesai");
 
