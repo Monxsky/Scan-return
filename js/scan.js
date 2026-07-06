@@ -102,38 +102,44 @@ function errorBeep() {
 
 //   return "NORMAL_ORDER";
 // }
-async function resolveOrderStatus(resi) {
+async function resolveOrderStatus(resi){
 
- debug("1. Cek retur");
+    debug("1. Cek retur");
 
-const result = await client
-  .from("pesanan_retur")
-  .select("*")
-  .eq("tracking_number", resi);
+    const returResult = await client
+      .from("pesanan_retur")
+      .select("*")
+      .eq("tracking_number", resi)
+      .maybeSingle();
 
-debug("HASIL QUERY:");
-debug(JSON.stringify(result));
+    debug("2. Retur selesai");
 
-  debug("2. Retur selesai");
+    console.log(returResult);
 
-  if (returError) {
-    debug("RETUR ERROR: " + returError.message);
-  }
+    const retur = returResult.data;
+    const returError = returResult.error;
 
-  if (retur) {
-    debug("3. Ketemu retur");
-    return "RETUR_EXIST";
-  }
+    if(returError){
+        debug("RETUR ERROR");
+        console.log(returError);
+    }
 
-  debug("4. Cek daftar_pesanan");
+    if(retur){
+        debug("RETUR ADA");
+        return "RETUR_EXIST";
+    }
 
-  const { data: order, error: orderError } = await client
-    .from("daftar_pesanan")
-    .select("*")
-    .eq("tracking_number", resi)
-    .maybeSingle();
+    debug("3. Cek daftar pesanan");
 
-  debug("5. Query order selesai");
+    const orderResult = await client
+      .from("daftar_pesanan")
+      .select("*")
+      .eq("tracking_number", resi)
+      .maybeSingle();
+
+    debug("4. Daftar selesai");
+
+    console.log(orderResult);
 
   if (orderError) {
     debug("ORDER ERROR: " + orderError.message);
