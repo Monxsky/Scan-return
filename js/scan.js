@@ -17,7 +17,16 @@ let data = [];
 function enableSound() {
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 }
+// warning
+  function showWarning(msg, type = "error") {
+  const warning = document.getElementById("warning");
 
+  warning.innerText = msg;
+
+  setTimeout(() => {
+    warning.innerText = "";
+  }, 1500);
+}
 // bunyi sukses
 function beep() {
   if (!audioCtx) return;
@@ -68,16 +77,13 @@ async function resolveOrderStatus(resi) {
     return "NOT_FOUND";
   }
 
-  if (status === "AUTO_REJECTED") {
-  await syncRejectedOrder(order);
-}
-
   // REJECTED ENGINE (VERSI SIMPLE DULU)
   const isRejected =
     order.is_rejected === true ||
     order.order_status === "CANCELLED";
 
   if (isRejected) {
+    await syncRejectedOrder(order);
     return "AUTO_REJECTED";
   }
 
@@ -195,41 +201,41 @@ window.onload = async () => {
       { facingMode: "environment" },
       { fps: 10, qrbox: 250 },
 
-   async (decodedText) => {
+      async (decodedText) => {
 
         if (data.find(d => d.resi === decodedText)) {
           errorBeep();
-          document.getElementById("warning").innerText = "⚠ Resi sudah di scan!";
-          setTimeout(() => {
-            document.getElementById("warning").innerText = "";
-          }, 2000);
+          showWarning("⚠ Resi sudah di scan!");
           return;
         }
+
         const status = await resolveOrderStatus(decodedText);
+
         data.push({
           resi: decodedText,
           status: status
         });
+
         if (status === "RETUR_EXIST") {
-  document.getElementById("warning").innerText = "📦 Sudah retur";
-  errorBeep();
-}
+          showWarning("📦 Sudah retur");
+          errorBeep();
+        }
 
-if (status === "AUTO_REJECTED") {
-  document.getElementById("warning").innerText = "🔁 REJECTED AUTO";
-  beep();
-}
+        else if (status === "AUTO_REJECTED") {
+          showWarning("🔁 REJECTED AUTO");
+          beep();
+        }
 
-if (status === "NORMAL_ORDER") {
-  document.getElementById("warning").innerText = "✅ Normal order";
-  beep();
-}
+        else if (status === "NORMAL_ORDER") {
+          showWarning("✅ Normal order");
+          beep();
+        }
 
-if (status === "NOT_FOUND") {
-  document.getElementById("warning").innerText = "❌ Tidak ditemukan";
-  errorBeep();
-}
-        beep();
+        else if (status === "NOT_FOUND") {
+          showWarning("❌ Tidak ditemukan");
+          errorBeep();
+        }
+
         render();
       }
 
@@ -239,5 +245,4 @@ if (status === "NOT_FOUND") {
     console.log(err);
     alert("Camera gagal dibuka!");
   }
-
 };
