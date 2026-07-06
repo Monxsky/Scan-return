@@ -96,7 +96,7 @@ async function resolveOrderStatus(resi){
 
     debug("1");
     const returResult = await client
-      .from("pesanan_retur")
+      .from("v_pesanan_retur")
       .select("*")
       .eq("tracking_number", resi)
       .maybeSingle();
