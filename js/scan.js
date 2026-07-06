@@ -12,7 +12,10 @@
 let audioCtx;
 let mode = "RETUR";
 let data = [];
-
+// ===============================
+// CACHE ANTI DOUBLE SCAN
+// ===============================
+const rejectedCache = new Set();
 // aktifin audio
 function enableSound() {
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -202,7 +205,13 @@ window.onload = async () => {
       { fps: 10, qrbox: 250 },
 
       async (decodedText) => {
+        if (rejectedCache.has(decodedText)) {
+    showWarning("⚠ sudah diproses");
+    return;
+  }
 
+  rejectedCache.add(decodedText);
+        // ==================================
         if (data.find(d => d.resi === decodedText)) {
           errorBeep();
           showWarning("⚠ Resi sudah di scan!");
