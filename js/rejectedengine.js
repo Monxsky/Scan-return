@@ -39,6 +39,7 @@ async function syncRejectedOrder(order) {
 
   return "SYNCED";
 }
+window.syncRejectedOrder = syncRejectedOrder;
 
 async function runRejectedSyncBatch() {
 
