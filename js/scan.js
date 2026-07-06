@@ -223,6 +223,7 @@ window.onload = async () => {
         }
 
         const status = await resolveOrderStatus(decodedText);
+        debug("STATUS: " + status);
         const cacheKey = decodedText + ":" + status;
         if (rejectedCache.has(cacheKey)) {
             showWarning("⚠ sudah diproses");
@@ -235,7 +236,7 @@ window.onload = async () => {
           status: status
         });
         console.log("DATA ARRAY:", data);
-        
+        debug("PUSH OK");
         if (status === "RETUR_EXIST") {
           showWarning("📦 Sudah retur");
           errorBeep();
@@ -259,7 +260,7 @@ window.onload = async () => {
           errorBeep();
           return;
         }
-
+        debug("RENDER");
         render();
       }
 
