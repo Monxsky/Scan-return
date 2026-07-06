@@ -9,8 +9,6 @@
 //   sidebar.classList.toggle("show");
 
 // });
-const result = await window.syncRejectedOrder(order);
-
 let audioCtx;
 let mode = "RETUR";
 let data = [];
