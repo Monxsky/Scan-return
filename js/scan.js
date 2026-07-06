@@ -104,14 +104,15 @@ function errorBeep() {
 // }
 async function resolveOrderStatus(resi) {
 
-  debug("1. Cek retur");
+ debug("1. Cek retur");
 
-  const { data: retur, error: returError } = await client
-    .from("pesanan_retur")
-    .select("*")
-    .eq("tracking_number", resi)
-    // .maybeSingle();
-    .limit(1);
+const result = await client
+  .from("pesanan_retur")
+  .select("*")
+  .eq("tracking_number", resi);
+
+debug("HASIL QUERY:");
+debug(JSON.stringify(result));
 
   debug("2. Retur selesai");
 
