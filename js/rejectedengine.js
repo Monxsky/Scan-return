@@ -46,3 +46,25 @@ async function syncRejectedOrder(order) {
 }
 
 window.syncRejectedOrder = syncRejectedOrder;
+
+// ===============================
+// REJECTED BATCH SYNC ENGINE
+// ===============================
+async function runRejectedSyncBatch() {
+
+  const { data } = await client
+    .from("daftar_pesanan")
+    .select("*")
+    .eq("order_status", "CANCELLED")
+    .eq("is_rejected", false);
+
+  if (!data?.length) return;
+
+  for (const order of data) {
+    const result = await syncRejectedOrder(order);
+    console.log("BATCH:", order.marketplace_order_id, result);
+  }
+
+  console.log("SYNC REJECTED DONE");
+}
+window.runRejectedSyncBatch = runRejectedSyncBatch;
