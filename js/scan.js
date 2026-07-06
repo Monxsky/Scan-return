@@ -205,11 +205,6 @@ window.onload = async () => {
       { fps: 10, qrbox: 250 },
 
       async (decodedText) => {
-        if (rejectedCache.has(decodedText)) {
-    showWarning("⚠ sudah diproses");
-    return;
-  }
-
   rejectedCache.add(decodedText);
         // ==================================
         if (data.find(d => d.resi === decodedText)) {
@@ -219,6 +214,12 @@ window.onload = async () => {
         }
 
         const status = await resolveOrderStatus(decodedText);
+        const cacheKey = decodedText + ":" + status;
+        if (rejectedCache.has(decodedText)) {
+            showWarning("⚠ sudah diproses");
+            return;
+        }
+
 
         data.push({
           resi: decodedText,
