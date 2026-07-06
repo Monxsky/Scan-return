@@ -55,7 +55,7 @@ async function runRejectedSyncBatch() {
   const { data } = await client
     .from("daftar_pesanan")
     .select("*")
-    .eq("order_status", "CANCELLED")
+    .eq("status", "CANCELLED")
     .eq("is_rejected", false);
 
   if (!data?.length) return;
