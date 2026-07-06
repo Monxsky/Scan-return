@@ -297,25 +297,21 @@ window.onload = async () => {
         if (status === "RETUR_EXIST") {
           showWarning("📦 Sudah retur");
           errorBeep();
-          return;
         }
 
         else if (status === "AUTO_REJECTED") {
           showWarning("🔁 REJECTED AUTO");
           beep();
-          return;
         }
 
         else if (status === "NORMAL_ORDER") {
           showWarning("✅ Normal order");
           beep();
-          return;
         }
 
         else if (status === "NOT_FOUND") {
           showWarning("❌ Tidak ditemukan");
           errorBeep();
-          return;
         }
         debug("RENDER");
         render();
@@ -325,10 +321,9 @@ window.onload = async () => {
 
     }
 
-
+      }
     );
 
-  }
 
   } catch (err) {
     console.log(err);
