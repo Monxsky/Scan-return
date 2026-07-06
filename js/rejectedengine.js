@@ -4,32 +4,24 @@ async function syncRejectedOrder(order) {
     order.is_rejected === true ||
     order.order_status === "CANCELLED";
 
-  if (!isRejected) return false;
+  if (!isRejected) return "NOT_REJECTED";
 
-  // cek biar gak double insert
-  const { data: exist } = await client
-    .from("pesanan_retur")
-    .select("id")
-    .eq("marketplace_order_id", order.marketplace_order_id)
-    .maybeSingle();
-
-  if (exist) return "ALREADY_EXIST";
-
-  // INSERT ke pesanan_retur
   await client
     .from("pesanan_retur")
-    .insert([{
-      order_id: order.order_id,
-      marketplace_order_id: order.marketplace_order_id,
-      tracking_number: order.tracking_number,
-      marketplace: order.marketplace,
-      return_status: "REJECTED_AUTO",
-      process_status: "SYNC_ENGINE",
-      created_at: new Date().toISOString()
-    }]);
+    .upsert(
+      [{
+        order_id: order.order_id,
+        marketplace_order_id: order.marketplace_order_id,
+        tracking_number: order.tracking_number,
+        marketplace: order.marketplace,
+        return_status: "REJECTED_AUTO",
+        process_status: "SYNC_ENGINE",
+        created_at: new Date().toISOString()
+      }],
+      { onConflict: "marketplace_order_id" }
+    );
 
-  // UPDATE daftar_pesanan
-  await client
+  const { error } = await client
     .from("daftar_pesanan")
     .update({
       is_rejected: true,
@@ -37,8 +29,13 @@ async function syncRejectedOrder(order) {
     })
     .eq("marketplace_order_id", order.marketplace_order_id);
 
+  if (error) {
+    console.log("UPDATE ERROR:", error);
+  }
+
   return "SYNCED";
 }
+
 window.syncRejectedOrder = syncRejectedOrder;
 
 async function runRejectedSyncBatch() {
@@ -49,8 +46,11 @@ async function runRejectedSyncBatch() {
     .eq("order_status", "CANCELLED")
     .eq("is_rejected", false);
 
+  if (!data || data.length === 0) return;
+
   for (const order of data) {
-    await syncRejectedOrder(order);
+    const result = await syncRejectedOrder(order);
+    console.log(order.marketplace_order_id, result);
   }
 
   console.log("SYNC REJECTED DONE");
