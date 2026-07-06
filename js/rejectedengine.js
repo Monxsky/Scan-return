@@ -21,7 +21,7 @@ async function syncRejectedOrder(order) {
   const { error: upsertError } = await client
     .from("pesanan_retur")
     .upsert(payload, {
-      onConflict: "marketplace_order_id,external_return_id"
+      onConflict: "marketplace_order_id"
     });
 
   if (upsertError) {
