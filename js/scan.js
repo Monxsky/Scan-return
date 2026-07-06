@@ -9,7 +9,7 @@
 //   sidebar.classList.toggle("show");
 
 // });
-import { syncRejectedOrder } from "./rejectedEngine.js";
+const result = await window.syncRejectedOrder(order);
 
 let audioCtx;
 let mode = "RETUR";
