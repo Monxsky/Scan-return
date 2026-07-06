@@ -126,7 +126,8 @@ async function resolveOrderStatus(resi){
       // .maybeSingle();
 
     debug("4. Daftar selesai");
-
+    const order = orderResult.data;
+    const orderError = orderResult.error;
     console.log(orderResult);
 
   if (orderError) {
