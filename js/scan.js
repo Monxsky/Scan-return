@@ -16,6 +16,7 @@ let data = [];
 // CACHE ANTI DOUBLE SCAN
 // ===============================
 const rejectedCache = new Set();
+let isProcessing = false;
 // aktifin audio
 function enableSound() {
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -104,7 +105,9 @@ function errorBeep() {
 // }
 async function resolveOrderStatus(resi){
 
-    debug("1. Cek retur");
+    debug("1");
+
+    return "NORMAL_ORDER";
 
     const returResult = await client
       .from("pesanan_retur")
@@ -262,12 +265,19 @@ window.onload = async () => {
       { fps: 13, qrbox: 250 },
 
       async (decodedText) => {
-         debug("SCAN: " + decodedText);
-        if (data.find(d => d.resi === decodedText)) {
-          errorBeep();
-          showWarning("⚠ Resi sudah di scan!");
-          return;
-        }
+        //  debug("SCAN: " + decodedText);
+        // if (data.find(d => d.resi === decodedText)) {
+        //   errorBeep();
+        //   showWarning("⚠ Resi sudah di scan!");
+        //   return;
+        // }
+        if (isProcessing) return;
+
+    isProcessing = true;
+
+    try {
+
+        debug("SCAN: " + decodedText);
 
         const status = await resolveOrderStatus(decodedText);
         debug("STATUS: " + status);
@@ -309,7 +319,12 @@ window.onload = async () => {
         }
         debug("RENDER");
         render();
-      }
+      } finally {
+
+        isProcessing = false;
+
+    }
+
 
     );
 
