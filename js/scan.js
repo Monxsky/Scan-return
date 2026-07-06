@@ -95,9 +95,6 @@ function errorBeep() {
 async function resolveOrderStatus(resi){
 
     debug("1");
-
-    return "NORMAL_ORDER";
-
     const returResult = await client
       .from("pesanan_retur")
       .select("*")
