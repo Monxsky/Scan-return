@@ -99,7 +99,7 @@ async function resolveOrderStatus(resi){
       .from("pesanan_retur")
       .select("*")
       .eq("tracking_number", resi)
-      // .maybeSingle();
+      .maybeSingle();
 
     debug("2. Retur selesai");
 
@@ -123,7 +123,7 @@ async function resolveOrderStatus(resi){
       .from("daftar_pesanan")
       .select("*")
       .eq("resi", resi)
-      // .maybeSingle();
+      .maybeSingle();
 
     debug("4. Daftar selesai");
     const order = orderResult.data;
