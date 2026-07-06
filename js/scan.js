@@ -20,6 +20,14 @@ const rejectedCache = new Set();
 function enableSound() {
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 }
+// DEBUG
+function debug(msg) {
+  const el = document.getElementById("debug");
+  if (!el) return;
+
+  el.innerHTML += msg + "<br>";
+  el.scrollTop = el.scrollHeight;
+}
 // warning
   function showWarning(msg) {
   const el = document.getElementById("warning");
@@ -31,6 +39,7 @@ function enableSound() {
     el.innerText = "";
   }, 1500);
 }
+// 
 // bunyi sukses
 function beep() {
   if (!audioCtx) return;
@@ -65,7 +74,7 @@ async function resolveOrderStatus(resi) {
     .select("*")
     .eq("tracking_number", resi)
     .maybeSingle();
-
+debug("RESULT: " + JSON.stringify(order));
   if (retur) {
     return "RETUR_EXIST";
   }
@@ -76,7 +85,7 @@ async function resolveOrderStatus(resi) {
     .select("*")
     .eq("tracking_number", resi)
     .maybeSingle();
-
+debug("RESULT: " + JSON.stringify(order));
   if (!order) {
     return "NOT_FOUND";
   }
@@ -206,6 +215,7 @@ window.onload = async () => {
       { fps: 13, qrbox: 250 },
 
       async (decodedText) => {
+         debug("SCAN: " + decodedText);
         if (data.find(d => d.resi === decodedText)) {
           errorBeep();
           showWarning("⚠ Resi sudah di scan!");
