@@ -115,7 +115,6 @@ async function resolveOrderStatus(resi){
 
     if(retur){
         debug("RETUR ADA");
-        return "RETUR_EXIST";
     }
 
     debug("3. Cek daftar pesanan");
