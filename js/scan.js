@@ -56,91 +56,91 @@ function errorBeep() {
   osc.stop(audioCtx.currentTime + 0.2);
 }
 // ======================================= RESOLVE ORDER =========================================== //
-async function resolveOrderStatus(resi) {
+// async function resolveOrderStatus(resi) {
 
-  // cek di pesanan_retur dulu
-  const { data: retur } = await client
-    .from("pesanan_retur")
-    .select("*")
-    .eq("tracking_number", resi)
-    .maybeSingle();
-debug("RESULT: " + JSON.stringify(order));
-  if (retur) {
-    return "RETUR_EXIST";
-  }
-
-  // cek di daftar_pesanan
-  const { data: order } = await client
-    .from("daftar_pesanan")
-    .select("*")
-    .eq("resi", resi)
-    .maybeSingle();
-debug("RESULT: " + JSON.stringify(order));
-  if (!order) {
-    return "NOT_FOUND";
-  }
-
-  // REJECTED ENGINE (VERSI SIMPLE DULU)
-  const isRejected =
-    order.is_rejected === true ||
-    order.order_status === "CANCELLED";
-
-  if (isRejected) {
-    await syncRejectedOrder(order);
-    return "AUTO_REJECTED";
-  }
-
-  return "NORMAL_ORDER";
-}
-// async function resolveOrderStatus(resi){
-
-//     debug("1");
-
-//     return "NORMAL_ORDER";
-
-//     const returResult = await client
-//       .from("pesanan_retur")
-//       .select("*")
-//       .eq("tracking_number", resi)
-//       .maybeSingle();
-
-//     debug("2. Retur selesai");
-
-//     console.log(returResult);
-
-//     const retur = returResult.data;
-//     const returError = returResult.error;
-
-//     if(returError){
-//         debug("RETUR ERROR");
-//         console.log(returError);
-//     }
-
-//     if(retur){
-//         debug("RETUR ADA");
-//         return "RETUR_EXIST";
-//     }
-
-//     debug("3. Cek daftar pesanan");
-
-//     const orderResult = await client
-//       .from("daftar_pesanan")
-//       .select("*")
-//       .eq("tracking_number", resi)
-//       .maybeSingle();
-
-//     debug("4. Daftar selesai");
-
-//     console.log(orderResult);
-
-//   if (orderError) {
-//     debug("ORDER ERROR: " + orderError.message);
+//   // cek di pesanan_retur dulu
+//   const { data: retur } = await client
+//     .from("pesanan_retur")
+//     .select("*")
+//     .eq("tracking_number", resi)
+//     .maybeSingle();
+// debug("RESULT: " + JSON.stringify(order));
+//   if (retur) {
+//     return "RETUR_EXIST";
 //   }
 
-//   debug("6. Order = " + JSON.stringify(order));
+//   // cek di daftar_pesanan
+//   const { data: order } = await client
+//     .from("daftar_pesanan")
+//     .select("*")
+//     .eq("resi", resi)
+//     .maybeSingle();
+// debug("RESULT: " + JSON.stringify(order));
+//   if (!order) {
+//     return "NOT_FOUND";
+//   }
 
-//   // lanjut seperti biasa...
+//   // REJECTED ENGINE (VERSI SIMPLE DULU)
+//   const isRejected =
+//     order.is_rejected === true ||
+//     order.order_status === "CANCELLED";
+
+//   if (isRejected) {
+//     await syncRejectedOrder(order);
+//     return "AUTO_REJECTED";
+//   }
+
+//   return "NORMAL_ORDER";
 // }
+async function resolveOrderStatus(resi){
+
+    debug("1");
+
+    return "NORMAL_ORDER";
+
+    const returResult = await client
+      .from("pesanan_retur")
+      .select("*")
+      .eq("tracking_number", resi)
+      // .maybeSingle();
+
+    debug("2. Retur selesai");
+
+    console.log(returResult);
+
+    const retur = returResult.data;
+    const returError = returResult.error;
+
+    if(returError){
+        debug("RETUR ERROR");
+        console.log(returError);
+    }
+
+    if(retur){
+        debug("RETUR ADA");
+        return "RETUR_EXIST";
+    }
+
+    debug("3. Cek daftar pesanan");
+
+    const orderResult = await client
+      .from("daftar_pesanan")
+      .select("*")
+      .eq("resi", resi)
+      // .maybeSingle();
+
+    debug("4. Daftar selesai");
+
+    console.log(orderResult);
+
+  if (orderError) {
+    debug("ORDER ERROR: " + orderError.message);
+  }
+
+  debug("6. Order = " + JSON.stringify(order));
+
+  // lanjut seperti biasa...
+}
 // ganti mode
 function setMode(m) {
   enableSound();
