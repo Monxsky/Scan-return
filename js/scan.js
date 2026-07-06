@@ -202,11 +202,9 @@ window.onload = async () => {
 
     await scanner.start(
       { facingMode: "environment" },
-      { fps: 10, qrbox: 250 },
+      { fps: 13, qrbox: 250 },
 
       async (decodedText) => {
-  rejectedCache.add(decodedText);
-        // ==================================
         if (data.find(d => d.resi === decodedText)) {
           errorBeep();
           showWarning("⚠ Resi sudah di scan!");
@@ -219,7 +217,7 @@ window.onload = async () => {
             showWarning("⚠ sudah diproses");
             return;
         }
-
+        rejectedCache.add(cacheKey);
 
         data.push({
           resi: decodedText,
