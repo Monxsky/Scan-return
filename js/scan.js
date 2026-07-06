@@ -85,21 +85,6 @@ async function resolveOrderStatus(resi) {
 
   return "NORMAL_ORDER";
 }
-
-async function runRejectedSyncBatch() {
-
-  const { data } = await client
-    .from("daftar_pesanan")
-    .select("*")
-    .eq("order_status", "CANCELLED")
-    .eq("is_rejected", false);
-
-  for (const order of data) {
-    await syncRejectedOrder(order);
-  }
-
-  console.log("SYNC REJECTED DONE");
-}
 // ganti mode
 function setMode(m) {
   enableSound();
