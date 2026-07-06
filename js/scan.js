@@ -229,12 +229,13 @@ window.onload = async () => {
             return;
         }
         rejectedCache.add(cacheKey);
-
+         console.log("STATUS:", status);
         data.push({
           resi: decodedText,
           status: status
         });
-
+        console.log("DATA ARRAY:", data);
+        
         if (status === "RETUR_EXIST") {
           showWarning("📦 Sudah retur");
           errorBeep();
