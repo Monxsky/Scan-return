@@ -195,7 +195,7 @@ function renderTable(data) {
 }
 
 function buildQuery(query){
-
+console.log("FILTER =", appState.filter);
     if(current?.ekspedisi?.length){
 
         query = query.in(
@@ -236,7 +236,7 @@ function renderRow(item){
             <td>${item.Pengirim}</td>
             <td>${item.status}</td>
             <td>${item.scanType}</td>
-            <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+            <td>${item.created_at}</td>
         </tr>
     `;
 
