@@ -154,6 +154,7 @@ if (error) {
           <td>${item.ekspedisi}</td>
           <td>${item.Pengirim}</td>
           <td>${item.status}</td>
+          ${item.scanType}
           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
         </tr>
       `;
