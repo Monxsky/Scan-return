@@ -143,9 +143,10 @@ async function resolveOrderStatus(keyword){
 
 }
 
+
+);
 debug(
  JSON.stringify(result);
-);
 // ganti mode
 function setMode(m) {
   enableSound();
