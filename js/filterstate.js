@@ -7,6 +7,8 @@ window.appState = {
         search:"",
         returnStatus:"",
         orderDateFrom:"",
+        orderDateTo:"",
+        scanDateFrom:"",
         orderDateTo:""
 
     },
