@@ -29,7 +29,7 @@ async function loadRiwayat() {
         data: retur,
         error: returError
     } = await client
-    .from("pesanan_retur")
+    .from("v_retur_order")
     .select("tracking_number");
 
     if(returError){
@@ -63,6 +63,7 @@ function renderTable(data){
         <tr>
 
             <td>${item.resi}</td>
+            <td>${item.ekspedisi}</td>
 
             <td>
                 ${new Date(item.created_at).toLocaleTimeString()}
