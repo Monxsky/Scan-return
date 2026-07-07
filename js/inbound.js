@@ -154,7 +154,6 @@ if (error) {
           <td>${item.ekspedisi}</td>
           <td>${item.Pengirim}</td>
           <td>${item.status}</td>
-          ${item.scanType}
           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
         </tr>
       `;
@@ -187,6 +186,7 @@ function renderTable(data) {
           <td>${item.ekspedisi}</td>
           <td>${item.Pengirim}</td>
           <td>${item.status}</td>
+          <td>${item.scanType}</td>
           <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
       </tr>
     `;
@@ -234,6 +234,7 @@ function renderRow(item){
             <td>${item.ekspedisi}</td>
             <td>${item.Pengirim}</td>
             <td>${item.status}</td>
+            <td>${item.scanType}</td>
             <td>${item.created_at}</td>
         </tr>
     `;
