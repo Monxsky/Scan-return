@@ -92,51 +92,35 @@ function errorBeep() {
 
 //   return "NORMAL_ORDER";
 // }
-async function resolveOrderStatus(resi){
+async function resolveOrderStatus(keyword) {
 
-    debug("1");
-    const returResult = await client
-      .from("v_pesanan_retur")
-      .select("*")
-      .eq("tracking_number", resi)
-      .maybeSingle();
+    debug("Cari : " + keyword);
 
-    debug("2. Retur selesai");
+    const { data, error } = await client.rpc(
+        "search_order",
+        {
+            keyword: keyword
+        }
+    );
 
-    console.log(returResult);
-
-    const retur = returResult.data;
-    const returError = returResult.error;
-
-    if(returError){
-        debug("RETUR ERROR");
-        console.log(returError);
+    if (error) {
+        console.error(error);
+        debug("RPC ERROR : " + error.message);
+        return "NOT_FOUND";
     }
 
-    if(retur){
-        debug("RETUR ADA");
+    console.log(data);
+
+    if (!data || data.length === 0) {
+        return "NOT_FOUND";
     }
 
-    debug("3. Cek daftar pesanan");
+    const order = data[0];
 
-    const orderResult = await client
-      .from("daftar_pesanan")
-      .select("*")
-      .eq("resi", resi)
-      .maybeSingle();
+    debug(JSON.stringify(order));
 
-    debug("4. Daftar selesai");
-    const order = orderResult.data;
-    const orderError = orderResult.error;
-    console.log(orderResult);
-
-  if (orderError) {
-    debug("ORDER ERROR: " + orderError.message);
-  }
-
-  debug("6. Order = " + JSON.stringify(order));
-
-  // lanjut seperti biasa...
+    // sementara kita anggap ketemu = retur
+    return "RETUR_EXIST";
 }
 // ganti mode
 function setMode(m) {
