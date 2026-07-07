@@ -103,36 +103,49 @@ async function resolveOrderStatus(keyword){
         }
     );
 
+
     if(error){
+
         console.error(error);
-        debug("RPC ERROR: " + error.message);
+
+        debug(
+          "RPC ERROR: " + error.message
+        );
 
         return {
             status: "NOT_FOUND",
-            data: null,
-            source: null
+            order: null,
+            shipping: null,
+            return: null
         };
     }
 
 
-    console.log("SEARCH RESULT:", data);
+    console.log(
+        "SEARCH RESULT:",
+        data
+    );
 
 
     if(!data){
+
         return {
             status: "NOT_FOUND",
-            data: null,
-            source: null
+            order: null,
+            shipping: null,
+            return: null
         };
+
     }
 
 
-    return {
-        status: data.status,
-        data: data.data,
-        source: data.source
-    };
+    return data;
+
 }
+
+debug(
+ JSON.stringify(result)
+);
 // ganti mode
 function setMode(m) {
   enableSound();
@@ -270,11 +283,20 @@ window.onload = async () => {
         }
         rejectedCache.add(cacheKey);
          console.log("STATUS:", status);
-            data.push({
-            resi: decodedText,
-            status: status,
-            source: result.source,
-            raw: result.data
+           data.push({
+            
+                resi: decodedText,
+            
+                status: status,
+            
+                source: result.source,
+            
+                order: result.order,
+            
+                shipping: result.shipping,
+            
+                return: result.return
+            
           });
         console.log("DATA ARRAY:", data);
         debug("PUSH OK");
