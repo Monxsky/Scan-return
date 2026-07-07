@@ -403,3 +403,56 @@ window.reloadCurrentPage();
 
 // }
 // repairEkspedisi();
+async function simulateClassification(limit = 30) {
+
+    const { data: scans, error } = await client
+        .from("scan_awb")
+        .select("id,resi,status,scan_type")
+        .order("created_at", { ascending: false })
+        .limit(limit);
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    console.log("===== SIMULATION START =====");
+
+    for (const scan of scans) {
+
+        const result = await resolveOrderStatus(scan.resi);
+
+        let scanType = "NORMAL";
+
+        if (result.return) {
+
+            scanType = "CUSTOMER_RETURN";
+
+        }
+        else if (
+            result.shipping?.status === "CANCELLED"
+        ) {
+
+            scanType = "CANCELLED_BEFORE_SHIP";
+
+        }
+        else if (result.shipping) {
+
+            scanType = "DELIVERY_FAILED_RETURN";
+
+        }
+
+        console.log({
+            id: scan.id,
+            resi: scan.resi,
+            old_status: scan.status,
+            old_scan_type: scan.scan_type,
+            new_scan_type: scanType,
+            result: result.status
+        });
+
+    }
+
+    console.log("===== SIMULATION END =====");
+
+}
