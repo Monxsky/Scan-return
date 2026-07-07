@@ -236,7 +236,7 @@ function renderRow(item){
             <td>${item.Pengirim}</td>
             <td>${item.status}</td>
             <td>${item.scanType}</td>
-            <td>${item.created_at}</td>
+            <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
         </tr>
     `;
 
