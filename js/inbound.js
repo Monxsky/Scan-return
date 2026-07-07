@@ -155,7 +155,7 @@ if (error) {
           <td>${item.ekspedisi}</td>
           <td>${item.Pengirim}</td>
           <td>${item.status}</td>
-          <td>${new Date(item.waktu).toLocaleString("id-ID")}</td>
+          <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
         </tr>
       `;
     });
