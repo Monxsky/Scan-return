@@ -92,9 +92,9 @@ function errorBeep() {
 
 //   return "NORMAL_ORDER";
 // }
-async function resolveOrderStatus(keyword) {
+async function resolveOrderStatus(keyword){
 
-    debug("Cari : " + keyword);
+    debug("SEARCH: " + keyword);
 
     const { data, error } = await client.rpc(
         "search_order",
@@ -103,24 +103,35 @@ async function resolveOrderStatus(keyword) {
         }
     );
 
-    if (error) {
+    if(error){
         console.error(error);
-        debug("RPC ERROR : " + error.message);
-        return "NOT_FOUND";
+        debug("RPC ERROR: " + error.message);
+
+        return {
+            status: "NOT_FOUND",
+            data: null,
+            source: null
+        };
     }
 
-    console.log(data);
 
-    if (!data || data.length === 0) {
-        return "NOT_FOUND";
+    console.log("SEARCH RESULT:", data);
+
+
+    if(!data){
+        return {
+            status: "NOT_FOUND",
+            data: null,
+            source: null
+        };
     }
 
-    const order = data[0];
 
-    debug(JSON.stringify(order));
-
-    // sementara kita anggap ketemu = retur
-    return "RETUR_EXIST";
+    return {
+        status: data.status,
+        data: data.data,
+        source: data.source
+    };
 }
 // ganti mode
 function setMode(m) {
@@ -249,7 +260,8 @@ window.onload = async () => {
 
         debug("SCAN: " + decodedText);
 
-        const status = await resolveOrderStatus(decodedText);
+       const result = await resolveOrderStatus(decodedText);
+        const status = result.status;
         debug("STATUS: " + status);
         const cacheKey = decodedText + ":" + status;
         if (rejectedCache.has(cacheKey)) {
@@ -258,10 +270,12 @@ window.onload = async () => {
         }
         rejectedCache.add(cacheKey);
          console.log("STATUS:", status);
-        data.push({
-          resi: decodedText,
-          status: status
-        });
+            data.push({
+            resi: decodedText,
+            status: status,
+            source: result.source,
+            raw: result.data
+          });
         console.log("DATA ARRAY:", data);
         debug("PUSH OK");
         if (status === "RETUR_EXIST") {
