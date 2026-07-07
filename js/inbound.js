@@ -15,6 +15,7 @@ async function scanResi() {
     resi,
     ekspedisi,
     status,
+    created_at,
 
   }]);
 
