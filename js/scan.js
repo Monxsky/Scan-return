@@ -199,6 +199,7 @@ async function sendData() {
     const payload = data.map(item => ({
       resi: item.resi,
       status: item.status,
+      scan_type: item.scanType,
       created_at: new Date().toISOString()
     }));
 
@@ -276,6 +277,36 @@ window.onload = async () => {
 
        const result = await resolveOrderStatus(decodedText);
         const status = result.status;
+
+        let scanType = "NORMAL";
+
+             if (result.return) {
+
+                  scanType = "CUSTOMER_RETURN";
+              
+              }
+              else if (
+                  result.shipping &&
+                  result.shipping.status === "CANCELLED"
+              ) {
+              
+                  scanType = "CANCELLED_BEFORE_SHIP";
+              
+              }
+              else if (
+                  result.shipping &&
+                  status === "NORMAL_ORDER"
+              ) {
+              
+                  scanType = "DELIVERY_FAILED_RETURN";
+              
+              }
+              else {
+              
+                  scanType = "NORMAL";
+              
+              }
+      
         debug("STATUS: " + status);
         const cacheKey = decodedText + ":" + status;
         if (rejectedCache.has(cacheKey)) {
@@ -289,6 +320,8 @@ window.onload = async () => {
                 resi: decodedText,
             
                 status: status,
+
+                scanType: scanType,
             
                 source: result.source,
             
