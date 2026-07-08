@@ -261,72 +261,72 @@ function renderTable(data) {
   });
 }
 
-// function buildQuery(query){
-// console.log("FILTER =", appState.filter);
-//     // if(current?.ekspedisi?.length){
-
-//     //     query = query.in(
-//     //         "ekspedisi",
-//     //         current.ekspedisi
-//     //     );
-
-//     // }
-
-//      if(appState.filter.scanDateFrom){
-
-//         query = query.gte(
-//             "created_at",
-//             `${appState.filter.scanDateFrom}T00:00:00+07:00`
-//         );
-
-//     }
-
-
-//     if(appState.filter.scanDateTo){
-
-//         query = query.lte(
-//             "created_at",
-//             `${appState.filter.scanDateTo}T23:59:59+07:00`
-//         );
-
-//     }
-
-//     return query;
-
-// }
 function buildQuery(query){
-
+console.log("FILTER =", appState.filter);
     if(current?.ekspedisi?.length){
-        query = query.in("ekspedisi", current.ekspedisi);
-    }
 
-    if(appState.filter.scanDateFrom){
-
-        query = query.gte(
-            "created_at",
-            `${appState.filter.scanDateFrom}T00:00:00`
+        query = query.in(
+            "ekspedisi",
+            current.ekspedisi
         );
 
     }
 
+     if(appState.filter.scanDateFrom){
+
+        query = query.gte(
+            "created_at",
+            `${appState.filter.scanDateFrom}T00:00:00+07:00`
+        );
+
+    }
+
+
     if(appState.filter.scanDateTo){
 
-        const next = new Date(appState.filter.scanDateTo);
-        next.setDate(next.getDate() + 1);
-
-        const yyyy = next.getFullYear();
-        const mm = String(next.getMonth() + 1).padStart(2,'0');
-        const dd = String(next.getDate()).padStart(2,'0');
-
-        query = query.lt(
+        query = query.lte(
             "created_at",
-            `${yyyy}-${mm}-${dd}T00:00:00`
+            `${appState.filter.scanDateTo}T23:59:59+07:00`
         );
 
     }
 
     return query;
+
 }
+// function buildQuery(query){
+
+//     if(current?.ekspedisi?.length){
+//         query = query.in("ekspedisi", current.ekspedisi);
+//     }
+
+//     if(appState.filter.scanDateFrom){
+
+//         query = query.gte(
+//             "created_at",
+//             `${appState.filter.scanDateFrom}T00:00:00`
+//         );
+
+//     }
+
+//     if(appState.filter.scanDateTo){
+
+//         const next = new Date(appState.filter.scanDateTo);
+//         next.setDate(next.getDate() + 1);
+
+//         const yyyy = next.getFullYear();
+//         const mm = String(next.getMonth() + 1).padStart(2,'0');
+//         const dd = String(next.getDate()).padStart(2,'0');
+
+//         query = query.lt(
+//             "created_at",
+//             `${yyyy}-${mm}-${dd}T00:00:00`
+//         );
+
+//     }
+
+//     return query;
+// }
 function renderRow(item){
 
     return `
