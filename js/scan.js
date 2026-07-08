@@ -198,7 +198,7 @@ async function sendData() {
 
     const payload = data.map(item => ({
       resi: item.resi,
-      ekspedisi: item.ekspedisi,
+      // ekspedisi: item.ekspedisi,
       status: item.status,
       scan_type: item.scanType,
       created_at: new Date().toISOString()
@@ -322,11 +322,11 @@ window.onload = async () => {
             
                 resi: decodedText,
             
-                ekspedisi,
+                // ekspedisi,
             
-                status,
+               status: status,
             
-                scanType,
+                scan_type: scanType,
             
                 source: result.source,
             
