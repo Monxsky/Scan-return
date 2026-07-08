@@ -376,11 +376,11 @@ setupToolbar({
 
                 p_date_from:
                 appState.filter.scanDateFrom =
-                scanDateFrom.value || null;
+                scanDateFrom.value || null,
 
                 p_date_to:
                 appState.filter.scanDateTo =
-                scanDateTo.value || null;
+                scanDateTo.value || null
             };
 
         }
