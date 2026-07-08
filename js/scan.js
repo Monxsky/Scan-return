@@ -277,6 +277,8 @@ window.onload = async () => {
         debug("SCAN: " + decodedText);
 
        const result = await resolveOrderStatus(decodedText);
+debug("SHIPPING = " + JSON.stringify(result.shipping));
+debug("RETURN = " + JSON.stringify(result.return));
         const status = result.status;
 
         let scanType = "NORMAL";
