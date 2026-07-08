@@ -223,14 +223,14 @@ console.log("ERROR =", error);
 
 function buildQuery(query){
 console.log("FILTER =", appState.filter);
-    // if(current?.ekspedisi?.length){
+    if(current?.ekspedisi?.length){
 
-    //     query = query.in(
-    //         "ekspedisi",
-    //         current.ekspedisi
-    //     );
+        query = query.in(
+          "ekspedisi",
+          current.ekspedisi
+      );
 
-    // }
+     }
 
      if(appState.filter.scanDateFrom){
 
