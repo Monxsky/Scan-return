@@ -316,7 +316,7 @@ window.onload = async () => {
         }
         rejectedCache.add(cacheKey);
          console.log("STATUS:", status);
-          const ekspedisi = detectExpedisi(decodedText);
+          // const ekspedisi = detectExpedisi(decodedText);
 
             data.push({
             
