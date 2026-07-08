@@ -375,11 +375,12 @@ setupToolbar({
                 current?.ekspedisi,
 
                 p_date_from:
-                appState.filter.scanDateFrom,
+                appState.filter.scanDateFrom =
+                scanDateFrom.value || null;
 
                 p_date_to:
-                appState.filter.scanDateTo
-
+                appState.filter.scanDateTo =
+                scanDateTo.value || null;
             };
 
         }
