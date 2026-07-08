@@ -9,7 +9,7 @@ window.appState = {
         orderDateFrom:"",
         orderDateTo:"",
         scanDateFrom:"",
-        orderDateTo:""
+        scanDateTo:""
 
     },
 
