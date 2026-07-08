@@ -196,14 +196,14 @@ function renderTable(data) {
 
 function buildQuery(query){
 console.log("FILTER =", appState.filter);
-    if(current?.ekspedisi?.length){
+    // if(current?.ekspedisi?.length){
 
-        query = query.in(
-            "ekspedisi",
-            current.ekspedisi
-        );
+    //     query = query.in(
+    //         "ekspedisi",
+    //         current.ekspedisi
+    //     );
 
-    }
+    // }
 
      if(appState.filter.scanDateFrom){
 
@@ -365,7 +365,7 @@ window.reloadCurrentPage = initTable;
 initTable();
 
 
-window.reloadCurrentPage();
+// window.reloadCurrentPage();
 // ======================
 // REPAIR DATA LAMA
 // ======================
