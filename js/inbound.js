@@ -110,64 +110,64 @@ if (current) {
 
 }
 
-   async function refreshSummary(){
+//    async function refreshSummary(){
 
-    const { data, error } =
-await client.rpc(
+//     const { data, error } =
+// await client.rpc(
 
-        "get_inbound_summary",
+//         "get_inbound_summary",
 
-        {
+//         {
 
-            p_ekspedisi:
-            current?.ekspedisi,
+//             p_ekspedisi:
+//             current?.ekspedisi,
 
-            p_date_from:
-            appState.filter.scanDateFrom,
+//             p_date_from:
+//             appState.filter.scanDateFrom,
 
-            p_date_to:
-            appState.filter.scanDateTo
+//             p_date_to:
+//             appState.filter.scanDateTo
 
-        }
+//         }
 
-    );
+//     );
 
-    if(error){
+//     if(error){
 
-    console.error("RPC ERROR", error);
-    return;
+//     console.error("RPC ERROR", error);
+//     return;
 
-}
-
-renderSummary(data?.[0]);
-}
-
-// async function refreshSummary() {
-
-//     const params = {
-//         p_ekspedisi: current?.ekspedisi ?? null,
-//         p_date_from: appState.filter.scanDateFrom || null,
-//         p_date_to: appState.filter.scanDateTo || null
-//     };
-
-//     console.log("RPC PARAMS =", params);
-
-//     const { data, error } = await client.rpc(
-//     "get_inbound_summary",
-//     params
-// );
-
-// console.log("DATA =", data);
-// console.log("ERROR =", error);
-
-//     if (error) {
-//         console.error("RPC ERROR =", error);
-//         return;
-//     }
-
-//     renderSummary(data?.[0]);
-//   console.log(data[0]);
 // }
+
+// renderSummary(data?.[0]);
+// }
+
+async function refreshSummary() {
+
+    const params = {
+        p_ekspedisi: current?.ekspedisi ?? null,
+        p_date_from: appState.filter.scanDateFrom || null,
+        p_date_to: appState.filter.scanDateTo || null
+    };
+
+    console.log("RPC PARAMS =", params);
+
+    const { data, error } = await client.rpc(
+    "get_inbound_summary",
+    params
+);
+
+console.log("DATA =", data);
+console.log("ERROR =", error);
+
+    if (error) {
+        console.error("RPC ERROR =", error);
+        return;
+    }
+
+    renderSummary(data?.[0]);
+  console.log(data[0]);
+}
 // load inbound  //
 async function loadInbound() {
 
