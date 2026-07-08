@@ -229,9 +229,9 @@ function renderTable(data) {
 // }
 function buildQuery(query){
 
-    if(current?.ekspedisi?.length){
-        query = query.in("ekspedisi", current.ekspedisi);
-    }
+    // if(current?.ekspedisi?.length){
+    //     query = query.in("ekspedisi", current.ekspedisi);
+    // }
 
     if(appState.filter.scanDateFrom){
 
