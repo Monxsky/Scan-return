@@ -324,7 +324,7 @@ async function setupToolbar(options = {}){
 
             options.summary.rpc,
 
-            options.summary.params
+            options.summary.getParams()
 
         );
 
