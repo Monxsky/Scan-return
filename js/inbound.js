@@ -1,3 +1,11 @@
+function renderSummary(summary){
+
+    console.log("SUMMARY =", summary);
+
+    const container =
+    document.getElementById("summary");
+
+}
 async function scanResi() {
 
   const resi =
