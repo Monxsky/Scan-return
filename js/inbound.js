@@ -83,10 +83,10 @@ await client.rpc(
             current?.ekspedisi,
 
             p_date_from:
-            appState.filter.scanDateFrom,
+            appState.filter.scanDateFrom || null,
 
             p_date_to:
-            appState.filter.scanDateTo
+            appState.filter.scanDateTo || null
 
         }
 
@@ -94,7 +94,7 @@ await client.rpc(
 
     if(error){
 
-    console.error(error);
+    console.error("RPC ERROR", error);
     return;
 
 }
