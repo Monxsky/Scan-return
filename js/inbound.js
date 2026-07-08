@@ -1,3 +1,43 @@
+function renderSummary(summary){
+
+    const container =
+    document.getElementById("summary");
+
+    if(!container) return;
+
+    if(!summary){
+
+        container.innerHTML = "";
+        return;
+
+    }
+
+    container.innerHTML = `
+        <div class="summary-grid">
+
+            <div class="summary-card">
+                <span>Total Scan</span>
+                <h2>${summary.total_scan ?? 0}</h2>
+            </div>
+
+            <div class="summary-card">
+                <span>Hari Ini</span>
+                <h2>${summary.scan_hari_ini ?? 0}</h2>
+            </div>
+
+            <div class="summary-card">
+                <span>Last Scan</span>
+                <h2>${
+                    summary.last_scan
+                    ? new Date(summary.last_scan).toLocaleString("id-ID")
+                    : "-"
+                }</h2>
+            </div>
+
+        </div>
+    `;
+}
+
 async function scanResi() {
 
   const resi =
