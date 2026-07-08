@@ -1,65 +1,25 @@
-// function renderSummary(summary){
+// async function scanResi() {
 
-//     const container =
-//     document.getElementById("summary");
+//   const resi =
+//   document
+//   .getElementById("resiInput")
+//   .value;
 
-//     if(!container) return;
+//   const ekspedisi =
+//     detectExpedisi(resi);
 
-//     if(!summary){
+//   await client
+//   .from("inbound")
+//   .insert([{
 
-//         container.innerHTML = "";
-//         return;
+//     resi,
+//     ekspedisi,
+//     status,
+//     created_at,
 
-//     }
+//   }]);
 
-//     container.innerHTML = `
-//         <div class="summary-grid">
-
-//             <div class="summary-card">
-//                 <span>Total Scan</span>
-//                 <h2>${summary.total_scan ?? 0}</h2>
-//             </div>
-
-//             <div class="summary-card">
-//                 <span>Hari Ini</span>
-//                 <h2>${summary.scan_hari_ini ?? 0}</h2>
-//             </div>
-
-//             <div class="summary-card">
-//                 <span>Last Scan</span>
-//                 <h2>${
-//                     summary.last_scan
-//                     ? new Date(summary.last_scan).toLocaleString("id-ID")
-//                     : "-"
-//                 }</h2>
-//             </div>
-
-//         </div>
-//     `;
 // }
-
-async function scanResi() {
-
-  const resi =
-  document
-  .getElementById("resiInput")
-  .value;
-
-  const ekspedisi =
-    detectExpedisi(resi);
-
-  await client
-  .from("inbound")
-  .insert([{
-
-    resi,
-    ekspedisi,
-    status,
-    created_at,
-
-  }]);
-
-}
 
 // Parameter Platform
 const params =
@@ -169,108 +129,108 @@ console.log("ERROR =", error);
   console.log(data[0]);
 }
 // load inbound  //
-async function loadInbound() {
+// async function loadInbound() {
 
-  let query =
-  client
-    .from("scan_awb")
-    .select("*");
+//   let query =
+//   client
+//     .from("scan_awb")
+//     .select("*");
 
-if (
-  current &&
-  current.ekspedisi.length > 0
-) {
+// if (
+//   current &&
+//   current.ekspedisi.length > 0
+// ) {
 
-  query =
-    query.in(
-      "ekspedisi",
-      current.ekspedisi
-    );
+//   query =
+//     query.in(
+//       "ekspedisi",
+//       current.ekspedisi
+//     );
 
-}
+// }
 
-const {
-  data,
-  error
-} = await query;
+// const {
+//   data,
+//   error
+// } = await query;
 
-if (error) {
-    console.error("Supabase Error:", error);
-    return;
-  }
+// if (error) {
+//     console.error("Supabase Error:", error);
+//     return;
+//   }
 
-  console.log(
-    "Platform:",
-    platform
-    );
+//   console.log(
+//     "Platform:",
+//     platform
+//     );
   
-  console.log(
-    "Filter:",
-    current?.ekspedisi
-    );
+//   console.log(
+//     "Filter:",
+//     current?.ekspedisi
+//     );
 
-  const tbody = document.getElementById("tableBody");
-  tbody.innerHTML = "";
+//   const tbody = document.getElementById("tableBody");
+//   tbody.innerHTML = "";
 
-  data
-    .slice()
-    .reverse()
-    .forEach(item => {
-      tbody.innerHTML += `
-        <tr>
-          <td>${item.resi}</td>
-          <td>${item.ekspedisi}</td>
-          <td>${item.Pengirim}</td>
-          <td>${item.status}</td>
-          <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
-        </tr>
-      `;
-    });
-}
+//   data
+//     .slice()
+//     .reverse()
+//     .forEach(item => {
+//       tbody.innerHTML += `
+//         <tr>
+//           <td>${item.resi}</td>
+//           <td>${item.ekspedisi}</td>
+//           <td>${item.Pengirim}</td>
+//           <td>${item.status}</td>
+//           <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
+//         </tr>
+//       `;
+//     });
+// }
 
-async function filterInbound() {
+// async function filterInbound() {
 
-  const start = document.getElementById("startDate").value;
-  const end = document.getElementById("endDate").value;
+//   const start = document.getElementById("startDate").value;
+//   const end = document.getElementById("endDate").value;
 
-  const data = await filterByDate("scan_awb", start, end);
+//   const data = await filterByDate("scan_awb", start, end);
 
-  renderTable(data);
-}
+//   renderTable(data);
+// }
 
-function doSearch() {
-  searchResi("scan_awb", renderTable);
-}
+// function doSearch() {
+//   searchResi("scan_awb", renderTable);
+// }
 
-function renderTable(data) {
+// function renderTable(data) {
 
-  const tbody = document.getElementById("tableBody");
-  tbody.innerHTML = "";
+//   const tbody = document.getElementById("tableBody");
+//   tbody.innerHTML = "";
 
-  data.forEach(item => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${item.resi}</td>
-          <td>${item.ekspedisi}</td>
-          <td>${item.Pengirim}</td>
-          <td>${item.status}</td>
-          <td>${item.scan_type}</td>
-          <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
-      </tr>
-    `;
-  });
-}
+//   data.forEach(item => {
+//     tbody.innerHTML += `
+//       <tr>
+//         <td>${item.resi}</td>
+//           <td>${item.ekspedisi}</td>
+//           <td>${item.Pengirim}</td>
+//           <td>${item.status}</td>
+//           <td>${item.scan_type}</td>
+//           <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
+//       </tr>
+//     `;
+//   });
+// }
 
 function buildQuery(query){
 console.log("FILTER =", appState.filter);
-    if(current?.ekspedisi?.length){
+    // if(current?.ekspedisi?.length){
 
-        query = query.in(
-            "ekspedisi",
-            current.ekspedisi
-        );
+    //     query = query.in(
+    //         "ekspedisi",
+    //         current.ekspedisi
+    //     );
 
-    }
+    // }
 
      if(appState.filter.scanDateFrom){
 
@@ -332,13 +292,16 @@ function renderRow(item){
     return `
         <tr>
             <td>${item.resi}</td>
-            <td>${item.ekspedisi}</td>
-            <td>${item.Pengirim}</td>
-            <td>${item.status}</td>
+            <td>${item.ekspedisi ?? "-"}</td>
+            <td>${item.Pengirim ?? "-"}</td>
+            <td>${item.status ?? "-"}</td>
             <td>${item.scan_type}</td>
-            <td>${item.created_at}</td>
-        </tr>
-    `;
+            <td>${
+                  item.created_at
+                  ? new Date(item.created_at).toLocaleString("id-ID")
+                  : "-"
+                  }</td>
+                      `;
 
 }
 async function initTable(){
@@ -370,7 +333,7 @@ setupToolbar({
     refresh: true,
 
      filters: {
-        ekspedisi: true,
+        // ekspedisi: true,
         scanDate: true
 
     },
@@ -383,8 +346,8 @@ setupToolbar({
 
             return{
 
-                p_ekspedisi:
-                current?.ekspedisi || null,
+                // p_ekspedisi:
+                // current?.ekspedisi || null,
 
                 p_date_from:
                 appState.filter.scanDateFrom || null,
@@ -402,46 +365,4 @@ window.reloadCurrentPage = initTable;
 
 // Load pertama
 initTable();
-
-
-// window.reloadCurrentPage();
-// ======================
-// REPAIR DATA LAMA
-// ======================
-
-// async function repairEkspedisi() {
-
-//   const { data } =
-//   await client
-//   .from("scan_awb")
-//   .select("*")
-//   .is("ekspedisi", null);
-
-//   for (const item of data) {
-
-//     const ekspedisi =
-//     detectExpedisi(item.resi);
-
-//     await client
-//     .from("scan_awb")
-//     .update({
-
-//       ekspedisi
-
-//     })
-//     .eq("id", item.id);
-
-//     console.log(
-//       item.resi,
-//       ekspedisi
-//     );
-
-//   }
-
-//   console.log(
-//     "Repair selesai 😎"
-//   );
-
-// }
-// repairEkspedisi();
 
