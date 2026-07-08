@@ -187,47 +187,75 @@ function renderTable(data) {
           <td>${item.ekspedisi}</td>
           <td>${item.Pengirim}</td>
           <td>${item.status}</td>
-          <td>${item.scanType}</td>
+          <td>${item.scan_type}</td>
           <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
       </tr>
     `;
   });
 }
 
+// function buildQuery(query){
+// console.log("FILTER =", appState.filter);
+//     // if(current?.ekspedisi?.length){
+
+//     //     query = query.in(
+//     //         "ekspedisi",
+//     //         current.ekspedisi
+//     //     );
+
+//     // }
+
+//      if(appState.filter.scanDateFrom){
+
+//         query = query.gte(
+//             "created_at",
+//             `${appState.filter.scanDateFrom}T00:00:00+07:00`
+//         );
+
+//     }
+
+
+//     if(appState.filter.scanDateTo){
+
+//         query = query.lte(
+//             "created_at",
+//             `${appState.filter.scanDateTo}T23:59:59+07:00`
+//         );
+
+//     }
+
+//     return query;
+
+// }
 function buildQuery(query){
-console.log("FILTER =", appState.filter);
-    // if(current?.ekspedisi?.length){
 
-    //     query = query.in(
-    //         "ekspedisi",
-    //         current.ekspedisi
-    //     );
+    if(current?.ekspedisi?.length){
+        query = query.in("ekspedisi", current.ekspedisi);
+    }
 
-    // }
-
-     if(appState.filter.scanDateFrom){
+    if(appState.filter.scanDateFrom){
 
         query = query.gte(
             "created_at",
-            `${appState.filter.scanDateFrom}T00:00:00+07:00`
+            appState.filter.scanDateFrom
         );
 
     }
 
-
     if(appState.filter.scanDateTo){
 
-        query = query.lte(
+        const next = new Date(appState.filter.scanDateTo);
+        next.setDate(next.getDate() + 1);
+
+        query = query.lt(
             "created_at",
-            `${appState.filter.scanDateTo}T23:59:59+07:00`
+            next.toISOString().slice(0,10)
         );
 
     }
 
     return query;
-
 }
-
 function renderRow(item){
 
     return `
@@ -236,7 +264,7 @@ function renderRow(item){
             <td>${item.ekspedisi}</td>
             <td>${item.Pengirim}</td>
             <td>${item.status}</td>
-            <td>${item.scanType}</td>
+            <td>${item.scan_type}</td>
             <td>${item.created_at}</td>
         </tr>
     `;
