@@ -113,9 +113,12 @@ async function refreshSummary() {
     console.log("RPC PARAMS =", params);
 
     const { data, error } = await client.rpc(
-        "get_inbound_summary",
-        params
-    );
+    "get_inbound_summary",
+    params
+);
+
+console.log("DATA =", data);
+console.log("ERROR =", error);
 
     if (error) {
         console.error("RPC ERROR =", error);
