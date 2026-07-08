@@ -75,7 +75,7 @@
                 
                 ` : ""}
 
-                ${filters.expedisi ? `
+                ${filters.ekspedisi ? `
 
                     <div class="toolbar-item">
 
