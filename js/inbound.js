@@ -1,11 +1,3 @@
-function renderSummary(summary){
-
-    console.log("SUMMARY =", summary);
-
-    const container =
-    document.getElementById("summary");
-
-}
 async function scanResi() {
 
   const resi =
@@ -305,65 +297,6 @@ function renderRow(item){
     `;
 
 }
-
-// setupPagination({
-
-//     table: "scan_awb",
-
-//     tbodyId: "tableBody",
-
-//     buildQuery(query){
-
-//         // Filter platform
-//         if(current?.ekspedisi?.length){
-
-//             query = query.in(
-//                 "ekspedisi",
-//                 current.ekspedisi
-//             );
-
-//         }
-
-//         // Filter tanggal scan mulai
-//         if(appState.filter.scanDateFrom){
-
-//             query = query.gte(
-//                 "created_at",
-//                 `${appState.filter.scanDateFrom}T00:00:00`
-//             );
-
-//         }
-
-//         // Filter tanggal scan akhir
-//         if(appState.filter.scanDateTo){
-
-//             query = query.lte(
-//                 "created_at",
-//                 `${appState.filter.scanDateTo}T23:59:59`
-//             );
-
-//         }
-
-//         return query;
-
-//     },
-
-//     renderRow(item){
-
-//         return `
-//             <tr>
-//                 <td>${item.resi}</td>
-//                 <td>${item.ekspedisi}</td>
-//                 <td>${item.Pengirim}</td>
-//                 <td>${item.status}</td>
-//                 <td>${item.created_at}</td>
-//             </tr>
-//         `;
-
-//     }
-
-// });
-
 async function initTable(){
 
     await setupPagination({
@@ -398,29 +331,27 @@ setupToolbar({
 
     },
 
-    summary:{
+    // summary:{
 
-        rpc:"get_inbound_summary",
+    //     rpc:"get_inbound_summary",
 
-        getParams(){
+    //     getParams(){
 
-            return{
+    //         return{
 
-                p_ekspedisi:
-                current?.ekspedisi,
+    //             p_ekspedisi:
+    //             current?.ekspedisi,
 
-                p_date_from:
-                appState.filter.scanDateFrom =
-                scanDateFrom.value || null,
+    //             p_date_from:
+    //             appState.filter.scanDateFrom || null,
 
-                p_date_to:
-                appState.filter.scanDateTo =
-                scanDateTo.value || null
-            };
+    //             p_date_to:
+    //             appState.filter.scanDateTo || null
+    //         };
 
-        }
+    //     }
 
-    }
+    // }
 
 });
 window.reloadCurrentPage = initTable;
