@@ -198,6 +198,7 @@ async function sendData() {
 
     const payload = data.map(item => ({
       resi: item.resi,
+      ekspedisi: item.ekspedisi,
       status: item.status,
       scan_type: item.scanType,
       created_at: new Date().toISOString()
@@ -315,13 +316,17 @@ window.onload = async () => {
         }
         rejectedCache.add(cacheKey);
          console.log("STATUS:", status);
-           data.push({
+          const ekspedisi = detectExpedisi(decodedText);
+
+            data.push({
             
                 resi: decodedText,
             
-                status: status,
-
-                scanType: scanType,
+                ekspedisi,
+            
+                status,
+            
+                scanType,
             
                 source: result.source,
             
@@ -331,7 +336,7 @@ window.onload = async () => {
             
                 return: result.return
             
-          });
+            });
         console.log("DATA ARRAY:", data);
         debug("PUSH OK");
         if (status === "RETUR_EXIST") {
