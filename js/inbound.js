@@ -304,7 +304,7 @@ function buildQuery(query){
 
         query = query.gte(
             "created_at",
-            appState.filter.scanDateFrom
+            `${appState.filter.scanDateFrom}T00:00:00`
         );
 
     }
@@ -314,9 +314,13 @@ function buildQuery(query){
         const next = new Date(appState.filter.scanDateTo);
         next.setDate(next.getDate() + 1);
 
+        const yyyy = next.getFullYear();
+        const mm = String(next.getMonth() + 1).padStart(2,'0');
+        const dd = String(next.getDate()).padStart(2,'0');
+
         query = query.lt(
             "created_at",
-            next.toISOString().slice(0,10)
+            `${yyyy}-${mm}-${dd}T00:00:00`
         );
 
     }
