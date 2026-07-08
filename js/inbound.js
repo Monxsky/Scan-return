@@ -83,10 +83,10 @@ await client.rpc(
             current?.ekspedisi,
 
             p_date_from:
-            appState.filter.scanDateFrom || null,
+            appState.filter.scanDateFrom,
 
             p_date_to:
-            appState.filter.scanDateTo || null
+            appState.filter.scanDateTo
 
         }
 
@@ -376,11 +376,11 @@ setupToolbar({
 
                 p_date_from:
                 appState.filter.scanDateFrom =
-                scanDateFrom.value,
+                scanDateFrom.value || null,
 
                 p_date_to:
                 appState.filter.scanDateTo =
-                scanDateTo.value
+                scanDateTo.value || null
             };
 
         }
