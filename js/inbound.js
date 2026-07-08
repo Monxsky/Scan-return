@@ -126,6 +126,7 @@ console.log("ERROR =", error);
     }
 
     renderSummary(data?.[0]);
+  console.log(data[0]);
 }
 // load inbound  //
 async function loadInbound() {
