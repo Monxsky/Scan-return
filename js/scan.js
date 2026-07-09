@@ -336,6 +336,17 @@ debug("RESULT = " + JSON.stringify(result));
         }
         debug("RENDER");
         render();
+
+       } catch (err) {
+
+    console.error(err);
+
+    debug("SCAN ERROR: " + err.message);
+
+    showWarning("⚠ Terjadi error, scan berikutnya tetap bisa lanjut");
+
+    errorBeep();
+
       } finally {
 
         isProcessing = false;
