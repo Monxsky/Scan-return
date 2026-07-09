@@ -433,6 +433,6 @@ debug("RETURN = " + JSON.stringify(result.return));
 
 //     }
 
-    console.log("===== SIMULATION END =====");
+//     console.log("===== SIMULATION END =====");
 
-}
+// }
