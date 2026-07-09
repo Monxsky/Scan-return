@@ -56,42 +56,7 @@ function errorBeep() {
   osc.stop(audioCtx.currentTime + 0.2);
 }
 // ======================================= RESOLVE ORDER =========================================== //
-// async function resolveOrderStatus(resi) {
 
-//   // cek di pesanan_retur dulu
-//   const { data: retur } = await client
-//     .from("pesanan_retur")
-//     .select("*")
-//     .eq("tracking_number", resi)
-//     .maybeSingle();
-// debug("RESULT: " + JSON.stringify(order));
-//   if (retur) {
-//     return "RETUR_EXIST";
-//   }
-
-//   // cek di daftar_pesanan
-//   const { data: order } = await client
-//     .from("daftar_pesanan")
-//     .select("*")
-//     .eq("resi", resi)
-//     .maybeSingle();
-// debug("RESULT: " + JSON.stringify(order));
-//   if (!order) {
-//     return "NOT_FOUND";
-//   }
-
-//   // REJECTED ENGINE (VERSI SIMPLE DULU)
-//   const isRejected =
-//     order.is_rejected === true ||
-//     order.order_status === "CANCELLED";
-
-//   if (isRejected) {
-//     await syncRejectedOrder(order);
-//     return "AUTO_REJECTED";
-//   }
-
-//   return "NORMAL_ORDER";
-// }
 async function resolveOrderStatus(keyword){
 
     debug("SEARCH: " + keyword);
@@ -156,8 +121,10 @@ function setMode(m) {
 
 // render list
 function render() {
-
+ console.log("===== RENDER =====");
+    console.log(data);
   const list = document.getElementById("list");
+    console.log(list);
   list.innerHTML = "";
 
   data.forEach((item, i) => {
