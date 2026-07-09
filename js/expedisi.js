@@ -19,7 +19,8 @@ window.expedisiRules = [
         resi.startsWith("JX") ||
         resi.startsWith("JP") ||
         resi.startsWith("JT") ||
-        resi.startsWith("JNT")
+        resi.startsWith("JNT") ||
+        resi.startsWith("JY")
       );
 
     }
@@ -61,7 +62,7 @@ window.expedisiRules = [
     test: (resi) => {
 
       return (
-
+          resi.startsWith("002") ||
         /^\d+$/.test(resi) &&
         resi.length >= 10
 
@@ -107,6 +108,7 @@ window.expedisiRules = [
       return (
 
         resi.startsWith("CM") ||
+        resi.startsWith("TG") ||
         resi.startsWith("JNE") ||
         resi.startsWith("JTJ")
 
