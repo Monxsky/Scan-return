@@ -2,7 +2,7 @@ async function syncRejectedOrder(order) {
 
   const isRejected =
     order.is_rejected === true ||
-    order.order_status === "CANCELLED";
+    order.status === "CANCELLED";
 
   if (!isRejected) return "NOT_REJECTED";
 
@@ -10,7 +10,7 @@ async function syncRejectedOrder(order) {
     order_id: order.order_id,
     marketplace_order_id: order.marketplace_order_id,
     external_return_id: order.external_return_id || null,
-    tracking_number: order.tracking_number,
+    tracking_number: order.tracking_number || null,
     marketplace: order.marketplace,
     return_status: "REJECTED_AUTO",
     process_status: "SYNC_ENGINE",
