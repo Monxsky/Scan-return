@@ -219,6 +219,7 @@ setupPagination({
 
     <tr>
       <td>${item.resi}</td>
+      <td>${item.marketplace_order_id}</td>
       <td>${item.ekspedisi}</td>
       <td>${item.Pengirim}</td>
       <td>${item.status}</td>
