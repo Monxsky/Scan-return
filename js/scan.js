@@ -165,7 +165,7 @@ async function sendData() {
 
     const payload = data.map(item => ({
       resi: item.resi,
-      ekspedisi: item.ekspedisi,
+      // ekspedisi: item.ekspedisi,
       status: item.status,
       scan_type: item.scanType,
       created_at: new Date().toISOString()
@@ -249,10 +249,10 @@ debug("RETURN = " + JSON.stringify(result.return));
 debug("RESULT = " + JSON.stringify(result));
         const status = result.status;
 
-        const ekspedisi =
-    result.shipping?.ekspedisi ||
-    result.return?.ekspedisi ||
-    detectExpedisi(decodedText);
+    //     const ekspedisi =
+    // result.shipping?.ekspedisi ||
+    // result.return?.ekspedisi ||
+    // detectExpedisi(decodedText);
 
         let scanType = "NORMAL";
 
