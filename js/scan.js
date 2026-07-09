@@ -279,6 +279,7 @@ window.onload = async () => {
        const result = await resolveOrderStatus(decodedText);
 debug("SHIPPING = " + JSON.stringify(result.shipping));
 debug("RETURN = " + JSON.stringify(result.return));
+debug("RESULT = " + JSON.stringify(result));
         const status = result.status;
 
         const ekspedisi =
@@ -324,12 +325,13 @@ debug("RETURN = " + JSON.stringify(result.return));
         rejectedCache.add(cacheKey);
          console.log("STATUS:", status);
          // const ekspedisi = detectExpedisi(decodedText);
-
+          debug("SEBELUM PUSH");
+          console.log("DATA BEFORE:", data.length);
             data.push({
             
                 resi: decodedText,
             
-               ekspedisi,
+               // ekspedisi,
             
                status: status,
             
