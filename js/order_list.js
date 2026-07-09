@@ -1,4 +1,8 @@
 
+const PAGE =
+new URLSearchParams(location.search)
+.get("page") || "tiktok";
+
 const menuBtn =
 document.getElementById("menuBtn");
 
@@ -163,32 +167,51 @@ async function scanResi() {
   }]);
 
 }
+// QUERY FILTER BY STATUS
+function buildOrderQuery(query){
 
+    switch(PAGE){
+
+        case "tiktok":
+
+            return query
+                .eq("marketplace","TIKTOK_ID")
+                .eq("status","READY_TO_SHIP");
+
+        case "shopee":
+
+            return query
+                .eq("marketplace","SHOPEE_ID")
+                .eq("status","READY_TO_SHIP");
+
+        case "shipped":
+
+            return query
+                .eq("status","SHIPPED");
+
+        case "delivered":
+
+            return query
+                .eq("status","DELIVERED");
+
+        case "cancelled":
+
+            return query
+                .eq("status","CANCELLED")
+                .not("resi","is",null)
+                .neq("resi","");
+        default:
+
+            return query;
+
+    }
+
+}
 setupPagination({
 
   table:"daftar_pesanan",
 
-  tbodyId:"manifestBody",
-
-  renderRow:(item)=>`
-
-    <tr>
-      <td>${item.resi}</td>
-      <td>${item.ekspedisi}</td>
-      <td>${item.Pengirim}</td>
-      <td>${item.status}</td>
-      <td>${item.batas_kirim}</td>
-      <td>${item.created_at}</td>
-    </tr>
-
-  `
-});
-
-loadPage({
-
-  page:1,
-
-  table:"daftar_pesanan",
+  buildQuery:buildOrderQuery,
 
   tbodyId:"manifestBody",
 
@@ -206,39 +229,61 @@ loadPage({
   `
 });
 
-async function repairEkspedisi() {
+// loadPage({
 
-  const { data, error } =
-  await client
-  .from("order_list")
-  .select("*")
-  .is("ekspedisi", null);
+//   page:1,
 
-  if (error) {
+//   table:"daftar_pesanan",
 
-    console.log(error);
+//   tbodyId:"manifestBody",
 
-    return;
+//   renderRow:(item)=>`
 
-  }
+//     <tr>
+//       <td>${item.resi}</td>
+//       <td>${item.ekspedisi}</td>
+//       <td>${item.Pengirim}</td>
+//       <td>${item.status}</td>
+//       <td>${item.batas_kirim}</td>
+//       <td>${item.created_at}</td>
+//     </tr>
 
-  for (const item of data) {
+//   `
+// });
 
-    const ekspedisi =
-    detectExpedisi(item.resi);
+// async function repairEkspedisi() {
 
-    await client
-    .from("order_list")
-    .update({
+//   const { data, error } =
+//   await client
+//   .from("order_list")
+//   .select("*")
+//   .is("ekspedisi", null);
 
-      ekspedisi
+//   if (error) {
 
-    })
-    .eq("id", item.id);
+//     console.log(error);
 
-  }
+//     return;
 
-  console.log("Repair selesai 😎");
+//   }
+
+//   for (const item of data) {
+
+//     const ekspedisi =
+//     detectExpedisi(item.resi);
+
+//     await client
+//     .from("order_list")
+//     .update({
+
+//       ekspedisi
+
+//     })
+//     .eq("id", item.id);
+
+//   }
+
+//   console.log("Repair selesai 😎");
 
 }
 repairEkspedisi();
