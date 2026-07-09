@@ -1,18 +1,11 @@
 
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>PESANAN UNTUK DI KIRIM</title>
-
-<link rel="stylesheet"
-href="../css/style.css">
-
-</head>
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>PESANAN</title>
+    <link rel="stylesheet" href="../css/style.css">
+    </head>
 
 <body>
 
@@ -20,97 +13,52 @@ href="../css/style.css">
 ☰
 </button>
 
-<div class="container">
+<div class="app-wrapper">
 
-  <div class="sidebar">
+    <div id="sidebar-container"></div>
 
-    <h2>MENU</h2>
+    <main class="content">
 
-    <a href="../page/scan.html">
-      Scan
-    </a>
+        <!-- Navbar -->
+        <div id="toolbar"></div>
 
-    <a href="../page/index.html">
-      Dashboard
-    </a>
+    <!--    <div class="summary-cards">
 
-    <a href="../page/order_list.html">
-      Pesanan
-    </a>
+    <div class="summary-card">
 
-      <!-- MANIFEST -->
-  <div class="dropdown">
+        <span>Total Paket</span>
 
-    <div class="dropdown-btn">
-      Manifest ▼
-    </div>
-
-    <div class="dropdown-content">
-
-      <a href="../page/manifesttiktok.html">
-        TikTok
-      </a>
-
-      <a href="../page/manifestshopee.html">
-        Shopee
-      </a>
+        <h2 id="totalReturn">0</h2>
 
     </div>
 
-  </div>
+    <div class="summary-card">
 
-  <!-- INBOUND -->
-  <div class="dropdown">
+        <span>Sudah Scan</span>
 
-    <div class="dropdown-btn">
-      Inbound ▼
+        <h2 id="totalScanned">0</h2>
+
     </div>
 
-    <div class="dropdown-content">
+    <div class="summary-card">
 
-      <a href="../page/inboundtiktok.html">
-        TikTok
-      </a>
+        <span>Belum Scan</span>
 
-      <a href="../page/inboundshopee.html">
-        Shopee
-      </a>
+        <h2 id="totalPending">0</h2>
 
-  </div>
+    </div>
+
+    <div class="summary-card">
+
+        <span>Progress</span>
+
+        <h2 id="scanProgress">0%</h2>
+
+    </div>
 
 </div>
-
-</div>
-
-  <div class="content">
-
-    <h2>PESANAN UNTUK DI KIRIM</h2>
-
-    <input
-      type="file"
-      id="csvFile"
-      accept=".csv">
-
-    <button onclick="uploadCSV()">
-      Upload CSV
-    </button>
-
-    <input type="date" id="startDate">
-    <input type="date" id="endDate">
-
-    <button onclick="filtermanifest()">
-     Cari
-   </button>
-
-    <input
-  type="text"
-  id="searchInput"
-  placeholder="Cari resi..."
->
-
-<button onclick="searchResi()">
-  Cari
-</button>
+        <!-- Isi halaman -->
+        <section class="table-card">
     
     <table>
 
@@ -118,10 +66,9 @@ href="../css/style.css">
 
         <tr>
           <th>Resi</th>
-          <th>Expedisi</th>
+          <th>No Order</th>
           <th>Pengirim</th>
           <th>Status</th>
-          <th>Batas Kirim</th>
           <th>waktu</th>
         </tr>
 
@@ -133,12 +80,13 @@ href="../css/style.css">
 
     </table>
 
-  </div>
-
-</div>
-
 <div id="pagination"></div>
   <div id="data"></div>
+
+ </section>
+
+    </main>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="../js/config.js"></script>
