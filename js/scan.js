@@ -294,25 +294,42 @@ debug("RESULT = " + JSON.stringify(result));
          // const ekspedisi = detectExpedisi(decodedText);
           debug("SEBELUM PUSH");
           console.log("DATA BEFORE:", data.length);
-            data.push({
+console.log("=== RESULT ===", result);
+console.log("ORDER     :", result.order);
+console.log("SHIPPING  :", result.shipping);
+console.log("RETURN    :", result.return);
             
-                resi: decodedText,
-            
-               // ekspedisi,
-            
-               status: status,
-            
-                scan_type: scanType,
-            
-                source: result.source,
-            
-                order: result.order,
-            
-                shipping: result.shipping,
-            
-                return: result.return
-            
-            });
+
+data.push({
+    resi: decodedText,
+
+    order_id:
+        result.order?.order_id ??
+        result.return?.order_id ??
+        null,
+
+    marketplace:
+        result.order?.marketplace ??
+        result.return?.marketplace ??
+        null,
+
+    ekspedisi:
+        result.shipping?.ekspedisi ??
+        result.return?.ekspedisi ??
+        null,
+
+    status,
+
+    scanType,
+
+    source: result.source ?? null,
+
+    order: result.order ?? null,
+
+    shipping: result.shipping ?? null,
+
+    return: result.return ?? null
+});
         console.log("DATA ARRAY:", data);
         debug("PUSH OK");
         if (status === "RETUR_EXIST") {
