@@ -192,28 +192,7 @@ if (!response.ok) {
     throw new Error("Gagal insert scan_awb");
 }
 
-// 2. Update retur satu-satu
-for (const item of data) {
 
-    try {
-
-        const res = await fetch(...);
-
-        if (!res.ok) {
-            console.warn("Gagal update retur:", item.resi);
-        }
-
-    } catch(err) {
-
-        console.error(
-            "Update retur gagal",
-            item.resi,
-            err
-        );
-
-    }
-
-}
 
     // 2. UPDATE manifest kalau ada
     for (const item of data) {
