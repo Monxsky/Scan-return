@@ -127,6 +127,8 @@ console.log("ERROR =", error);
 
     renderSummary(data?.[0]);
   console.log(data[0]);
+  console.log("RPC PARAMS =", params);
+console.log("CURRENT =", current);
 }
 // load inbound  //
 // async function loadInbound() {
