@@ -1,3 +1,4 @@
+@media(max-width:768px){
 .toolbar{
 
     display:flex;
@@ -86,7 +87,7 @@
     color:#fff;
 
 }
-@media(max-width:768px){
+
 .date-filter{
 
     display:flex;
