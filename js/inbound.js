@@ -298,7 +298,7 @@ async function initTable(){
 
     });
  console.log("2. setelah setupPagination");
-    // await refreshSummary();
+    await refreshSummary();
  console.log("3. setelah refreshSummary");
 }
 // setup TOOLBAR
