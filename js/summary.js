@@ -8,10 +8,10 @@ async function loadInboundSummary() {
             current?.ekspedisi || null,
             
             p_date_from:
-            appState.filter.scanDateFrom,
+            appState.filter.scanDateFrom || null,
 
             p_date_to:
-            appState.filter.scanDateTo
+            appState.filter.scanDateTo || null
         }
     );
 
@@ -38,4 +38,33 @@ async function loadInboundSummary() {
             .toLocaleString("id-ID")
         : "-";
 
+}
+
+async function refreshSummary() {
+
+    const params = {
+        p_ekspedisi: current?.ekspedisi ?? null,
+        p_date_from: appState.filter.scanDateFrom || null,
+        p_date_to: appState.filter.scanDateTo || null
+    };
+
+    console.log("RPC PARAMS =", params);
+
+    const { data, error } = await client.rpc(
+    "get_inbound_summary",
+    params
+);
+
+console.log("DATA =", data);
+console.log("ERROR =", error);
+
+    if (error) {
+        console.error("RPC ERROR =", error);
+        return;
+    }
+
+    renderSummary(data?.[0]);
+  console.log(data[0]);
+  console.log("RPC PARAMS =", params);
+console.log("CURRENT =", current);
 }
