@@ -62,6 +62,8 @@ body{
 
     display:grid;
 
+    place-items: center;
+
     grid-template-columns:repeat(4,1fr);
 
     gap:20px;
@@ -122,7 +124,7 @@ body{
 
     margin:8px 0 0;
 
-    font-size:32px;
+    font-size:15px;
 
     font-weight:700;
 
@@ -130,6 +132,7 @@ body{
 
 /* summery grid */
 .summary-grid{
+    place-items: center;
 
     display:grid;
 
@@ -193,7 +196,7 @@ body{
 
     margin:8px 0 0;
 
-    font-size:32px;
+    font-size:15px;
 
     font-weight:700;
 
