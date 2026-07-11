@@ -20,7 +20,25 @@
 //   }]);
 
 // }
+window.summaryConfig = {
 
+    rpc:"get_inbound_summary",
+
+    getParams(){
+
+        return{
+
+            p_ekspedisi: current?.ekspedisi,
+
+            p_date_from: appState.filter.scanDateFrom,
+
+            p_date_to: appState.filter.scanDateTo
+
+        };
+
+    }
+
+};
 // Parameter Platform
 const params =
   new URLSearchParams(
@@ -217,27 +235,27 @@ setupToolbar({
 
     },
 
-    summary:{
+    // summary:{
 
-        rpc:"get_inbound_summary",
+    //     rpc:"get_inbound_summary",
 
-        getParams(){
+    //     getParams(){
 
-            return{
+    //         return{
 
-                p_ekspedisi:
-                current?.ekspedisi || null,
+    //             p_ekspedisi:
+    //             current?.ekspedisi || null,
 
-                p_date_from:
-                appState.filter.scanDateFrom || null,
+    //             p_date_from:
+    //             appState.filter.scanDateFrom || null,
 
-                p_date_to:
-                appState.filter.scanDateTo || null
-            };
+    //             p_date_to:
+    //             appState.filter.scanDateTo || null
+    //         };
 
-        }
+    //     }
 
-    }
+    // }
 
 });
 window.reloadCurrentPage = initTable;
