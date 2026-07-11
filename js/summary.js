@@ -4,8 +4,9 @@ async function loadInboundSummary() {
     await client.rpc(
         "get_inbound_summary",
         {
-            p_ekspedisi:
-            current?.ekspedisi || null,
+            p_ekspedisi: current?.ekspedisi
+    ? [current.ekspedisi]
+    : null,
             
             p_date_from:
             appState.filter.scanDateFrom,
