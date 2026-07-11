@@ -855,6 +855,16 @@ margin-bottom:50px;
 .report-shopee{
   display: flex;
   padding: 5px;
+  border-radius:5px;
+}
+.report-shopee span{
+  font: lexend;
+  font-size: 10px;
+}
+.report-shopee h2{
+  font: lexand-bold;
+  font-size: 10px;
+  color: #2563eb;
 }
   
 }
