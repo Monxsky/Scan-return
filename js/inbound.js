@@ -28,11 +28,11 @@ window.summaryConfig = {
 
         return{
 
-            p_ekspedisi: current?.ekspedisi,
+            p_ekspedisi: current?.ekspedisi || null,
 
-            p_date_from: appState.filter.scanDateFrom,
+            p_date_from: appState.filter.scanDateFrom || null,
 
-            p_date_to: appState.filter.scanDateTo
+            p_date_to: appState.filter.scanDateTo || null
 
         };
 
