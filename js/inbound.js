@@ -323,7 +323,7 @@ async function initTable(){
 
     });
 
-    await refreshSummary();
+    // await refreshSummary();
 
 }
 // setup TOOLBAR
