@@ -38,9 +38,11 @@ const config = {
 
     ekspedisi: [
       "SPX",
-      "shopee express",
+      "Shopee Express",
       "J&T Cargo",
-      "ID"
+      "ID",
+      "SPX Hemat",
+      "SPX Standard"
     ]
   },
 
@@ -50,6 +52,7 @@ const config = {
 
     ekspedisi: [
       "J&T",
+      "J&T Express"
       "SiCepat"
     ]
   }
