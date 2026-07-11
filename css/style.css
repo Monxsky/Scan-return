@@ -836,7 +836,7 @@ margin-bottom:50px;
 }
 
 .report-container{
-  display:flex;
+  display:grid;
 
     justify-content:space-between;
 
@@ -852,10 +852,9 @@ margin-bottom:50px;
 
 }
 
-.report-shopee, .report-tiktok{
+.report-shopee{
   display: flex;
-  font: lexend;
-  font-size: 15px;
+  padding: 5px;
 }
   
 }
