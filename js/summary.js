@@ -9,10 +9,10 @@ async function loadInboundSummary() {
     : null,
             
             p_date_from:
-            appState.filter.scanDateFrom,
+            appState.filter.scanDateFrom || null,
 
             p_date_to:
-            appState.filter.scanDateTo
+            appState.filter.scanDateTo || null
         }
     );
 
@@ -38,5 +38,126 @@ async function loadInboundSummary() {
         ? new Date(summary.last_scan)
             .toLocaleString("id-ID")
         : "-";
+
+}
+
+async function refreshSummary() {
+
+    const params = {
+        p_ekspedisi: current?.ekspedisi ?? null,
+        p_date_from: appState.filter.scanDateFrom || null,
+        p_date_to: appState.filter.scanDateTo || null
+    };
+
+    console.log("RPC PARAMS =", params);
+
+    const { data, error } = await client.rpc(
+    "get_inbound_summary",
+    params
+);
+
+console.log("DATA =", data);
+console.log("ERROR =", error);
+
+    if (error) {
+        console.error("RPC ERROR =", error);
+        return;
+    }
+
+    renderSummary(data?.[0]);
+  console.log(data[0]);
+  console.log("RPC PARAMS =", params);
+console.log("CURRENT =", current);
+}
+
+async function loadSummary(
+    rpc,
+    params = {}
+){
+
+    const { data, error } =
+    await client.rpc(
+        rpc,
+        params
+    );
+
+    if(error){
+
+        console.error(error);
+        return;
+
+    }
+
+    return data?.[0];
+
+}
+
+function renderSummary(summary){
+
+    const container =
+    document.getElementById("summary");
+
+    if(!container) return;
+
+    if(!summary){
+
+        container.innerHTML = "";
+        return;
+
+    }
+
+    container.innerHTML = `
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <span>Total Scan</span>
+
+                <h2>${summary.total_scan ?? 0}</h2>
+
+            </div>
+
+            <div class="summary-card">
+
+                <span>Hari Ini</span>
+
+                <h2>${summary.scan_hari_ini ?? 0}</h2>
+
+            </div>
+
+            <div class="summary-card">
+
+                <span>Last Scan</span>
+
+                <h2>${
+                    summary.last_scan
+                    ? new Date(summary.last_scan)
+                        .toLocaleString("id-ID")
+                    : "-"
+                }</h2>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+// =====================
+//        CONFIG
+// =====================
+window.summaryConfig = null;
+
+async function refreshSummary(){
+
+    if(!window.summaryConfig) return;
+
+    const summary = await loadSummary(
+        window.summaryConfig.rpc,
+        window.summaryConfig.getParams()
+    );
+
+    renderSummary(summary);
 
 }
