@@ -143,4 +143,20 @@ function renderSummary(summary){
     `;
 
 }
+// =====================
+//        CONFIG
+// =====================
+window.summaryConfig = null;
 
+async function refreshSummary(){
+
+    if(!window.summaryConfig) return;
+
+    const summary = await loadSummary(
+        window.summaryConfig.rpc,
+        window.summaryConfig.getParams()
+    );
+
+    renderSummary(summary);
+
+}
