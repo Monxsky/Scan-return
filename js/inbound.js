@@ -311,6 +311,8 @@ function renderRow(item){
 }
 async function initTable(){
 
+    console.log("1. sebelum setupPagination");
+
     await setupPagination({
 
         table:"scan_awb",
@@ -322,9 +324,9 @@ async function initTable(){
         renderRow
 
     });
-
-    // await refreshSummary();
-
+ console.log("2. setelah setupPagination");
+    await refreshSummary();
+ console.log("3. setelah refreshSummary");
 }
 // setup TOOLBAR
 // =============
