@@ -856,12 +856,29 @@ margin-bottom:50px;
   display: flex;
   padding: 5px;
   border-radius:5px;
+  align-items: center;
 }
 .report-shopee span{
   font: lexend;
   font-size: 10px;
 }
 .report-shopee h2{
+  font: lexand-bold;
+  font-size: 10px;
+  color: #2563eb;
+}
+
+.report-tiktok{
+  display: flex;
+  padding: 5px;
+  border-radius:5px;
+  align-items: center;
+}
+.report-tiktok span{
+  font: lexend;
+  font-size: 10px;
+}
+.report-tiktok h2{
   font: lexand-bold;
   font-size: 10px;
   color: #2563eb;
