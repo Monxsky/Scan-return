@@ -1,7 +1,7 @@
 @media(max-width:768px){
 .toolbar{
 
-    display:flex;
+    display:grid;
 
     justify-content:space-between;
 
