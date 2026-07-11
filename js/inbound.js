@@ -72,40 +72,6 @@ if (current) {
       current.title;
 
 }
-
-//    async function refreshSummary(){
-
-//     const { data, error } =
-// await client.rpc(
-
-//         "get_inbound_summary",
-
-//         {
-
-//             p_ekspedisi:
-//             current?.ekspedisi,
-
-//             p_date_from:
-//             appState.filter.scanDateFrom,
-
-//             p_date_to:
-//             appState.filter.scanDateTo
-
-//         }
-
-//     );
-
-//     if(error){
-
-//     console.error("RPC ERROR", error);
-//     return;
-
-// }
-
-// renderSummary(data?.[0]);
-// }
-
-
 // load inbound  //
 // async function loadInbound() {
 
@@ -165,40 +131,6 @@ if (current) {
 //       `;
 //     });
 // }
-
-// async function filterInbound() {
-
-//   const start = document.getElementById("startDate").value;
-//   const end = document.getElementById("endDate").value;
-
-//   const data = await filterByDate("scan_awb", start, end);
-
-//   renderTable(data);
-// }
-
-// function doSearch() {
-//   searchResi("scan_awb", renderTable);
-// }
-
-// function renderTable(data) {
-
-//   const tbody = document.getElementById("tableBody");
-//   tbody.innerHTML = "";
-
-//   data.forEach(item => {
-//     tbody.innerHTML += `
-//       <tr>
-//         <td>${item.resi}</td>
-//           <td>${item.ekspedisi}</td>
-//           <td>${item.Pengirim}</td>
-//           <td>${item.status}</td>
-//           <td>${item.scan_type}</td>
-//           <td>${new Date(item.created_at).toLocaleString("id-ID")}</td>
-//       </tr>
-//     `;
-//   });
-// }
-
 function buildQuery(query){
 console.log("FILTER =", appState.filter);
     if(current?.ekspedisi?.length){
@@ -232,39 +164,6 @@ console.log("FILTER =", appState.filter);
     return query;
 
 }
-// function buildQuery(query){
-
-//     if(current?.ekspedisi?.length){
-//         query = query.in("ekspedisi", current.ekspedisi);
-//     }
-
-//     if(appState.filter.scanDateFrom){
-
-//         query = query.gte(
-//             "created_at",
-//             `${appState.filter.scanDateFrom}T00:00:00`
-//         );
-
-//     }
-
-//     if(appState.filter.scanDateTo){
-
-//         const next = new Date(appState.filter.scanDateTo);
-//         next.setDate(next.getDate() + 1);
-
-//         const yyyy = next.getFullYear();
-//         const mm = String(next.getMonth() + 1).padStart(2,'0');
-//         const dd = String(next.getDate()).padStart(2,'0');
-
-//         query = query.lt(
-//             "created_at",
-//             `${yyyy}-${mm}-${dd}T00:00:00`
-//         );
-
-//     }
-
-//     return query;
-// }
 function renderRow(item){
 
     return `
@@ -322,7 +221,7 @@ setupToolbar({
 
         rpc:"get_inbound_summary",
 
-        getParams(){
+        params(){
 
             return{
 
