@@ -221,12 +221,12 @@ setupToolbar({
 
         rpc:"get_inbound_summary",
 
-        params(){
+        getParams(){
 
             return{
 
                 p_ekspedisi:
-                current?.ekspedisi,
+                current?.ekspedisi || null,
 
                 p_date_from:
                 appState.filter.scanDateFrom || null,
