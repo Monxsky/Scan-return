@@ -67,7 +67,7 @@ function renderTable(data){
 
             <td>
                 ${item.created_at
-                    ? new Date(item.created_at).toLocaleTimeString("id-ID")
+                    ? new Date(item.created_at).toLocaleString("id-ID")
                     :"-"
                 }
             </td>
