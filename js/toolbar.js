@@ -9,11 +9,11 @@
 
             filters = {},
 
-            search = true,
+            search = false,
 
-            refresh = true,
+            refresh = false,
 
-            syncScan = true
+            syncScan = false
 
         } = options;
 

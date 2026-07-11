@@ -132,9 +132,9 @@ body{
 
 /* summery grid */
 .summary-grid{
-    place-items: center;
-
     display:grid;
+
+    place-items: center;
 
     grid-template-columns:repeat(4,1fr);
 
