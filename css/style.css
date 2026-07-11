@@ -834,6 +834,30 @@ margin-bottom:50px;
     border-radius:6px;
 
 }
+
+.report-container{
+  display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:15px 20px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+}
+
+.report-shopee, .report-tiktok{
+  display: flex;
+  font: lexend;
+  font-size: 15px;
+}
+  
 }
 /* MOBILE */
 @media(max-width:768px){
