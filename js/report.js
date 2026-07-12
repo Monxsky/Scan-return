@@ -7,7 +7,8 @@ async function getCount(table, status, marketplace) {
             head: true
         })
         .eq("status", status)
-        .eq("marketplace", marketplace);
+        .eq("marketplace", marketplace)
+        .eq("ekspedisi", ekspedisi);
 
     if (error) {
         console.error(error);
