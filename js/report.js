@@ -1,14 +1,29 @@
-async function getCount(table, status, marketplace, ekspedisi) {
+async function getCount(
+    table,
+    status,
+    marketplace,
+    dateFrom = null,
+    dateTo = null
+) {
 
-    const { count, error } = await client
+    let query = client
         .from(table)
         .select("*", {
             count: "exact",
             head: true
         })
         .eq("status", status)
-        .eq("marketplace", marketplace)
-        .eq("ekspedisi", ekspedisi);
+        .eq("marketplace", marketplace);
+
+    if (dateFrom) {
+        query = query.gte("created_at", dateFrom);
+    }
+
+    if (dateTo) {
+        query = query.lte("created_at", dateTo + "T23:59:59");
+    }
+
+    const { count, error } = await query;
 
     if (error) {
         console.error(error);
@@ -24,41 +39,55 @@ async function loadReport() {
     // SHOPEE
     // ==========================
 
-    document.getElementById("shopee-masuk").textContent =
-        await getCount("daftar_pesanan", "READY_TO_SHIP", "SHOPEE_ID");
+    // document.getElementById("shopee-masuk").textContent =
+    //     await getCount("daftar_pesanan", "READY_TO_SHIP", "SHOPEE_ID");
 
-    document.getElementById("shopee-dikirim").textContent =
-        await getCount("daftar_pesanan", "SHIPPING", "SHOPEE_ID");
+    // document.getElementById("shopee-dikirim").textContent =
+    //     await getCount("daftar_pesanan", "SHIPPING", "SHOPEE_ID");
 
-    document.getElementById("shopee-batal").textContent =
-        await getCount("daftar_pesanan", "CANCELLED", "SHOPEE_ID");
+    // document.getElementById("shopee-batal").textContent =
+    //     await getCount("daftar_pesanan", "CANCELLED", "SHOPEE_ID");
 
-    document.getElementById("shopee-retur").textContent =
-        await getCount("pesanan_retur", "RETURNED", "SHOPEE_ID");
+    // document.getElementById("shopee-retur").textContent =
+    //     await getCount("pesanan_retur", "RETURNED", "SHOPEE_ID");
 
-    document.getElementById("shopee-rejected").textContent =
-        await getCount("daftar_pesanan", "REJECTED", "SHOPEE_ID");
+    // document.getElementById("shopee-rejected").textContent =
+    //     await getCount("daftar_pesanan", "REJECTED", "SHOPEE_ID");
+    const dateFrom =
+    document.getElementById("date-from").value || null;
+
+const dateTo =
+    document.getElementById("date-to").value || null;
 
 
     // ==========================
     // TIKTOK
     // ==========================
 
-    document.getElementById("tiktok-masuk").textContent =
-        await getCount("daftar_pesanan", "READY_TO_SHIP", "TIKTOK_ID");
+    // document.getElementById("tiktok-masuk").textContent =
+    //     await getCount("daftar_pesanan", "READY_TO_SHIP", "TIKTOK_ID");
 
-    document.getElementById("tiktok-dikirim").textContent =
-        await getCount("daftar_pesanan", "SHIPPING", "TIKTOK_ID");
+    // document.getElementById("tiktok-dikirim").textContent =
+    //     await getCount("daftar_pesanan", "SHIPPING", "TIKTOK_ID");
 
-    document.getElementById("tiktok-batal").textContent =
-        await getCount("daftar_pesanan", "CANCELLED", "TIKTOK_ID");
+    // document.getElementById("tiktok-batal").textContent =
+    //     await getCount("daftar_pesanan", "CANCELLED", "TIKTOK_ID");
 
-    document.getElementById("tiktok-retur").textContent =
-        await getCount("pesanan_retur", "RETURNED", "TIKTOK_ID");
+    // document.getElementById("tiktok-retur").textContent =
+    //     await getCount("pesanan_retur", "RETURNED", "TIKTOK_ID");
 
-    document.getElementById("tiktok-rejected").textContent =
-        await getCount("daftar_pesanan", "REJECTED", "TIKTOK_ID");
+    // document.getElementById("tiktok-rejected").textContent =
+    //     await getCount("daftar_pesanan", "REJECTED", "TIKTOK_ID");
 
 }
+
+document.getElementById("shopee-masuk").textContent =
+    await getCount(
+        "daftar_pesanan",
+        "READY_TO_SHIP",
+        "SHOPEE_ID",
+        dateFrom,
+        dateTo
+    );
 
 loadReport();
