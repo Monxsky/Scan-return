@@ -20,65 +20,87 @@ href="../css/style.css">
 
     <h2 id="pageTitle">LAPORAN INBOUND & OUTBOUND PAKET</h2>
 
-   <div id="report-container">
-    <table>
-    <thead>
-    <div class="report-shopee">
-               <th>
-                <span>pesanan :</span>
-                <h2>${}</h2>
-                </th>
+   <div class="report-page">
 
-                <th>
-                 <span>diproses :</span>
-                <h2>${}</h2>
-                </th>
+    <div class="report-card">
 
-                <th>
-                <span>batal :</span>
-                <h2>${}</h2>
-                </th>
-                
-                <th>
-                <span>retur :</span>
-                <h2>${}</h2>
-                </th>
+        <div class="report-header shopee">
+            Shopee Report
+        </div>
 
-            </div>
+        <table class="report-table">
+            <tbody>
 
-    </thead>
-    </table>
+                <tr>
+                    <td>Pesanan Masuk</td>
+                    <td id="shopee-masuk">0</td>
+                </tr>
 
-    <table>
-    <thead>
-    <div class="report-tiktok">
-               <th>
-                <span>pesanan :</span>
-                <h2>${}</h2>
-                </th>
+                <tr>
+                    <td>Pesanan Dikirim</td>
+                    <td id="shopee-dikirim">0</td>
+                </tr>
 
-                <th>
-                 <span>diproses :</span>
-                <h2>${}</h2>
-                </th>
+                <tr>
+                    <td>Pesanan Dibatalkan</td>
+                    <td id="shopee-batal">0</td>
+                </tr>
 
-                <th>
-                <span>batal :</span>
-                <h2>${}</h2>
-                </th>
-                
-                <th>
-                <span>retur :</span>
-                <h2>${}</h2>
-                </th>
+                <tr>
+                    <td>Pesanan Dikembalikan</td>
+                    <td id="shopee-retur">0</td>
+                </tr>
 
-            </div>
+                <tr>
+                    <td>Pesanan Ditolak</td>
+                    <td id="shopee-rejected">0</td>
+                </tr>
 
-    </thead>
-    </table>
-   
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="report-card">
+
+        <div class="report-header tiktok">
+            TikTok Shop Report
+        </div>
+
+        <table class="report-table">
+            <tbody>
+
+                <tr>
+                    <td>Pesanan Masuk</td>
+                    <td id="tiktok-masuk">0</td>
+                </tr>
+
+                <tr>
+                    <td>Pesanan Dikirim</td>
+                    <td id="tiktok-dikirim">0</td>
+                </tr>
+
+                <tr>
+                    <td>Pesanan Dibatalkan</td>
+                    <td id="tiktok-batal">0</td>
+                </tr>
+
+                <tr>
+                    <td>Pesanan Dikembalikan</td>
+                    <td id="tiktok-retur">0</td>
+                </tr>
+
+                <tr>
+                    <td>Pesanan Ditolak</td>
+                    <td id="tiktok-rejected">0</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
 </div>
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
