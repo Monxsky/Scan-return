@@ -1,4 +1,4 @@
-async function getCount(table, status, marketplace) {
+async function getCount(table, status, marketplace, ekspedisi) {
 
     const { count, error } = await client
         .from(table)
