@@ -45,19 +45,19 @@ async function loadReport() {
     // ==========================
 
     document.getElementById("tiktok-masuk").textContent =
-        await getCount("daftar_pesanan", "READY_TO_SHIP", "TIKTOK");
+        await getCount("daftar_pesanan", "READY_TO_SHIP", "TIKTOK_ID");
 
     document.getElementById("tiktok-dikirim").textContent =
-        await getCount("daftar_pesanan", "SHIPPING", "TIKTOK");
+        await getCount("daftar_pesanan", "SHIPPING", "TIKTOK_ID");
 
     document.getElementById("tiktok-batal").textContent =
-        await getCount("daftar_pesanan", "CANCELLED", "TIKTOK");
+        await getCount("daftar_pesanan", "CANCELLED", "TIKTOK_ID");
 
     document.getElementById("tiktok-retur").textContent =
-        await getCount("pesanan_retur", "RETURNED", "TIKTOK");
+        await getCount("pesanan_retur", "RETURNED", "TIKTOK_ID");
 
     document.getElementById("tiktok-rejected").textContent =
-        await getCount("daftar_pesanan", "REJECTED", "TIKTOK");
+        await getCount("daftar_pesanan", "REJECTED", "TIKTOK_ID");
 
 }
 
