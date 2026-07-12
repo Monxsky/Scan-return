@@ -1,6 +1,6 @@
 async function getCount(table, status, marketplace) {
 
-    const { count, error } = await supabase
+    const { count, error } = await client
         .from(table)
         .select("*", {
             count: "exact",
