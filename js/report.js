@@ -24,19 +24,19 @@ async function loadReport() {
     // ==========================
 
     document.getElementById("shopee-masuk").textContent =
-        await getCount("daftar_pesanan", "READY_TO_SHIP", "SHOPEE");
+        await getCount("daftar_pesanan", "READY_TO_SHIP", "SHOPEE_ID");
 
     document.getElementById("shopee-dikirim").textContent =
-        await getCount("daftar_pesanan", "SHIPPING", "SHOPEE");
+        await getCount("daftar_pesanan", "SHIPPING", "SHOPEE_ID");
 
     document.getElementById("shopee-batal").textContent =
-        await getCount("daftar_pesanan", "CANCELLED", "SHOPEE");
+        await getCount("daftar_pesanan", "CANCELLED", "SHOPEE_ID");
 
     document.getElementById("shopee-retur").textContent =
-        await getCount("pesanan_retur", "RETURNED", "SHOPEE");
+        await getCount("pesanan_retur", "RETURNED", "SHOPEE_ID");
 
     document.getElementById("shopee-rejected").textContent =
-        await getCount("daftar_pesanan", "REJECTED", "SHOPEE");
+        await getCount("daftar_pesanan", "REJECTED", "SHOPEE_ID");
 
 
     // ==========================
