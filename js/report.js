@@ -56,7 +56,7 @@ async function loadReport() {
     const dateFrom =
     document.getElementById("date-from").value || null;
 
-const dateTo =
+    const dateTo =
     document.getElementById("date-to").value || null;
 
     document.getElementById("shopee-masuk").textContent =
@@ -90,6 +90,21 @@ const dateTo =
 
 }
 
+setupToolbar({
+
+    title: "Report",
+
+    search: true,
+
+    refresh: true,
+
+     filters: {
+        // ekspedisi: true,
+        scanDate: true,
+        orderDate: true
+
+    },
+});
 
 
 loadReport();
