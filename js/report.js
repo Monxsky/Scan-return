@@ -59,6 +59,15 @@ async function loadReport() {
 const dateTo =
     document.getElementById("date-to").value || null;
 
+    document.getElementById("shopee-masuk").textContent =
+    await getCount(
+        "daftar_pesanan",
+        "READY_TO_SHIP",
+        "SHOPEE_ID",
+        dateFrom,
+        dateTo
+    );
+
 
     // ==========================
     // TIKTOK
@@ -81,13 +90,6 @@ const dateTo =
 
 }
 
-document.getElementById("shopee-masuk").textContent =
-    await getCount(
-        "daftar_pesanan",
-        "READY_TO_SHIP",
-        "SHOPEE_ID",
-        dateFrom,
-        dateTo
-    );
+
 
 loadReport();
