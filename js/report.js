@@ -53,12 +53,9 @@ async function loadReport() {
 
     // document.getElementById("shopee-rejected").textContent =
     //     await getCount("daftar_pesanan", "REJECTED", "SHOPEE_ID");
-    const dateFrom =
-    document.getElementById("date-from").value;
-
-    const dateTo =
-    document.getElementById("date-to").value;
-
+     const dateFrom = filter.dateFrom || null;
+     const dateTo = filter.dateTo || null;
+     
     document.getElementById("shopee-masuk").textContent =
     await getCount(
         "daftar_pesanan",
