@@ -230,7 +230,7 @@ setupToolbar({
     refresh: true,
 
      filters: {
-        // ekspedisi: true,
+        ekspedisi: true,
         scanDate: true
 
     },
