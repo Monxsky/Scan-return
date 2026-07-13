@@ -8,6 +8,7 @@ async function getCount(
     statusColumn,
     status,
     marketplace,
+    dateColumn = "created_at",
     dateFrom = null,
     dateTo = null
 ) {
@@ -22,11 +23,11 @@ async function getCount(
         .eq("marketplace", marketplace);
 
     if (dateFrom) {
-        query = query.gte("created_at", dateFrom);
+        query = query.gte(dateColumn, dateFrom);
     }
 
     if (dateTo) {
-        query = query.lte("created_at", dateTo + "T23:59:59");
+        query = query.lte(dateColumn, dateTo + "T23:59:59");
     }
 
     const { count, error } = await query;
