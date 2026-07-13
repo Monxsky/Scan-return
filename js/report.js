@@ -5,8 +5,8 @@
 
 async function getCount(
     table,
+    statusColumn,
     status,
-    // return_status,
     marketplace,
     dateFrom = null,
     dateTo = null
@@ -18,7 +18,7 @@ async function getCount(
             count: "exact",
             head: true
         })
-        .eq("status", status)
+        .eq("statusColumn", status)
         .eq("marketplace", marketplace);
 
     if (dateFrom) {
@@ -60,6 +60,7 @@ async function loadReport() {
     document.getElementById("shopee-masuk").textContent =
         await getCount(
             "daftar_pesanan",
+            "status",
             "READY_TO_SHIP",
             "SHOPEE_ID",
             dateFrom,
@@ -69,6 +70,7 @@ async function loadReport() {
     document.getElementById("shopee-dikirim").textContent =
         await getCount(
             "daftar_pesanan",
+            "status",
             "SHIPPING",
             "SHOPEE_ID",
             dateFrom,
@@ -78,6 +80,7 @@ async function loadReport() {
     document.getElementById("shopee-batal").textContent =
         await getCount(
             "daftar_pesanan",
+            "status",
             "CANCELLED",
             "SHOPEE_ID",
             dateFrom,
@@ -87,6 +90,7 @@ async function loadReport() {
     document.getElementById("shopee-retur").textContent =
         await getCount(
             "pesanan_retur",
+            "return_status",
             "RETURNED",
             "SHOPEE_ID",
             dateFrom,
@@ -96,6 +100,7 @@ async function loadReport() {
     document.getElementById("shopee-rejected").textContent =
         await getCount(
             "scan_awb",
+            "status",
             "DELIVERY_FAILED_RETURN",
             "SHOPEE_ID",
             dateFrom,
