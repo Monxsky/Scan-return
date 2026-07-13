@@ -64,6 +64,7 @@ async function loadReport() {
             "status",
             "READY_TO_SHIP",
             "SHOPEE_ID",
+            "created_at",
             dateFrom,
             dateTo
         );
@@ -74,6 +75,7 @@ async function loadReport() {
             "status",
             "SHIPPING",
             "SHOPEE_ID",
+            "created_at",
             dateFrom,
             dateTo
         );
@@ -84,6 +86,7 @@ async function loadReport() {
             "status",
             "CANCELLED",
             "SHOPEE_ID",
+            "created_at",
             dateFrom,
             dateTo
         );
@@ -94,6 +97,7 @@ async function loadReport() {
             "return_status",
             "RETURNED",
             "SHOPEE_ID",
+            "created_at",
             dateFrom,
             dateTo
         );
