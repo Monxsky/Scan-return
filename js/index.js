@@ -83,7 +83,7 @@ function setupRealtime() {
     .on('postgres_changes', {
       event: '*',
       schema: 'public',
-      table: 'retur_manifest'
+      table: 'pesanan_retur'
     }, () => {
       loadData();
     })
@@ -168,7 +168,7 @@ async function uploadCSV() {
 
    // 1. ambil data existing dari Supabase
   const existingRes = await fetch(
-    `${SUPABASE_URL}/rest/v1/retur_manifest?select=resi`,
+    `${SUPABASE_URL}/rest/v1/pesanan_retur?select=resi`,
     {
       headers: {
         apikey: SUPABASE_KEY,
