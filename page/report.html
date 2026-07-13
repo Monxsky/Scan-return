@@ -17,11 +17,33 @@ href="../css/style.css">
 </button>
   <div id="sidebar-container"></div>
   <div class="content">
-
-    <div id="toolbar"></div>
-
     <h2 id="pageTitle">LAPORAN INBOUND & OUTBOUND PAKET</h2>
 
+    <div class="report-filter">
+
+    <div class="form-group">
+        <label>Dari Tanggal</label>
+        <input
+            type="date"
+            id="date-from"
+            class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Sampai Tanggal</label>
+        <input
+            type="date"
+            id="date-to"
+            class="form-control">
+    </div>
+
+    <button
+        id="btn-report"
+        class="btn btn-primary">
+        Tampilkan Laporan
+    </button>
+
+</div>
    <div class="report-page">
 
     <div class="report-card">
