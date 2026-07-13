@@ -6,6 +6,7 @@
 async function getCount(
     table,
     status,
+    return_status,
     marketplace,
     dateFrom = null,
     dateTo = null
@@ -17,7 +18,7 @@ async function getCount(
             count: "exact",
             head: true
         })
-        .eq("status", status)
+        .eq("status", status, return_status)
         .eq("marketplace", marketplace);
 
     if (dateFrom) {
@@ -95,7 +96,7 @@ async function loadReport() {
     document.getElementById("shopee-rejected").textContent =
         await getCount(
             "daftar_pesanan",
-            "REJECTED",
+            "DELIVERY_FAILED_RETURN",
             "SHOPEE_ID",
             dateFrom,
             dateTo
@@ -145,7 +146,7 @@ async function loadReport() {
     document.getElementById("tiktok-rejected").textContent =
         await getCount(
             "daftar_pesanan",
-            "REJECTED",
+            "DELIVERY_FAILED_RETURN",
             "TIKTOK_ID",
             dateFrom,
             dateTo
