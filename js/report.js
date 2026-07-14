@@ -19,7 +19,7 @@ async function getCount(
             count: "exact",
             head: true
         })
-        .eq("statusColumn", status)
+        .eq(statusColumn, status)
         .eq("marketplace", marketplace);
 
     if (dateFrom) {
@@ -108,6 +108,7 @@ async function loadReport() {
             "status",
             "DELIVERY_FAILED_RETURN",
             "SHOPEE_ID",
+            "scan_at",
             dateFrom,
             dateTo
         );
@@ -131,6 +132,7 @@ async function loadReport() {
             "daftar_pesanan",
             "SHIPPING",
             "TIKTOK_ID",
+            "created_at",
             dateFrom,
             dateTo
         );
@@ -140,6 +142,7 @@ async function loadReport() {
             "daftar_pesanan",
             "CANCELLED",
             "TIKTOK_ID",
+            "created_at",
             dateFrom,
             dateTo
         );
@@ -149,6 +152,7 @@ async function loadReport() {
             "pesanan_retur",
             "RETURNED",
             "TIKTOK_ID",
+            "created_at",
             dateFrom,
             dateTo
         );
@@ -158,6 +162,7 @@ async function loadReport() {
             "scan_awb",
             "DELIVERY_FAILED_RETURN",
             "TIKTOK_ID",
+            "scan_at",
             dateFrom,
             dateTo
         );
