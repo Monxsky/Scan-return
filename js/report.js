@@ -124,7 +124,7 @@ async function loadReport() {
             "status",
             "READY_TO_SHIP",
             "TIKTOK_ID",
-            "created_at"
+            "created_at",
             dateFrom,
             dateTo
         );
