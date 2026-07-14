@@ -97,7 +97,7 @@ async function loadReport() {
             "return_status",
             "RETURNED",
             "SHOPEE_ID",
-            "created_at",
+            "scan_at",
             dateFrom,
             dateTo
         );
@@ -108,7 +108,7 @@ async function loadReport() {
             "status",
             "DELIVERY_FAILED_RETURN",
             "SHOPEE_ID",
-            "scan_at",
+            "created_at",
             dateFrom,
             dateTo
         );
@@ -157,7 +157,7 @@ async function loadReport() {
             "status",
             "RETURNED",
             "TIKTOK_ID",
-            "created_at",
+            "scan_at",
             dateFrom,
             dateTo
         );
@@ -168,7 +168,7 @@ async function loadReport() {
             "return_status",
             "DELIVERY_FAILED_RETURN",
             "TIKTOK_ID",
-            "scan_at",
+            "created_at",
             dateFrom,
             dateTo
         );
