@@ -154,7 +154,7 @@ async function loadReport() {
     document.getElementById("tiktok-retur").textContent =
         await getCount(
             "pesanan_retur",
-            "status",
+            "return_status",
             "RETURNED",
             "TIKTOK_ID",
             "scan_at",
@@ -165,7 +165,7 @@ async function loadReport() {
     document.getElementById("tiktok-rejected").textContent =
         await getCount(
             "scan_awb",
-            "return_status",
+            "status",
             "DELIVERY_FAILED_RETURN",
             "TIKTOK_ID",
             "created_at",
