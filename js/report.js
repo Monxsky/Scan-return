@@ -19,8 +19,14 @@ async function getCount(
             count: "exact",
             head: true
         })
-        .eq(statusColumn, status)
         .eq("marketplace", marketplace);
+
+    // Kalau status berupa array
+    if (Array.isArray(status)) {
+        query = query.in(statusColumn, status);
+    } else {
+        query = query.eq(statusColumn, status);
+    }
 
     if (dateFrom) {
         query = query.gte(dateColumn, dateFrom);
@@ -38,7 +44,6 @@ async function getCount(
     }
 
     return count || 0;
-
 }
 
 // ==========================
@@ -62,7 +67,12 @@ async function loadReport() {
         await getCount(
             "daftar_pesanan",
             "status",
-            "READY_TO_SHIP",
+            [
+                "READY_TO_SHIP",
+                "CANCELLED",
+                "SHIPPING",
+                "DELIVERED"
+            ]
             "SHOPEE_ID",
             "created_at",
             dateFrom,
@@ -106,7 +116,11 @@ async function loadReport() {
         await getCount(
             "scan_awb",
             "status",
-            "DELIVERY_FAILED_RETURN",
+            [
+                "DELIVERY_FAILED_RETURN",
+                "NOT_FOUND"
+                "NORMAL_ORDER"
+            ]
             "SHOPEE_ID",
             "created_at",
             dateFrom,
@@ -122,7 +136,12 @@ async function loadReport() {
         await getCount(
             "daftar_pesanan",
             "status",
-            "READY_TO_SHIP",
+            [
+                "READY_TO_SHIP",
+                "CANCELLED",
+                "SHIPPING",
+                "DELIVERED"
+            ]
             "TIKTOK_ID",
             "created_at",
             dateFrom,
@@ -166,7 +185,11 @@ async function loadReport() {
         await getCount(
             "scan_awb",
             "status",
-            "DELIVERY_FAILED_RETURN",
+            [
+                "DELIVERY_FAILED_RETURN",
+                "NOT_FOUND"
+                "NORMAL_ORDER"
+            ]
             "TIKTOK_ID",
             "created_at",
             dateFrom,
