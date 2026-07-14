@@ -72,7 +72,7 @@ async function loadReport() {
                 "CANCELLED",
                 "SHIPPING",
                 "DELIVERED"
-            ]
+            ],
             "SHOPEE_ID",
             "created_at",
             dateFrom,
@@ -118,9 +118,9 @@ async function loadReport() {
             "status",
             [
                 "DELIVERY_FAILED_RETURN",
-                "NOT_FOUND"
+                "NOT_FOUND",
                 "NORMAL_ORDER"
-            ]
+            ],
             "SHOPEE_ID",
             "created_at",
             dateFrom,
@@ -141,7 +141,7 @@ async function loadReport() {
                 "CANCELLED",
                 "SHIPPING",
                 "DELIVERED"
-            ]
+            ],
             "TIKTOK_ID",
             "created_at",
             dateFrom,
@@ -187,9 +187,9 @@ async function loadReport() {
             "status",
             [
                 "DELIVERY_FAILED_RETURN",
-                "NOT_FOUND"
+                "NOT_FOUND",
                 "NORMAL_ORDER"
-            ]
+            ],
             "TIKTOK_ID",
             "created_at",
             dateFrom,
