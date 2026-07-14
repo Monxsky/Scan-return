@@ -71,6 +71,8 @@ const config = {
     ekspedisi: [
       "J&T",
       "J&T Express",
+      "JX",
+      "JY",
       "SiCepat"
     ]
   }
