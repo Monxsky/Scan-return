@@ -121,8 +121,10 @@ async function loadReport() {
     document.getElementById("tiktok-masuk").textContent =
         await getCount(
             "daftar_pesanan",
+            "status",
             "READY_TO_SHIP",
             "TIKTOK_ID",
+            "created_at"
             dateFrom,
             dateTo
         );
@@ -130,6 +132,7 @@ async function loadReport() {
     document.getElementById("tiktok-dikirim").textContent =
         await getCount(
             "daftar_pesanan",
+            "status",
             "SHIPPING",
             "TIKTOK_ID",
             "created_at",
@@ -140,6 +143,7 @@ async function loadReport() {
     document.getElementById("tiktok-batal").textContent =
         await getCount(
             "daftar_pesanan",
+            "status",
             "CANCELLED",
             "TIKTOK_ID",
             "created_at",
@@ -150,6 +154,7 @@ async function loadReport() {
     document.getElementById("tiktok-retur").textContent =
         await getCount(
             "pesanan_retur",
+            "status",
             "RETURNED",
             "TIKTOK_ID",
             "created_at",
@@ -160,6 +165,7 @@ async function loadReport() {
     document.getElementById("tiktok-rejected").textContent =
         await getCount(
             "scan_awb",
+            "return_status",
             "DELIVERY_FAILED_RETURN",
             "TIKTOK_ID",
             "scan_at",
