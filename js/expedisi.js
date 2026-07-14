@@ -19,8 +19,8 @@ window.expedisiRules = [
         resi.startsWith("JX") ||
         resi.startsWith("JP") ||
         resi.startsWith("JT") ||
-        resi.startsWith("JNT") ||
-        resi.startsWith("JY")
+        resi.startsWith("JY") ||
+        resi.startsWith("JNT")
       );
 
     }
