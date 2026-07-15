@@ -68,6 +68,8 @@ async function loadReport() {
             "daftar_pesanan",
             "status",
             [
+                "PENDING_PAYMENT",
+                "PAID",
                 "READY_TO_SHIP",
                 "CANCELLED",
                 "SHIPPING",
@@ -115,7 +117,7 @@ async function loadReport() {
     document.getElementById("shopee-rejected").textContent =
         await getCount(
             "scan_awb",
-            "status",
+            "scan_type",
             [
                 "DELIVERY_FAILED_RETURN",
                 "NOT_FOUND",
@@ -137,6 +139,8 @@ async function loadReport() {
             "daftar_pesanan",
             "status",
             [
+                "PENDING_PAYMENT",
+                "PAID",
                 "READY_TO_SHIP",
                 "CANCELLED",
                 "SHIPPING",
@@ -184,11 +188,11 @@ async function loadReport() {
     document.getElementById("tiktok-rejected").textContent =
         await getCount(
             "scan_awb",
-            "status",
+            "scan_type",
             [
                 "DELIVERY_FAILED_RETURN",
                 "NOT_FOUND",
-                "NORMAL_ORDER"
+                "NORMAL"
             ],
             "TIKTOK_ID",
             "created_at",
