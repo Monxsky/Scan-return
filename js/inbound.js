@@ -153,6 +153,7 @@ if (current) {
 // }
 function buildQuery(query){
 console.log("FILTER =", appState.filter);
+    console.log("CURRENT =", current);
     if(current?.ekspedisi?.length){
 
         query = query.in(
