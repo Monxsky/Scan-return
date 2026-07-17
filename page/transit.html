@@ -1,0 +1,136 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>PESANAN</title>
+    <link rel="stylesheet" href="../css/style.css">
+    </head>
+
+<body>
+
+<button class="menu-btn" id="menuBtn">
+☰
+</button>
+
+<div class="app-wrapper">
+
+    <div id="sidebar-container"></div>
+
+    <main class="content">
+
+        <!-- Navbar -->
+        <div id="toolbar"></div>
+
+<script>
+const MARKETPLACE = "SHOPEE_ID";
+</script>
+
+<div class="nav nav-tabs">
+
+<button
+class="nav-link tab-ekspedisi active"
+data-ekspedisi="ALL">
+
+Semua
+
+</button>
+
+<button
+class="nav-link tab-ekspedisi"
+data-ekspedisi="SPX">
+
+SPX
+
+</button>
+
+<button
+class="nav-link tab-ekspedisi"
+data-ekspedisi="J&T Cargo">
+
+J&T Cargo
+
+</button>
+
+<button
+class="nav-link tab-ekspedisi"
+data-ekspedisi="ID Express">
+
+ID Express
+
+</button>
+
+<script>
+const MARKETPLACE = "TIKTOK_ID";
+</script>
+
+<div class="nav nav-tabs">
+
+<button
+class="nav-link tab-ekspedisi active"
+data-ekspedisi="ALL">
+
+Semua
+
+</button>
+
+<button
+class="nav-link tab-ekspedisi"
+data-ekspedisi="J&T">
+
+J&T
+
+</button>
+
+<button
+class="nav-link tab-ekspedisi"
+data-ekspedisi="SiCepat">
+
+SiCepat
+
+</button>
+
+</div>
+
+</div>
+
+  <table>
+
+      <thead>
+
+        <tr>
+          <th>Resi</th>
+          <th>No Order</th>
+          <th>Pengirim</th>
+          <th>Status</th>
+          <th>waktu</th>
+        </tr>
+
+      </thead>
+
+      <tbody id="manifestBody">
+
+      </tbody>
+
+    </table>
+
+<div id="pagination"></div>
+  <div id="data"></div>
+
+ </section>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/toolbar.js"></script>
+<script src="../js/expedisi.js"></script>
+<script src="../js/detectexpedisi.js"></script>
+<script src="../js/filterstate.js"></script>
+<script src="../js/pagination.js"></script>
+<!-- <script src="../js/filter.js"></script> -->
+<script src="../js/transit.js"></script>
+
+</body>
+</html>
