@@ -2,10 +2,10 @@
 // TRANSIT.JS
 // ======================================================
 
-const client = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+// const client = window.supabase.createClient(
+//     SUPABASE_URL,
+//     SUPABASE_KEY
+// );
 
 // ======================================================
 // KONFIGURASI
