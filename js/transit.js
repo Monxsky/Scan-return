@@ -24,21 +24,26 @@ let currentEkspedisi = "ALL";
 // database = timestamptz UTC
 // ======================================================
 
-function getTodayRangeWIB() {
+function getTodayRangeWIB(){
 
     const now = new Date();
 
-    // awal hari WIB
-    const start = new Date(now);
-    start.setHours(0,0,0,0);
+    const start = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        0,0,0
+    );
 
-    // akhir hari WIB
+
     const end = new Date(start);
+
     end.setDate(end.getDate()+1);
 
+
     return {
-        start: start.toISOString(),
-        end: end.toISOString()
+        start:start.toISOString(),
+        end:end.toISOString()
     };
 
 }
@@ -87,7 +92,7 @@ async function loadTransit(ekspedisi="ALL") {
 
     console.log(data);
 
-    renderSummary(data);
+    // renderSummary(data);
 
     renderTable(data);
 
@@ -99,13 +104,13 @@ async function loadTransit(ekspedisi="ALL") {
 // SUMMARY
 // ======================================================
 
-function renderSummary(data){
+// function renderSummary(data){
 
-    document
-        .getElementById("totalTransit")
-        .textContent = data.length;
+//     document
+//         .getElementById("totalTransit")
+//         .textContent = data.length;
 
-}
+// }
 
 // ======================================================
 // TABLE
@@ -113,36 +118,92 @@ function renderSummary(data){
 
 function renderTable(rows){
 
-    const tbody =
-        document.querySelector("#tblTransit tbody");
+    const container =
+        document.getElementById("data");
 
-    tbody.innerHTML="";
+    if(!container) return;
+
+
+    if(rows.length === 0){
+
+        container.innerHTML = `
+            <div class="alert alert-warning">
+                Tidak ada transit hari ini
+            </div>
+        `;
+
+        return;
+    }
+
+
+    let html = `
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Order ID</th>
+                <th>Resi</th>
+                <th>Ekspedisi</th>
+                <th>Batas Kirim</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+    `;
+
 
     rows.forEach((row,index)=>{
 
-        tbody.innerHTML += `
+        html += `
+
         <tr>
 
             <td>${index+1}</td>
 
-            <td>${row.marketplace_order_id ?? "-"}</td>
+            <td>
+            ${row.marketplace_order_id ?? "-"}
+            </td>
 
-            <td>${row.resi ?? "-"}</td>
+            <td>
+            ${row.resi ?? "-"}
+            </td>
 
-            <td>${row.ekspedisi ?? "-"}</td>
+            <td>
+            ${row.ekspedisi ?? "-"}
+            </td>
 
-            <td>${new Date(row.batas_kirim)
-                .toLocaleString("id-ID")}</td>
+            <td>
+            ${new Date(row.batas_kirim)
+            .toLocaleString("id-ID")}
+            </td>
 
-            <td>${row.status}</td>
+            <td>
+            ${row.status}
+            </td>
 
         </tr>
+
         `;
 
     });
 
-}
 
+    html += `
+
+        </tbody>
+
+    </table>
+
+    `;
+
+
+    container.innerHTML = html;
+
+}
 // ======================================================
 // ACTIVE TAB
 // ======================================================
