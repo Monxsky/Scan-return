@@ -165,7 +165,7 @@ async function sendData() {
 
     const payload = data.map(item => ({
       resi: item.resi,
-      // ekspedisi: item.ekspedisi,
+      ekspedisi: item.ekspedisi,
       status: item.status,
       scan_type: item.scanType,
       created_at: new Date().toISOString()
