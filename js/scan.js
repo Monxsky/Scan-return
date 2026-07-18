@@ -173,7 +173,14 @@ window.onload = async () => {
 
       
 async (decodedText) => {
+    async (decodedText) => {
 
+    decodedText = decodedText.trim();
+
+    console.log("SCAN:", decodedText);
+    console.log("HAS CACHE?", rejectedCache.has(decodedText));
+    console.log("CACHE:", [...rejectedCache]);
+      
     if (isProcessing) return;
 
     isProcessing = true;
