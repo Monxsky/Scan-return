@@ -193,9 +193,8 @@ async (decodedText) => {
 
         }
 
-        rejectedCache.add(decodedText);
-
         const ekspedisi = detectExpedisi(decodedText);
+        rejectedCache.add(decodedText);
 
         data.push({
             resi: decodedText,
@@ -210,7 +209,9 @@ async (decodedText) => {
 
     } catch (err) {
 
-        console.error(err);
+        console.error("SCAN ERROR:", err);
+
+        alert(err.message);
 
         errorBeep();
 
@@ -231,4 +232,4 @@ async (decodedText) => {
     alert("Camera gagal dibuka!");
 
 }
-  }
+  };
