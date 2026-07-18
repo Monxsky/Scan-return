@@ -148,3 +148,89 @@ async function processAndSave(scan) {
     }
 
 }
+
+// =================================
+// SYNC PENDING ENGINE
+// =================================
+
+async function syncPending(limit = 50) {
+
+
+    console.log(
+        "=== SYNC PENDING START ==="
+    );
+
+
+    const {
+        data: scans,
+        error
+    } = await client
+        .from("scan_awb")
+        .select("*")
+        .eq(
+            "sync_status",
+            "PENDING"
+        )
+        .order(
+            "created_at",
+            {
+                ascending:true
+            }
+        )
+        .limit(limit);
+
+
+
+    if(error){
+
+        console.error(
+            "GET PENDING ERROR:",
+            error
+        );
+
+        return;
+
+    }
+
+
+
+    if(!scans || scans.length === 0){
+
+        console.log(
+            "Tidak ada pending scan"
+        );
+
+        return;
+
+    }
+
+
+
+    console.log(
+        "TOTAL PENDING:",
+        scans.length
+    );
+
+
+
+    for(const scan of scans){
+
+
+        console.log(
+            "PROCESS:",
+            scan.resi
+        );
+
+
+        await processAndSave(scan);
+
+
+    }
+
+
+
+    console.log(
+        "=== SYNC PENDING END ==="
+    );
+
+}
