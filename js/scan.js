@@ -173,8 +173,6 @@ window.onload = async () => {
 
       
 async (decodedText) => {
-    async (decodedText) => {
-
     decodedText = decodedText.trim();
 
     console.log("SCAN:", decodedText);
