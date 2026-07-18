@@ -55,63 +55,7 @@ function errorBeep() {
   osc.start();
   osc.stop(audioCtx.currentTime + 0.2);
 }
-// ======================================= RESOLVE ORDER =========================================== //
 
-async function resolveOrderStatus(keyword){
-
-    debug("SEARCH: " + keyword);
-
-    const { data, error } = await client.rpc(
-        "search_order",
-        {
-            keyword: keyword
-        }
-    );
-
-
-    if(error){
-
-        console.error(error);
-
-        debug(
-          "RPC ERROR: " + error.message
-        );
-
-        return {
-            status: "NOT_FOUND",
-            order: null,
-            shipping: null,
-            return: null
-        };
-    }
-
-
-    console.log(
-        "SEARCH RESULT:",
-        data
-    );
-
-
-    if(!data){
-
-        return {
-            status: "NOT_FOUND",
-            order: null,
-            shipping: null,
-            return: null
-        };
-
-    }
-
-
-    return data;
-
-}
-
-
-// );
-// debug(
-//  JSON.stringify(result);
 // ganti mode
 function setMode(m) {
   enableSound();
@@ -121,8 +65,6 @@ function setMode(m) {
 
 // render list
 function render() {
- console.log("===== RENDER =====");
-    console.log(data);
   const list = document.getElementById("list");
     console.log(list);
   list.innerHTML = "";
@@ -130,7 +72,8 @@ function render() {
   data.forEach((item, i) => {
     list.innerHTML += `
       <div class="item">
-        ${item.resi} (${item.status})
+        ${item.resi}
+        <small>${item.ekspedisi}</small>
         <button onclick="removeItem(${i})">Hapus</button>
       </div>
     `;
@@ -141,6 +84,7 @@ function render() {
 
 // hapus item
 function removeItem(i) {
+  rejectedCache.delete(data[i].resi);
   data.splice(i, 1);
   render();
 }
@@ -149,6 +93,7 @@ function removeItem(i) {
 function clearAll() {
   if (confirm("Hapus semua data?")) {
     data = [];
+    rejectedCache.clear();
     render();
   }
 }
@@ -164,12 +109,24 @@ async function sendData() {
   try {
 
     const payload = data.map(item => ({
-      resi: item.resi,
-      ekspedisi: item.ekspedisi,
-      status: item.status,
-      scan_type: item.scanType,
-      created_at: new Date().toISOString()
-    }));
+
+    resi: item.resi,
+
+    ekspedisi: item.ekspedisi,
+
+    status: null,
+
+    scan_type: null,
+
+    sync_status: "PENDING",
+
+    sync_at: null,
+
+    sync_error: null,
+
+    created_at: new Date().toISOString()
+
+}));
 
     console.log(payload);
     // 1. INSERT ke inbound / scan table
@@ -191,30 +148,10 @@ async function sendData() {
 if (!response.ok) {
     throw new Error("Gagal insert scan_awb");
 }
-
-
-
-    // 2. UPDATE manifest kalau ada
-    for (const item of data) {
-      await fetch(
-        `${SUPABASE_URL}/rest/v1/pesanan_retur?resi=eq.${item.resi}`,
-        {
-          method: "PATCH",
-          headers: {
-            apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            status: "SUDAH DIKEMBALIKAN"
-          })
-        }
-      );
-    }
-
-    alert("Data berhasil dikirim & manifest terupdate!");
+    alert("Data berhasil dikirim!");
 
     data = [];
+    rejectedCache.clear();
     render();
 
   } catch (err) {
@@ -234,208 +171,59 @@ window.onload = async () => {
       { facingMode: "environment" },
       { fps: 10, qrbox: 250 },
 
-      async (decodedText) => {
-        //  debug("SCAN: " + decodedText);
-        // if (data.find(d => d.resi === decodedText)) {
-        //   errorBeep();
-        //   showWarning("⚠ Resi sudah di scan!");
-        //   return;
-        // }
-        if (isProcessing) return;
+      
+async (decodedText) => {
+
+    if (isProcessing) return;
 
     isProcessing = true;
 
     try {
 
-        debug("SCAN: " + decodedText);
+        if (rejectedCache.has(decodedText)) {
 
-       const result = await resolveOrderStatus(decodedText);
-debug("SHIPPING = " + JSON.stringify(result.shipping));
-debug("RETURN = " + JSON.stringify(result.return));
-debug("RESULT = " + JSON.stringify(result));
-        const status = result.status;
-
-    //     const ekspedisi =
-    // result.shipping?.ekspedisi ||
-    // result.return?.ekspedisi ||
-    // detectExpedisi(decodedText);
-
-        let scanType = "NORMAL";
-
-             if (result.return) {
-
-                  scanType = "CUSTOMER_RETURN";
-              
-              }
-              else if (
-                  result.shipping &&
-                  result.shipping.status === "CANCELLED"
-              ) {
-              
-                  scanType = "CANCELLED_BEFORE_SHIP";
-              
-              }
-              else if (
-                  result.shipping &&
-                  status === "NORMAL_ORDER"
-              ) {
-              
-                  scanType = "DELIVERY_FAILED_RETURN";
-              
-              }
-              else {
-              
-                  scanType = "NORMAL";
-              
-              }
-      
-        debug("STATUS: " + status);
-        const cacheKey = decodedText + ":" + status;
-        if (rejectedCache.has(cacheKey)) {
-            showWarning("⚠ sudah diproses");
+            errorBeep();
+            showWarning("⚠ Resi sudah discan");
             return;
-        }
-        rejectedCache.add(cacheKey);
-         console.log("STATUS:", status);
-         // const ekspedisi = detectExpedisi(decodedText);
-          debug("SEBELUM PUSH");
-          console.log("DATA BEFORE:", data.length);
-console.log("=== RESULT ===", result);
-console.log("ORDER     :", result.order);
-console.log("SHIPPING  :", result.shipping);
-console.log("RETURN    :", result.return);
-            
 
-data.push({
-    resi: decodedText,
-
-    order_id:
-        result.order?.order_id ??
-        result.return?.order_id ??
-        null,
-
-    marketplace:
-        result.order?.marketplace ??
-        result.return?.marketplace ??
-        null,
-
-    ekspedisi:
-        result.shipping?.ekspedisi ??
-        result.return?.ekspedisi ??
-        null,
-
-    status,
-
-    scanType,
-
-    source: result.source ?? null,
-
-    order: result.order ?? null,
-
-    shipping: result.shipping ?? null,
-
-    return: result.return ?? null
-});
-        console.log("DATA ARRAY:", data);
-        debug("PUSH OK");
-        if (status === "RETUR_EXIST") {
-          showWarning("📦 Sudah retur");
-          errorBeep();
         }
 
-        else if (status === "AUTO_REJECTED") {
-          showWarning("🔁 REJECTED AUTO");
-          beep();
-        }
+        rejectedCache.add(decodedText);
 
-        else if (status === "NORMAL_ORDER") {
-          showWarning("✅ Normal order");
-          beep();
-        }
+        const ekspedisi = detectExpedisi(decodedText);
 
-        else if (status === "NOT_FOUND") {
-          showWarning("❌ Tidak ditemukan");
-          errorBeep();
-        }
-        debug("RENDER");
+        data.push({
+            resi: decodedText,
+            ekspedisi
+        });
+
         render();
 
-       } catch (err) {
+        beep();
 
-    console.error(err);
+        showWarning("✅ Scan berhasil");
 
-    debug("SCAN ERROR: " + err.message);
+    } catch (err) {
 
-    showWarning("⚠ Terjadi error, scan berikutnya tetap bisa lanjut");
+        console.error(err);
 
-    errorBeep();
+        errorBeep();
 
-      } finally {
+        showWarning("⚠ Terjadi error");
+
+    } finally {
 
         isProcessing = false;
 
     }
 
-      }
-    );
+}
+);
 
+} catch (err) {
 
-  } catch (err) {
     console.log(err);
     alert("Camera gagal dibuka!");
+
+}
   }
-};
-
-// async function simulateClassification(limit = 30) {
-
-//     const { data: scans, error } = await client
-//         .from("scan_awb")
-//         .select("id,resi,status,scan_type")
-//         .order("created_at", { ascending: false })
-//         .limit(limit);
-
-//     if (error) {
-//         console.error(error);
-//         return;
-//     }
-
-//     console.log("===== SIMULATION START =====");
-
-//     for (const scan of scans) {
-
-//         const result = await resolveOrderStatus(scan.resi);
-
-//         let scanType = "NORMAL";
-
-//         if (result.return) {
-
-//             scanType = "CUSTOMER_RETURN";
-
-//         }
-//         else if (
-//             result.shipping?.status === "CANCELLED"
-//         ) {
-
-//             scanType = "CANCELLED_BEFORE_SHIP";
-
-//         }
-//         else if (result.shipping) {
-
-//             scanType = "DELIVERY_FAILED_RETURN";
-
-//         }
-
-//         console.log({
-//             id: scan.id,
-//             resi: scan.resi,
-//             old_status: scan.status,
-//             old_scan_type: scan.scan_type,
-//             new_scan_type: scanType,
-//             result: result.status
-//         });
-
-//     }
-
-//     console.log("===== SIMULATION END =====");
-
-// }
