@@ -234,3 +234,45 @@ async function syncPending(limit = 50) {
     );
 
 }
+// =================================
+// AUTO SYNC RUNNER
+// =================================
+
+let syncRunning = false;
+
+
+async function autoSyncPending(){
+
+    if(syncRunning){
+        console.log("SYNC masih berjalan...");
+        return;
+    }
+
+    syncRunning = true;
+
+    try {
+
+        await syncPending(50);
+
+    } catch(err){
+
+        console.error(
+            "AUTO SYNC ERROR:",
+            err
+        );
+
+    } finally {
+
+        syncRunning = false;
+
+    }
+
+}
+
+
+// jalan setiap 30 detik
+setInterval(() => {
+
+    autoSyncPending();
+
+}, 30000);
