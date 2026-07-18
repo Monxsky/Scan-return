@@ -10,7 +10,7 @@ async function resolveOrderStatus(keyword) {
     if (error) {
 
         console.error(error);
-
+        throw error;
         return {
             status: "NOT_FOUND",
             order: null,
@@ -19,6 +19,10 @@ async function resolveOrderStatus(keyword) {
         };
 
     }
+    console.log(
+    "SEARCH RESULT:",
+    data
+        );
 
     return data ?? {
         status: "NOT_FOUND",
@@ -71,7 +75,10 @@ async function processScan(scan) {
 }
 
 async function updateScan(id, payload) {
-
+    
+    if(!id){
+        throw new Error("SCAN ID kosong");
+    }
     const { error } =
         await client
             .from("scan_awb")
