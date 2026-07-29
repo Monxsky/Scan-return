@@ -18,7 +18,11 @@
 // const MARKETPLACE = "TIKTOK_ID";
 
 let currentEkspedisi = "ALL";
+window.reloadCurrentPage = ()=>{
 
+    loadTransit(currentEkspedisi);
+
+};
 // ======================================================
 // RANGE HARI INI (WIB)
 // database = timestamptz UTC
