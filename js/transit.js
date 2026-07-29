@@ -1,15 +1,3 @@
-setupToolbar({
-
-    title: "Transit",
-
-    filters:{
-
-        orderDate: true,
-        ekspedisi: true
-
-    }
-
-});
 // ======================================================
 // TRANSIT.JS
 // ======================================================
@@ -345,6 +333,19 @@ document.addEventListener(
     "DOMContentLoaded",
 
     ()=>{
+
+    setupToolbar({
+
+    title: "Transit",
+
+    filters:{
+
+        orderDate: true,
+        ekspedisi: true
+
+    }
+
+});
 
         loadTransit("ALL");
 
