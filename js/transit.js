@@ -60,7 +60,6 @@ async function loadTransit(ekspedisi="ALL") {
 
     currentEkspedisi = ekspedisi;
 
-    // const { start, end } = getTodayRangeWIB();
     const orderDateFrom =
     appState.filter.orderDateFrom;
 
@@ -80,10 +79,14 @@ async function loadTransit(ekspedisi="ALL") {
         .eq("marketplace", MARKETPLACE)
         .eq("status","READY_TO_SHIP")
         // .gte("batas_kirim", start)
-        .lt("batas_kirim", end)
-        .order("batas_kirim",{ascending:true});
+        // .lt("batas_kirim", end)
+        // .order("batas_kirim",{ascending:true});
 
-        if(orderDateFrom || orderDateTo){
+    // ===============================
+    // FILTER TANGGAL TOOLBAR
+    // ===============================
+
+        // if(orderDateFrom || orderDateTo){
 
     if(orderDateFrom){
 
@@ -103,22 +106,43 @@ async function loadTransit(ekspedisi="ALL") {
 
     }
 
-}else{
+ // ===============================
+    // DEFAULT
+    // deadline sampai hari ini
+    // ===============================
 
-    const { end } = getTodayRangeWIB();
+    if(!orderDateFrom && !orderDateTo){
 
-    query = query.lt(
-        "batas_kirim",
-        end
-    );
+        const { end } =
+            getTodayRangeWIB();
 
-}
 
-    if(ekspedisi !== "ALL"){
-
-        query = query.eq("ekspedisi", ekspedisi);
+        query = query.lt(
+            "batas_kirim",
+            end
+        );
 
     }
+    
+    // ===============================
+    // EKSPEDISI
+    // ===============================
+    
+    if(ekspedisi !== "ALL"){
+
+        query = query.eq(
+            "ekspedisi",
+            ekspedisi
+        );
+
+    }
+
+     query = query.order(
+        "batas_kirim",
+        {
+            ascending:true
+        }
+    );
 
     const { data, error } = await query;
 
