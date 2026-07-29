@@ -22,9 +22,13 @@
         <div id="toolbar"></div>
 
 <script>
-const MARKETPLACE = "SHOPEE_ID";
-</script>
 
+const params = new URLSearchParams(window.location.search);
+
+const MARKETPLACE =
+    params.get("marketplace") || "SHOPEE_ID";
+
+</script>
 <div class="nav nav-tabs">
 
 <button
@@ -58,10 +62,6 @@ data-ekspedisi="ID Express">
 ID Express
 
 </button>
-
-<script>
-const MARKETPLACE = "TIKTOK_ID";
-</script>
 
 <div class="nav nav-tabs">
 
@@ -123,8 +123,8 @@ SiCepat
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="../js/config.js"></script>
-<script src="../js/sidebar.js"></script>
 <script src="../js/filterstate.js"></script>
+<script src="../js/sidebar.js"></script>
 <script src="../js/toolbar.js"></script>
 <script src="../js/expedisi.js"></script>
 <script src="../js/detectexpedisi.js"></script>
