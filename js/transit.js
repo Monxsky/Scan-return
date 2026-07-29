@@ -1,7 +1,7 @@
 let overdueMode = false;
 renderToolbar({
 
-    title: "Daftar Retur",
+    title: "Daftar Transit",
 
     filters: {
         returnStatus: true,
