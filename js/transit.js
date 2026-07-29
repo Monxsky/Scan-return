@@ -333,26 +333,24 @@ document
 // ======================================================
 
 document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
-    "DOMContentLoaded",
-
-    ()=>{
 
     setupToolbar({
 
-    title: "Transit",
+        title:"Transit",
 
-    filters:{
+        filters:{
+            orderDate:true
+        },
 
-        orderDate: true,
-        ekspedisi: true
+        refresh:true
 
-    }
+    });
+
+
+    loadTransit("ALL");
+
 
 });
-
-        loadTransit("ALL");
-
-    }
-
-);
