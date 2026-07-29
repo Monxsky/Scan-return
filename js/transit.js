@@ -1,17 +1,13 @@
-let overdueMode = false;
-renderToolbar({
+setupToolbar({
 
-    title: "Daftar Transit",
+    title: "Transit",
 
-    filters: {
-        returnStatus: true,
-        ekspedisi: true,
-        orderDate: true
+    filters:{
 
-    },
-    search: true,
-    syncScan: true,
-    refresh: true
+        orderDate: true,
+        ekspedisi: true
+
+    }
 
 });
 // ======================================================
@@ -72,7 +68,12 @@ async function loadTransit(ekspedisi="ALL") {
 
     currentEkspedisi = ekspedisi;
 
-    const { start, end } = getTodayRangeWIB();
+    // const { start, end } = getTodayRangeWIB();
+    const orderDateFrom =
+    appState.filter.orderDateFrom;
+
+    const orderDateTo =
+    appState.filter.orderDateTo;
 
     let query = client
         .from("daftar_pesanan")
@@ -89,6 +90,37 @@ async function loadTransit(ekspedisi="ALL") {
         // .gte("batas_kirim", start)
         .lt("batas_kirim", end)
         .order("batas_kirim",{ascending:true});
+
+        if(orderDateFrom || orderDateTo){
+
+    if(orderDateFrom){
+
+        query = query.gte(
+            "batas_kirim",
+            orderDateFrom + "T00:00:00"
+        );
+
+    }
+
+    if(orderDateTo){
+
+        query = query.lt(
+            "batas_kirim",
+            orderDateTo + "T23:59:59"
+        );
+
+    }
+
+}else{
+
+    const { end } = getTodayRangeWIB();
+
+    query = query.lt(
+        "batas_kirim",
+        end
+    );
+
+}
 
     if(ekspedisi !== "ALL"){
 
@@ -319,11 +351,3 @@ document.addEventListener(
     }
 
 );
-
-window.addEventListener("show-overdue", () => {
-
-    overdueMode = true;
-loadPage(1);
-
-
-});
