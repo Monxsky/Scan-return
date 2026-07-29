@@ -1,3 +1,19 @@
+let overdueMode = false;
+renderToolbar({
+
+    title: "Daftar Retur",
+
+    filters: {
+        returnStatus: true,
+        ekspedisi: true,
+        orderDate: true
+
+    },
+    search: true,
+    syncScan: true,
+    refresh: true
+
+});
 // ======================================================
 // TRANSIT.JS
 // ======================================================
