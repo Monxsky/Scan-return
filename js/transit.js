@@ -70,7 +70,7 @@ async function loadTransit(ekspedisi="ALL") {
         `)
         .eq("marketplace", MARKETPLACE)
         .eq("status","READY_TO_SHIP")
-        .gte("batas_kirim", start)
+        // .gte("batas_kirim", start)
         .lt("batas_kirim", end)
         .order("batas_kirim",{ascending:true});
 
@@ -114,6 +114,43 @@ async function loadTransit(ekspedisi="ALL") {
 
 // ======================================================
 // TABLE
+// ======================================================
+
+// ================ INDIKATOR TERLAMBAT =================
+
+function getDeadlineBadge(date){
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const deadline = new Date(date);
+    deadline.setHours(0,0,0,0);
+
+    const diff = Math.floor(
+        (today - deadline) / 86400000
+    );
+
+    if(diff > 0){
+
+        return `<span class="badge bg-danger">
+            Terlambat ${diff} hari
+        </span>`;
+
+    }
+
+    if(diff === 0){
+
+        return `<span class="badge bg-warning">
+            Hari Ini
+        </span>`;
+
+    }
+
+    return `<span class="badge bg-success">
+        Normal
+    </span>`;
+}
+
 // ======================================================
 
 function renderTable(rows){
@@ -183,6 +220,12 @@ function renderTable(rows){
 
             <td>
             ${row.status}
+            </td>
+
+            <td>
+            ${new Date(row.batas_kirim).toLocaleDateString("id-ID")}
+            <br>
+            ${getDeadlineBadge(row.batas_kirim)}
             </td>
 
         </tr>
