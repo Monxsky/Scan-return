@@ -199,6 +199,12 @@ document.getElementById("scanDateFrom");
 const scanDateTo =
 document.getElementById("scanDateTo");
 
+const orderDateFrom =
+document.getElementById("orderDateFrom");
+
+const orderDateTo =
+document.getElementById("orderDateTo");
+
 if(scanDateFrom){
 
     scanDateFrom.addEventListener("change",()=>{
@@ -232,6 +238,41 @@ if(scanDateTo){
     });
 
 }
+
+if(orderDateFrom){
+
+    orderDateFrom.addEventListener("change",()=>{
+
+        appState.filter.orderDateFrom =
+            orderDateFrom.value;
+
+        if(window.reloadCurrentPage){
+
+            window.reloadCurrentPage();
+
+        }
+
+    });
+
+}
+
+if(orderDateTo){
+
+    orderDateTo.addEventListener("change",()=>{
+
+        appState.filter.orderDateTo =
+            orderDateTo.value;
+
+        if(window.reloadCurrentPage){
+
+            window.reloadCurrentPage();
+
+        }
+
+    });
+
+}
+        
     }
 // =============
 // SETUP TOOLBAR
